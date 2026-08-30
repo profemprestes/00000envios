@@ -34,7 +34,7 @@ export default function Header() {
           
           {/* Logotipo Oficial */}
           <Link
-            href="#hero-animado"
+            href="/#hero-animado"
             className="flex items-center gap-3 group rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow"
           >
             <div className="relative w-11 h-11 shrink-0 bg-brand-blue border border-brand-yellow rounded-xl p-1 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform shadow-glow-yellow">
@@ -58,7 +58,7 @@ export default function Header() {
           {/* Menú Desktop */}
           <nav className="hidden lg:flex items-center gap-1" aria-label="Navegación principal">
             <Link
-              href="#hero-animado"
+              href="/#hero-animado"
               className="px-3.5 py-2 text-base font-subheading tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 text-brand-yellow bg-brand-white/10 hover:bg-brand-white/20"
             >
               <i className="ph-fill ph-house text-brand-yellow text-lg"></i>
@@ -87,7 +87,7 @@ export default function Header() {
                   className="dropdown-panel show-state absolute top-full left-0 mt-2 w-72 bg-brand-blue border border-brand-white/25 rounded-2xl shadow-2xl p-2 z-50"
                 >
                   <Link
-                    href="#servicios-overview"
+                    href="/#servicios-overview"
                     onClick={() => setServicesOpen(false)}
                     className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group"
                   >
@@ -103,7 +103,7 @@ export default function Header() {
                   </Link>
 
                   <Link
-                    href="#servicios-overview"
+                    href="/#servicios-overview"
                     onClick={() => setServicesOpen(false)}
                     className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group"
                   >
@@ -119,7 +119,7 @@ export default function Header() {
                   </Link>
 
                   <Link
-                    href="#servicios-overview"
+                    href="/#servicios-overview"
                     onClick={() => setServicesOpen(false)}
                     className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group"
                   >
@@ -135,7 +135,7 @@ export default function Header() {
                   </Link>
 
                   <Link
-                    href="#servicios-overview"
+                    href="/#servicios-overview"
                     onClick={() => setServicesOpen(false)}
                     className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group"
                   >
@@ -175,28 +175,42 @@ export default function Header() {
                   className="dropdown-panel show-state absolute top-full left-0 mt-2 w-64 bg-brand-blue border border-brand-white/25 rounded-2xl shadow-2xl p-2 z-50"
                 >
                   <Link
-                    href="#vision-mar-del-plata"
+                    href="/nosotros/sobre-nosotros"
                     onClick={() => setAboutOpen(false)}
                     className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group"
                   >
-                    <i className="ph-fill ph-shield-check text-xl text-brand-yellow"></i>
+                    <i className="ph-fill ph-identification-badge text-xl text-brand-yellow"></i>
                     <div>
                       <div className="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">
-                        Nuestra Flota
+                        Sobre Nosotros
                       </div>
-                      <div className="font-sans text-xs text-brand-white/80">100% propia en MDQ</div>
+                      <div className="font-sans text-xs text-brand-white/80">Quiénes somos en MDQ</div>
                     </div>
                   </Link>
 
                   <Link
-                    href="#carrusel-redes"
+                    href="/nosotros/preguntas-frecuentes"
                     onClick={() => setAboutOpen(false)}
                     className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group"
                   >
-                    <i className="ph-fill ph-star text-xl text-brand-yellow"></i>
+                    <i className="ph-fill ph-question text-xl text-brand-yellow"></i>
                     <div>
                       <div className="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">
-                        Comunidad MDQ
+                        Preguntas Frecuentes
+                      </div>
+                      <div className="font-sans text-xs text-brand-white/80">Dudas comunes sobre el servicio</div>
+                    </div>
+                  </Link>
+
+                  <Link
+                    href="/nosotros/nuestras-redes"
+                    onClick={() => setAboutOpen(false)}
+                    className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group"
+                  >
+                    <i className="ph-fill ph-share-network text-xl text-brand-yellow"></i>
+                    <div>
+                      <div className="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">
+                        Nuestras Redes
                       </div>
                       <div className="font-sans text-xs text-brand-white/80">Redes y reputación</div>
                     </div>
@@ -206,7 +220,7 @@ export default function Header() {
             </div>
 
             <Link
-              href="#contacto"
+              href="/contacto"
               className="px-3.5 py-2 text-base font-subheading tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 text-brand-white hover:text-brand-yellow hover:bg-brand-white/10"
             >
               <i className="ph-fill ph-envelope text-brand-yellow text-lg"></i>
@@ -266,7 +280,7 @@ export default function Header() {
             className="menu-open lg:hidden border-t border-brand-white/20 bg-brand-blue mt-3 pt-3 rounded-2xl px-3 space-y-2 shadow-2xl"
           >
             <Link
-              href="#hero-animado"
+              href="/#hero-animado"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center gap-3 py-2.5 px-3 rounded-xl font-subheading text-base uppercase text-brand-yellow bg-brand-white/15"
             >
@@ -279,28 +293,28 @@ export default function Header() {
                 Servicios principales
               </p>
               <Link
-                href="#servicios-overview"
+                href="/#servicios-overview"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15"
               >
                 <i className="ph-fill ph-lightning text-brand-yellow"></i> Envíos Express
               </Link>
               <Link
-                href="#servicios-overview"
+                href="/#servicios-overview"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15"
               >
                 <i className="ph-fill ph-tag text-brand-yellow"></i> Envíos LowCost
               </Link>
               <Link
-                href="#servicios-overview"
+                href="/#servicios-overview"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15"
               >
                 <i className="ph-fill ph-package text-brand-yellow"></i> Mercado Envíos Flex
               </Link>
               <Link
-                href="#servicios-overview"
+                href="/#servicios-overview"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15"
               >
@@ -309,7 +323,7 @@ export default function Header() {
             </div>
 
             <Link
-              href="#slider-industrias"
+              href="/#slider-industrias"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center gap-3 py-2.5 px-3 rounded-xl font-subheading text-sm uppercase text-brand-white hover:bg-brand-white/15"
             >
@@ -317,7 +331,7 @@ export default function Header() {
             </Link>
 
             <Link
-              href="#emprendedores-mdq"
+              href="/#emprendedores-mdq"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center gap-3 py-2.5 px-3 rounded-xl font-subheading text-sm uppercase text-brand-white hover:bg-brand-white/15"
             >
@@ -325,15 +339,42 @@ export default function Header() {
             </Link>
 
             <Link
-              href="#carrusel-redes"
+              href="/#carrusel-redes"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center gap-3 py-2.5 px-3 rounded-xl font-subheading text-sm uppercase text-brand-white hover:bg-brand-white/15"
             >
               <i className="ph-fill ph-users-three text-brand-yellow text-lg"></i> Comunidad Digital
             </Link>
 
+            <div className="space-y-1 pl-2 border-l border-brand-white/20 my-1">
+              <p className="font-subheading text-xs uppercase text-brand-yellow px-2 pt-1 tracking-wider">
+                Nosotros
+              </p>
+              <Link
+                href="/nosotros/sobre-nosotros"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15"
+              >
+                <i className="ph-fill ph-identification-badge text-brand-yellow"></i> Sobre Nosotros
+              </Link>
+              <Link
+                href="/nosotros/preguntas-frecuentes"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15"
+              >
+                <i className="ph-fill ph-question text-brand-yellow"></i> Preguntas Frecuentes
+              </Link>
+              <Link
+                href="/nosotros/nuestras-redes"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15"
+              >
+                <i className="ph-fill ph-share-network text-brand-yellow"></i> Nuestras Redes
+              </Link>
+            </div>
+
             <Link
-              href="#contacto"
+              href="/contacto"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center gap-3 py-2.5 px-3 rounded-xl font-subheading text-sm uppercase text-brand-white hover:bg-brand-white/15"
             >

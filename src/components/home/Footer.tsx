@@ -24,7 +24,7 @@ export default function Footer() {
 
           {/* Identidad */}
           <div className="lg:col-span-5 space-y-5">
-            <Link className="flex items-center gap-3 group w-fit focus:outline-none" href="#hero-animado">
+            <Link className="flex items-center gap-3 group w-fit focus:outline-none" href="/#hero-animado">
               <div className="relative w-11 h-11 bg-brand-blue border border-brand-yellow rounded-xl p-1 shrink-0 flex items-center justify-center overflow-hidden shadow-glow-yellow group-hover:scale-105 transition-transform">
                 <img
                   src="/logo.webp"
@@ -101,7 +101,7 @@ export default function Footer() {
               <li>
                 <Link
                   className="text-brand-white hover:text-brand-yellow flex items-center justify-between group transition-all duration-200"
-                  href="#servicios-overview"
+                  href="/#servicios-overview"
                 >
                   <div className="flex items-center gap-2">
                     <i className="ph-fill ph-lightning text-brand-yellow"></i>
@@ -113,7 +113,7 @@ export default function Footer() {
               <li>
                 <Link
                   className="text-brand-white hover:text-brand-yellow flex items-center justify-between group transition-all duration-200"
-                  href="#servicios-overview"
+                  href="/#servicios-overview"
                 >
                   <div className="flex items-center gap-2">
                     <i className="ph-fill ph-tag text-brand-yellow"></i>
@@ -125,7 +125,7 @@ export default function Footer() {
               <li>
                 <Link
                   className="text-brand-white hover:text-brand-yellow flex items-center justify-between group transition-all duration-200"
-                  href="#servicios-overview"
+                  href="/#servicios-overview"
                 >
                   <div className="flex items-center gap-2">
                     <i className="ph-fill ph-package text-brand-yellow"></i>
@@ -137,7 +137,7 @@ export default function Footer() {
               <li>
                 <Link
                   className="text-brand-white hover:text-brand-yellow flex items-center justify-between group transition-all duration-200"
-                  href="#servicios-overview"
+                  href="/#servicios-overview"
                 >
                   <div className="flex items-center gap-2">
                     <i className="ph-fill ph-warehouse text-brand-yellow"></i>
@@ -209,13 +209,13 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-brand-white/80 font-sans">
           <p>© {new Date().getFullYear()} Envíos DosRuedas. Todos los derechos reservados. Mar del Plata, Argentina.</p>
           <div className="flex flex-wrap justify-center gap-6">
-            <Link className="hover:text-brand-yellow transition-colors" href="#hero-animado">
+            <Link className="hover:text-brand-yellow transition-colors" href="/#hero-animado">
               Inicio
             </Link>
-            <Link className="hover:text-brand-yellow transition-colors" href="#servicios-overview">
+            <Link className="hover:text-brand-yellow transition-colors" href="/#servicios-overview">
               Servicios
             </Link>
-            <Link className="hover:text-brand-yellow transition-colors" href="#slider-industrias">
+            <Link className="hover:text-brand-yellow transition-colors" href="/#slider-industrias">
               Industrias
             </Link>
             <button
