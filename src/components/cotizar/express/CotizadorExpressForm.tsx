@@ -321,26 +321,23 @@ export default function CotizadorExpressForm({ priceRanges = [] }: { priceRanges
       </div>
 
       {/* Real Interactive Map Panel */}
-      <div className="lg:col-span-5 min-h-[350px] lg:min-h-full double-bezel-outer bg-brand-blue-50/80 shadow-brutalist border border-brand-blue-100 p-2 rounded-2xl transition-all duration-300">
-        <div className="double-bezel-inner gradient-blue p-6 rounded-xl border border-brand-blue-50/50 flex flex-col justify-between h-full relative overflow-hidden text-white">
-          {/* Map backgrounds grid overlay */}
-          <div className="absolute inset-0 opacity-15 bg-[linear-gradient(to_right,#334155_1px,transparent_1px),linear-gradient(to_bottom,#334155_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
-
+      <div className="lg:col-span-5 min-h-[380px] lg:min-h-full rounded-3xl p-2 bg-brand-blue/10 border border-brand-blue/20 shadow-xl">
+        <div className="bg-brand-blue-deep p-6 rounded-[22px] flex flex-col justify-between h-full relative overflow-hidden text-brand-white">
           {/* Header Map */}
           <div className="relative z-10 flex justify-between items-center border-b border-white/10 pb-4 mb-4">
             <div className="flex items-center gap-2">
-              <div className="w-2.5 h-2.5 rounded-full bg-brand-blue-300 animate-ping" />
-              <span className="text-xs font-mono text-brand-blue-300 uppercase tracking-widest font-semibold">
+              <div className="w-2.5 h-2.5 rounded-full bg-brand-yellow animate-ping" />
+              <span className="text-xs font-mono text-brand-yellow uppercase tracking-widest font-semibold">
                 Ruteador MDQ Activo
               </span>
             </div>
-            <span className="text-[10px] font-mono text-brand-blue-300">
-              Real-time Routing
+            <span className="text-[10px] font-mono text-brand-white/70">
+              Live Transit · Mar del Plata
             </span>
           </div>
 
           {/* Leaflet Map Loader */}
-          <div className="relative flex-grow min-h-[260px] rounded-2xl overflow-hidden border border-white/5 shadow-inner z-10">
+          <div className="relative flex-grow min-h-[280px] rounded-2xl overflow-hidden border border-white/10 shadow-inner z-10">
             <DynamicRouteMap
               origin={origenCoords}
               destination={destinoCoords}
@@ -349,7 +346,7 @@ export default function CotizadorExpressForm({ priceRanges = [] }: { priceRanges
           </div>
 
           {/* Footer map details */}
-          <div className="relative z-10 text-[10px] font-mono text-brand-blue-300 space-y-1.5 border-t border-white/10 pt-4 mt-4">
+          <div className="relative z-10 text-[10px] font-mono text-brand-white/70 space-y-1.5 border-t border-white/10 pt-4 mt-4">
             <div className="flex justify-between">
               <span>Servicio:</span>
               <span className="text-brand-yellow font-bold uppercase">Envío Express 2H</span>

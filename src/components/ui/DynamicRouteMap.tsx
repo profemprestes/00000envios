@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Polyline, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Polyline, useMap, ZoomControl } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -20,22 +20,68 @@ interface DynamicRouteMapProps {
 // Centro por defecto: Mar del Plata (Friuli 1972, base operativa).
 const MDQ_CENTER: [number, number] = [-38.0055, -57.5426];
 
-function pin(color: string) {
+// Custom HTML Pins con badges premium y micro-animación de radar
+function createCustomPin(label: string, color: string, badgeBg: string, textColor: string) {
   return L.divIcon({
-    className: "",
-    html: `<svg width="28" height="36" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M14 0C6.27 0 0 6.27 0 14c0 10.5 14 22 14 22s14-11.5 14-22C28 6.27 21.73 0 14 0z" fill="${color}"/>
-      <circle cx="14" cy="14" r="5.5" fill="white"/>
-    </svg>`,
-    iconSize: [28, 36],
-    iconAnchor: [14, 36],
+    className: 'custom-map-pin',
+    html: `
+      <div style="position: relative; display: flex; flex-direction: column; align-items: center; cursor: pointer;">
+        <!-- Badge flotante -->
+        <div style="
+          background: ${badgeBg};
+          color: ${textColor};
+          font-family: 'Geist Mono', monospace, sans-serif;
+          font-size: 10px;
+          font-weight: 800;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+          padding: 3px 8px;
+          border-radius: 9999px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+          border: 1.5px solid ${color};
+          white-space: nowrap;
+          margin-bottom: 4px;
+        ">
+          ${label}
+        </div>
+        
+        <!-- Pin icon con halo de radar -->
+        <div style="position: relative; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;">
+          <div style="
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: ${color};
+            opacity: 0.35;
+            animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+          "></div>
+          <div style="
+            position: relative;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #052c87;
+            border: 2.5px solid ${color};
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          ">
+            <div style="width: 8px; height: 8px; border-radius: 50%; background: ${color};"></div>
+          </div>
+        </div>
+      </div>
+    `,
+    iconSize: [80, 60],
+    iconAnchor: [40, 52],
   });
 }
 
-const originIcon = pin("#FFF12E");
-const destinationIcon = pin("#0950F6");
+const originPin = createCustomPin('ORIGEN', '#FFF12E', '#06349e', '#FFF12E');
+const destinationPin = createCustomPin('DESTINO', '#38BDF8', '#052c87', '#FFFFFF');
 
-/** Reencuadra el mapa cuando cambian origen/destino/ruta (MapContainer no lo hace solo). */
+/** Reencuadra el mapa suavemente cuando cambian origen/destino/ruta */
 function FitBounds({ origin, destination, routeLatLng }: { origin: Coordinate | null; destination: Coordinate | null; routeLatLng: [number, number][] }) {
   const map = useMap();
 
@@ -45,14 +91,18 @@ function FitBounds({ origin, destination, routeLatLng }: { origin: Coordinate | 
     if (destination) points.push([destination.lat, destination.lng]);
 
     if (points.length === 0) {
-      map.setView(MDQ_CENTER, 13);
+      map.setView(MDQ_CENTER, 13, { animate: true });
       return;
     }
     if (points.length === 1) {
-      map.setView(points[0], 15);
+      map.setView(points[0], 14, { animate: true });
       return;
     }
-    map.fitBounds(L.latLngBounds(points), { padding: [32, 32] });
+    map.fitBounds(L.latLngBounds(points), {
+      padding: [48, 48],
+      maxZoom: 16,
+      animate: true,
+    });
   }, [map, origin, destination, routeLatLng]);
 
   return null;
@@ -63,24 +113,98 @@ export default function DynamicRouteMap({ origin, destination, routeCoords }: Dy
   const routeLatLng: [number, number][] = routeCoords.map(([lng, lat]) => [lat, lng]);
 
   return (
-    <MapContainer
-      center={origin ? [origin.lat, origin.lng] : MDQ_CENTER}
-      zoom={13}
-      className="w-full h-full min-h-[260px]"
-      scrollWheelZoom={false}
-    >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-      />
+    <div className="relative w-full h-full min-h-[300px] select-none">
+      <style jsx global>{`
+        .leaflet-container {
+          width: 100% !important;
+          height: 100% !important;
+          background: #0f172a !important;
+          font-family: inherit;
+        }
+        .leaflet-tile {
+          filter: brightness(0.95) contrast(1.08) saturate(1.1) !important;
+        }
+        .leaflet-control-zoom {
+          border: none !important;
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35) !important;
+          border-radius: 12px !important;
+          overflow: hidden;
+        }
+        .leaflet-control-zoom a {
+          background-color: #06349e !important;
+          color: #ffffff !important;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+          width: 32px !important;
+          height: 32px !important;
+          line-height: 32px !important;
+          transition: background 0.2s;
+        }
+        .leaflet-control-zoom a:hover {
+          background-color: #0950F6 !important;
+          color: #FFF12E !important;
+        }
+        .leaflet-control-attribution {
+          background: rgba(5, 44, 135, 0.75) !important;
+          color: rgba(255, 255, 255, 0.6) !important;
+          font-size: 9px !important;
+          backdrop-filter: blur(4px);
+          border-top-left-radius: 6px;
+        }
+        .leaflet-control-attribution a {
+          color: #FFF12E !important;
+        }
+      `}</style>
 
-      {origin && <Marker position={[origin.lat, origin.lng]} icon={originIcon} />}
-      {destination && <Marker position={[destination.lat, destination.lng]} icon={destinationIcon} />}
-      {routeLatLng.length > 1 && (
-        <Polyline positions={routeLatLng} pathOptions={{ color: "#FFF12E", weight: 4, opacity: 0.9 }} />
-      )}
+      <MapContainer
+        center={origin ? [origin.lat, origin.lng] : MDQ_CENTER}
+        zoom={13}
+        zoomControl={false}
+        className="w-full h-full"
+        scrollWheelZoom={false}
+      >
+        {/* Capa de mapa: OpenStreetMap estándar libre y 100% público (sin API Key) */}
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+          maxZoom={19}
+        />
 
-      <FitBounds origin={origin} destination={destination} routeLatLng={routeLatLng} />
-    </MapContainer>
+        <ZoomControl position="bottomright" />
+
+        {/* Trazado de ruta con doble capa (Halo + Línea principal para efecto glow de alta visibilidad) */}
+        {routeLatLng.length > 1 && (
+          <>
+            {/* Halo / Glow externo de la ruta */}
+            <Polyline
+              positions={routeLatLng}
+              pathOptions={{
+                color: '#0950F6',
+                weight: 8,
+                opacity: 0.35,
+                lineCap: 'round',
+                lineJoin: 'round',
+              }}
+            />
+            {/* Línea viva interior */}
+            <Polyline
+              positions={routeLatLng}
+              pathOptions={{
+                color: '#0950F6',
+                weight: 4,
+                opacity: 0.95,
+                lineCap: 'round',
+                lineJoin: 'round',
+              }}
+            />
+          </>
+        )}
+
+        {origin && <Marker position={[origin.lat, origin.lng]} icon={originPin} />}
+        {destination && <Marker position={[destination.lat, destination.lng]} icon={destinationPin} />}
+
+        <FitBounds origin={origin} destination={destination} routeLatLng={routeLatLng} />
+      </MapContainer>
+    </div>
   );
 }
+
