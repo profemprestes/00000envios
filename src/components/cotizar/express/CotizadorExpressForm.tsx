@@ -26,7 +26,7 @@ export default function CotizadorExpressForm({ priceRanges = [] }: { priceRanges
   const [routeCoords, setRouteCoords] = useState<[number, number][]>([]);
 
   const [isCalculating, setIsCalculating] = useState(false);
-  const [isTransitionPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
   const [calculated, setCalculated] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<{
@@ -38,7 +38,7 @@ export default function CotizadorExpressForm({ priceRanges = [] }: { priceRanges
   const { fetchRoute } = useGoogleRoute();
 
   const initialState: QuoteState = { success: false, price: null, error: null };
-  const [formState, formAction, isPending] = useActionState(calculateQuoteAction, initialState);
+  useActionState(calculateQuoteAction, initialState);
 
   const handleCalculate = (e: React.FormEvent) => {
     e.preventDefault();
@@ -202,29 +202,29 @@ export default function CotizadorExpressForm({ priceRanges = [] }: { priceRanges
               )}
 
               <motion.button
-                whileHover={{ scale: 1.02, y: -2 }}
-                transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.4 }}
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.98 }}
                 type="submit"
                 disabled={isCalculating || !origen.trim() || !destino.trim() || !nombre.trim() || !telefono.trim() || !producto.trim()}
-                className="w-full bg-brand-yellow-500 hover:bg-brand-yellow-400 text-brand-blue-700 font-subheading tracking-wider uppercase text-base py-4 rounded-full shadow-md transition-all flex items-center justify-between cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed px-6"
+                className="w-full cta-nested-pill bg-brand-yellow-500 hover:bg-brand-yellow-400 text-brand-blue-900 font-subheading font-bold tracking-wider uppercase text-base py-3.5 px-6 rounded-full shadow-accent-sm hover:shadow-cta-glow transition-all flex items-center justify-between cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed min-h-12"
               >
                 {isCalculating ? (
                   <>
                     <div className="flex items-center gap-2">
-                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-brand-blue-700" fill="none" viewBox="0 0 24 24">
+                      <svg className="animate-spin h-5 w-5 text-brand-blue-900" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                       </svg>
-                      <span>Calculando Ruta...</span>
+                      <span>Calculando Tarifa Express...</span>
                     </div>
-                    <span className="cta-nested-icon bg-brand-blue-700/10 text-brand-blue-700 h-7 w-7 rounded-full flex items-center justify-center shrink-0">
+                    <span className="cta-nested-icon bg-brand-blue-900/10 text-brand-blue-900 h-8 w-8 rounded-full flex items-center justify-center shrink-0">
                       <Calculator className="h-4 w-4" />
                     </span>
                   </>
                 ) : (
                   <>
                     <span>Calcular Ruta y Precio Express</span>
-                    <span className="cta-nested-icon bg-brand-blue-700/10 text-brand-blue-700 h-7 w-7 rounded-full flex items-center justify-center shrink-0">
+                    <span className="cta-nested-icon bg-brand-blue-900/10 text-brand-blue-900 h-8 w-8 rounded-full flex items-center justify-center shrink-0">
                       <Calculator className="h-4 w-4" />
                     </span>
                   </>
@@ -234,36 +234,36 @@ export default function CotizadorExpressForm({ priceRanges = [] }: { priceRanges
           </div>
 
           {/* Dynamic Results Display */}
-          <div className="mt-8">
+          <div className="mt-6">
             <AnimatePresence mode="wait">
               {calculated && result && (
                 <motion.div
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
-                  className="double-bezel-outer bg-brand-blue-50/80 shadow-brutalist border border-brand-blue-100 p-2 rounded-2xl transition-all duration-300 w-full glow-yellow"
+                  className="double-bezel-outer bg-brand-blue-50/90 border border-brand-blue-200 p-2 rounded-2xl shadow-elevated w-full"
                 >
-                  <div className="double-bezel-inner bg-white p-5 rounded-xl border border-brand-blue-50/50 space-y-4 text-brand-blue-700">
-                    <div className="grid grid-cols-2 gap-4 text-center">
-                      <div className="bg-brand-blue-50/60 p-3 rounded-2xl border border-brand-blue-100/50">
+                  <div className="double-bezel-inner bg-white p-5 rounded-xl border border-brand-blue-100/50 space-y-4 text-brand-blue-700">
+                    <div className="grid grid-cols-2 gap-3 text-center">
+                      <div className="bg-brand-blue-50/80 p-3 rounded-xl border border-brand-blue-100">
                         <span className="block text-[10px] font-subheading font-bold text-brand-blue-600 uppercase tracking-wider">
-                          DISTANCIA
+                          DISTANCIA REAL
                         </span>
-                        <span className="text-xl font-mono text-brand-blue-700 font-bold">
+                        <span className="text-xl font-mono text-brand-blue-700 font-bold tabular-nums">
                           {result.distancia} km
                         </span>
                       </div>
-                      <div className="bg-brand-blue-50/60 p-3 rounded-2xl border border-brand-blue-100/50">
+                      <div className="bg-brand-blue-50/80 p-3 rounded-xl border border-brand-blue-100">
                         <span className="block text-[10px] font-subheading font-bold text-brand-blue-600 uppercase tracking-wider">
                           DEMORA ESTIMADA
                         </span>
-                        <span className="text-xl font-mono text-brand-blue-700 font-bold">
+                        <span className="text-xl font-mono text-brand-blue-700 font-bold tabular-nums">
                           {result.tiempo} min
                         </span>
                       </div>
                     </div>
 
-                    <div className="border-t border-brand-blue-100/60 pt-4 flex flex-col sm:flex-row justify-between items-center gap-3">
+                    <div className="border-t border-brand-blue-100 pt-4 flex flex-col sm:flex-row justify-between items-center gap-4">
                       <div>
                         <span className="block text-[10px] font-subheading font-bold text-brand-blue-600 uppercase tracking-wider">
                           TARIFA ESTIMADA EXPRESS
@@ -275,10 +275,10 @@ export default function CotizadorExpressForm({ priceRanges = [] }: { priceRanges
                             </span>
                           ) : (
                             <>
-                              <span className="font-mono font-bold tracking-tighter text-5xl text-brand-blue-700">
+                              <span className="font-mono font-bold tracking-tight text-4xl sm:text-5xl text-brand-blue-700 tabular-nums">
                                 ${result.precio.toLocaleString('es-AR')}
                               </span>
-                              <span className="text-[10px] text-brand-blue-400 font-mono">ARS</span>
+                              <span className="text-xs text-brand-blue-500 font-mono font-bold">ARS</span>
                             </>
                           )}
                         </div>
@@ -286,10 +286,10 @@ export default function CotizadorExpressForm({ priceRanges = [] }: { priceRanges
 
                       {result.precio === 'consultar' ? (
                         <motion.a
-                          whileHover={{ scale: 1.02, y: -2 }}
-                          transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.4 }}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
                           href="/contacto"
-                          className="w-full sm:w-auto inline-flex items-center justify-between bg-brand-blue-700 hover:bg-brand-blue-600 text-white font-subheading text-sm tracking-wider uppercase px-5 py-3 rounded-full shadow transition-all"
+                          className="w-full sm:w-auto inline-flex items-center justify-between bg-brand-blue-700 hover:bg-brand-blue-800 text-white font-subheading text-sm tracking-wider uppercase px-5 py-3 rounded-full shadow transition-all min-h-11"
                         >
                           <span>Pedir Cotización Especial</span>
                           <span className="cta-nested-icon bg-white/20 text-white h-7 w-7 rounded-full flex items-center justify-center shrink-0 ml-3">
@@ -298,15 +298,15 @@ export default function CotizadorExpressForm({ priceRanges = [] }: { priceRanges
                         </motion.a>
                       ) : (
                         <motion.a
-                          whileHover={{ scale: 1.02, y: -2 }}
-                          transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.4 }}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
                           href={getWhatsAppLink()}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-full sm:w-auto inline-flex items-center justify-between bg-brand-yellow-500 hover:bg-brand-yellow-400 text-brand-blue-700 font-subheading text-sm tracking-wider uppercase px-5 py-3 rounded-full shadow-md transition-all"
+                          className="w-full sm:w-auto inline-flex items-center justify-between bg-brand-yellow-500 hover:bg-brand-yellow-400 text-brand-blue-900 font-subheading font-bold text-sm tracking-wider uppercase px-5 py-3 rounded-full shadow-accent-sm transition-all min-h-11"
                         >
                           <span>Pedir por WhatsApp</span>
-                          <span className="cta-nested-icon bg-brand-blue-700/10 text-brand-blue-700 h-7 w-7 rounded-full flex items-center justify-center shrink-0 ml-3">
+                          <span className="cta-nested-icon bg-brand-blue-900/10 text-brand-blue-900 h-7 w-7 rounded-full flex items-center justify-center shrink-0 ml-3">
                             <CheckCircle2 className="h-4 w-4" />
                           </span>
                         </motion.a>
@@ -321,7 +321,7 @@ export default function CotizadorExpressForm({ priceRanges = [] }: { priceRanges
       </div>
 
       {/* Real Interactive Map Panel */}
-      <div className="lg:col-span-5 min-h-[380px] lg:min-h-full rounded-3xl p-2 bg-brand-blue/10 border border-brand-blue/20 shadow-xl">
+      <div className="lg:col-span-5 min-h-95 lg:min-h-full rounded-3xl p-2 bg-brand-blue/10 border border-brand-blue/20 shadow-xl">
         <div className="bg-brand-blue-deep p-6 rounded-[22px] flex flex-col justify-between h-full relative overflow-hidden text-brand-white">
           {/* Header Map */}
           <div className="relative z-10 flex justify-between items-center border-b border-white/10 pb-4 mb-4">
@@ -337,7 +337,7 @@ export default function CotizadorExpressForm({ priceRanges = [] }: { priceRanges
           </div>
 
           {/* Leaflet Map Loader */}
-          <div className="relative flex-grow min-h-[280px] rounded-2xl overflow-hidden border border-white/10 shadow-inner z-10">
+          <div className="relative grow min-h-70 rounded-2xl overflow-hidden border border-white/10 shadow-inner z-10">
             <DynamicRouteMap
               origin={origenCoords}
               destination={destinoCoords}
