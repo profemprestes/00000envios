@@ -25,8 +25,15 @@ export default function Footer() {
           {/* Identidad */}
           <div className="lg:col-span-5 space-y-5">
             <Link className="flex items-center gap-3 group w-fit focus:outline-none" href="#hero-animado">
-              <div className="relative w-11 h-11 bg-brand-yellow p-1 rounded-xl border border-brand-yellow shrink-0 flex items-center justify-center overflow-hidden shadow-glow-yellow">
-                <span className="font-display font-black text-2xl text-brand-blue leading-none">2R</span>
+              <div className="relative w-11 h-11 bg-brand-blue border border-brand-yellow rounded-xl p-1 shrink-0 flex items-center justify-center overflow-hidden shadow-glow-yellow group-hover:scale-105 transition-transform">
+                <img
+                  src="/logo.webp"
+                  alt="Logo Envíos DosRuedas"
+                  className="w-full h-full object-contain"
+                  onError={(e) => {
+                    (e.target as HTMLElement).style.display = "none";
+                  }}
+                />
               </div>
               <div className="flex flex-col leading-none">
                 <span className="font-display text-2xl sm:text-3xl tracking-tight uppercase text-brand-white">
@@ -142,49 +149,50 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Base Central y Horarios */}
+          {/* Base Operativa */}
           <div className="lg:col-span-4 space-y-4">
             <h4 className="font-subheading text-lg tracking-wider text-brand-yellow uppercase border-b border-brand-white/20 pb-2 font-bold">
-              Base de Operaciones MDQ
+              Base Operativa y Logística
             </h4>
-
             <div className="space-y-3 text-xs text-brand-white font-sans">
-              <div className="flex gap-3 items-start bg-brand-white/10 p-3 rounded-xl border border-brand-white/20">
+              <div className="flex gap-3 items-start bg-brand-white/10 p-3 rounded-xl border border-brand-white/15">
                 <div className="p-1.5 bg-brand-white/20 rounded-lg shrink-0 text-brand-yellow">
                   <i className="ph-fill ph-map-pin text-base"></i>
                 </div>
                 <div>
-                  <p className="font-bold text-brand-white uppercase font-subheading tracking-wider">Centro de Distribución</p>
-                  <p className="text-[13px] text-brand-white/90 mt-0.5">Friuli 1972, Mar del Plata</p>
+                  <p className="font-subheading uppercase text-brand-yellow text-xs font-bold">Dirección Central:</p>
+                  <p className="text-brand-white font-light text-[13px]">Friuli 1972 (Exclusivo para despachos y retiro)</p>
+                  <p className="text-[11px] text-brand-white/70">B7600 Mar del Plata, Prov. de Buenos Aires</p>
                 </div>
               </div>
 
-              <div className="flex gap-3 items-start bg-brand-white/10 p-3 rounded-xl border border-brand-white/20">
+              <div className="flex gap-3 items-start bg-brand-white/10 p-3 rounded-xl border border-brand-white/15">
                 <div className="p-1.5 bg-brand-white/20 rounded-lg shrink-0 text-brand-yellow">
-                  <i className="ph-fill ph-phone text-base"></i>
+                  <i className="ph-fill ph-phone-call text-base"></i>
                 </div>
                 <div>
-                  <p className="font-bold text-brand-white uppercase font-subheading tracking-wider">Línea Directa y WhatsApp</p>
-                  <a href="tel:+542236602699" className="font-mono text-[13px] font-bold text-brand-yellow hover:underline block mt-0.5">
+                  <p className="font-subheading uppercase text-brand-yellow text-xs font-bold">Central Telefónica:</p>
+                  <a href="tel:+542236602699" className="text-brand-white hover:text-brand-yellow font-mono text-sm block font-bold transition-colors">
                     +54 223 660-2699
                   </a>
+                  <p className="text-[11px] text-brand-white/70">Línea directa base y logística</p>
                 </div>
               </div>
 
-              <div className="flex gap-3 items-start bg-brand-white/10 p-3 rounded-xl border border-brand-white/20">
+              <div className="flex gap-3 items-start bg-brand-white/10 p-3 rounded-xl border border-brand-white/15">
                 <div className="p-1.5 bg-brand-white/20 rounded-lg shrink-0 text-brand-yellow">
                   <i className="ph-fill ph-clock text-base"></i>
                 </div>
                 <div className="w-full space-y-1">
-                  <p className="font-bold text-white uppercase font-subheading tracking-wider">Horarios de Despacho</p>
-                  <div className="text-[12px] space-y-0.5">
+                  <p className="font-subheading uppercase text-brand-yellow text-xs font-bold">Horarios de Operación:</p>
+                  <div className="text-[12px] space-y-0.5 text-brand-white/90">
                     <div className="flex justify-between items-center">
                       <span>Lunes a Viernes:</span>
-                      <span className="font-mono font-bold text-brand-yellow">09:00 - 18:00 hs</span>
+                      <span className="font-mono text-brand-yellow font-bold">08:00 - 20:00 hs</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span>Sábados:</span>
-                      <span className="font-mono font-bold text-brand-yellow">10:00 - 15:00 hs</span>
+                      <span>Sábados (Guardia):</span>
+                      <span className="font-mono text-brand-yellow font-bold">09:00 - 15:00 hs</span>
                     </div>
                   </div>
                 </div>
@@ -194,27 +202,30 @@ export default function Footer() {
 
         </div>
 
-        {/* Divisor con Botón Volver Arriba */}
-        <div className="border-t border-brand-white/20 my-8 relative">
-          <button
-            type="button"
-            onClick={scrollToTop}
-            className="absolute -top-4 right-4 bg-brand-yellow hover:bg-brand-yellow-hover text-brand-blue p-2 rounded-full shadow-lg transition-all hover:scale-105 active:scale-95 cursor-pointer"
-            title="Volver al inicio"
-            aria-label="Volver arriba"
-          >
-            <i className="ph-bold ph-arrow-up text-sm"></i>
-          </button>
-        </div>
+        {/* Separador */}
+        <div className="border-t border-brand-white/20 my-8 relative"></div>
 
-        {/* Copyright & Legales */}
+        {/* Copyright y Accesos Rápidos */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-brand-white/80 font-sans">
-          <p>© 2026 Envíos DosRuedas · Mar del Plata, Argentina.</p>
+          <p>© {new Date().getFullYear()} Envíos DosRuedas. Todos los derechos reservados. Mar del Plata, Argentina.</p>
           <div className="flex flex-wrap justify-center gap-6">
-            <Link className="hover:text-brand-yellow transition-colors" href="#hero-animado">Inicio</Link>
-            <Link className="hover:text-brand-yellow transition-colors" href="#servicios-overview">Servicios</Link>
-            <Link className="hover:text-brand-yellow transition-colors" href="#carrusel-redes">Comunidad</Link>
-            <Link className="hover:text-brand-yellow transition-colors" href="#contacto">Contacto</Link>
+            <Link className="hover:text-brand-yellow transition-colors" href="#hero-animado">
+              Inicio
+            </Link>
+            <Link className="hover:text-brand-yellow transition-colors" href="#servicios-overview">
+              Servicios
+            </Link>
+            <Link className="hover:text-brand-yellow transition-colors" href="#slider-industrias">
+              Industrias
+            </Link>
+            <button
+              type="button"
+              onClick={scrollToTop}
+              className="text-brand-yellow font-subheading uppercase tracking-wider flex items-center gap-1 hover:underline ml-2"
+            >
+              <span>Volver Arriba</span>
+              <i className="ph-bold ph-arrow-up text-xs"></i>
+            </button>
           </div>
         </div>
 

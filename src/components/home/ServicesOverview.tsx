@@ -103,7 +103,7 @@ export default function ServicesOverview() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
           
           {/* SERVICIO 1: EXPRESS */}
-          <article className="group relative rounded-[28px] p-6 bg-[#052c87]/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60">
+          <article className="group relative rounded-[28px] p-6 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60">
             <i className="ph-fill ph-lightning absolute -right-6 -bottom-6 text-[13rem] text-brand-white/[0.04] pointer-events-none group-hover:scale-105 transition-transform duration-500"></i>
             
             <div className="relative z-10 space-y-4">
@@ -158,7 +158,7 @@ export default function ServicesOverview() {
           </article>
 
           {/* SERVICIO 2: LOWCOST */}
-          <article className="group relative rounded-[28px] p-6 bg-[#052c87]/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60">
+          <article className="group relative rounded-[28px] p-6 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60">
             <i className="ph-fill ph-tag absolute -right-6 -bottom-6 text-[13rem] text-brand-white/[0.04] pointer-events-none group-hover:scale-105 transition-transform duration-500"></i>
             
             <div className="relative z-10 space-y-4">
@@ -213,7 +213,7 @@ export default function ServicesOverview() {
           </article>
 
           {/* SERVICIO 3: FLEX */}
-          <article className="group relative rounded-[28px] p-6 bg-[#052c87]/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60">
+          <article className="group relative rounded-[28px] p-6 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60">
             <i className="ph-fill ph-package absolute -right-6 -bottom-6 text-[13rem] text-brand-white/[0.04] pointer-events-none group-hover:scale-105 transition-transform duration-500"></i>
             
             <div className="relative z-10 space-y-4">
@@ -268,7 +268,7 @@ export default function ServicesOverview() {
           </article>
 
           {/* SERVICIO 4: 3PL */}
-          <article className="group relative rounded-[28px] p-6 bg-[#052c87]/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60">
+          <article className="group relative rounded-[28px] p-6 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60">
             <i className="ph-fill ph-warehouse absolute -right-6 -bottom-6 text-[13rem] text-brand-white/[0.04] pointer-events-none group-hover:scale-105 transition-transform duration-500"></i>
             
             <div className="relative z-10 space-y-4">
@@ -328,7 +328,7 @@ export default function ServicesOverview() {
       {/* MODAL INTERACTIVO DE FICHA TÉCNICA */}
       {activeService && (
         <div
-          className="fixed inset-0 z-50 bg-[#02184d]/85 backdrop-blur-md flex items-center justify-center p-4 transition-opacity duration-300"
+          className="fixed inset-0 z-50 bg-brand-blue-deep/90 backdrop-blur-md flex items-center justify-center p-4 transition-opacity duration-300"
           role="dialog"
           aria-modal="true"
           onClick={() => setActiveModalKey(null)}

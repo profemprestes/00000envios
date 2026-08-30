@@ -44,7 +44,7 @@ export default function EmprendedoresHome() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           
           {/* Bento Card 1: Logística E-Commerce (7 cols) */}
-          <div className="lg:col-span-7 rounded-[32px] p-2 bg-[#052c87]/90 border border-brand-white/20 shadow-2xl hover:-translate-y-1 transition-transform duration-300 flex flex-col justify-between">
+          <div className="lg:col-span-7 rounded-[32px] p-2 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl hover:-translate-y-1 transition-transform duration-300 flex flex-col justify-between">
             <div className="p-6 sm:p-8 rounded-[24px] bg-brand-blue border border-brand-white/15 h-full flex flex-col justify-between space-y-6 relative overflow-hidden">
               <i className="ph-fill ph-shopping-bag absolute -right-6 -bottom-6 text-[14rem] text-brand-white/[0.03] pointer-events-none"></i>
               
@@ -58,13 +58,22 @@ export default function EmprendedoresHome() {
                   </span>
                 </div>
 
-                <div className="space-y-1">
-                  <h3 className="text-3xl sm:text-4xl font-display uppercase tracking-tight text-brand-white">
-                    Logística para Tiendas Online
-                  </h3>
-                  <p className="text-brand-white/85 text-xs sm:text-sm leading-relaxed font-sans font-light">
-                    Gestión de última milla pensada para emprendimientos y comercios en expansión. Optimizamos tus costos de envío con retiros pactados y atención directa.
-                  </p>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="space-y-1">
+                    <h3 className="text-3xl sm:text-4xl font-display uppercase tracking-tight text-brand-white">
+                      Logística para Tiendas Online
+                    </h3>
+                    <p className="text-brand-white/85 text-xs sm:text-sm leading-relaxed font-sans font-light">
+                      Gestión de última milla pensada para emprendimientos y comercios en expansión. Optimizamos tus costos de envío con retiros pactados y atención directa.
+                    </p>
+                  </div>
+                  <div className="hidden sm:flex shrink-0 w-24 h-24 items-center justify-center">
+                    <img
+                      src="/recursos_envios/moto_envios_3d.png"
+                      alt="Moto Envíos 3D"
+                      className="w-full h-full object-contain filter drop-shadow-xl transform hover:scale-110 transition-transform"
+                    />
+                  </div>
                 </div>
 
                 <ul className="space-y-2.5 pt-2">
@@ -100,7 +109,7 @@ export default function EmprendedoresHome() {
           </div>
 
           {/* Bento Card 2: Corporativo & Cuenta Corriente (5 cols) */}
-          <div className="lg:col-span-5 rounded-[32px] p-2 bg-[#052c87]/90 border border-brand-white/20 shadow-2xl hover:-translate-y-1 transition-transform duration-300 flex flex-col justify-between">
+          <div className="lg:col-span-5 rounded-[32px] p-2 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl hover:-translate-y-1 transition-transform duration-300 flex flex-col justify-between">
             <div className="p-6 sm:p-8 rounded-[24px] bg-brand-blue border border-brand-white/15 h-full flex flex-col justify-between space-y-6 relative overflow-hidden">
               <i className="ph-fill ph-buildings absolute -right-6 -bottom-6 text-[14rem] text-brand-white/[0.03] pointer-events-none"></i>
               
@@ -158,14 +167,16 @@ export default function EmprendedoresHome() {
           </p>
 
           <div className="relative w-full overflow-hidden py-4 select-none [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-            <div className="flex gap-14 w-max animate-pulse">
-              <div className="flex gap-14 items-center">
-                {LOCAL_BRANDS.map((brand, i) => (
-                  <span key={i} className="font-display text-2xl tracking-wider text-brand-white/80 uppercase hover:text-brand-yellow transition-colors whitespace-nowrap">
-                    {brand}
-                  </span>
-                ))}
-              </div>
+            <div className="flex gap-14 w-max animate-logos-scroll">
+              {[0, 1].map((rep) => (
+                <div key={rep} className="flex gap-14 items-center shrink-0" aria-hidden={rep === 1}>
+                  {LOCAL_BRANDS.map((brand, i) => (
+                    <span key={i} className="font-display text-2xl tracking-wider text-brand-white/80 uppercase hover:text-brand-yellow transition-colors whitespace-nowrap">
+                      {brand}
+                    </span>
+                  ))}
+                </div>
+              ))}
             </div>
           </div>
         </div>

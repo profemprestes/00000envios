@@ -3,27 +3,56 @@
 @import url("https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css");
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    --brand-blue: #0950F6;
-    --brand-blue-dark: #06349e;
-    --brand-blue-deep: #052c87;
-    --brand-yellow: #FFF12E;
-    --brand-yellow-hover: #E8DC24;
-    --brand-white: #FFFFFF;
-    --brand-canvas: #F8FAFC;
-  }
+@theme {
+  --color-brand-blue: #0950F6;
+  --color-brand-blue-card: #06349e;
+  --color-brand-blue-dark: #06349e;
+  --color-brand-blue-deep: #052c87;
+  --color-brand-blue-hover: #0744d4;
+  --color-brand-yellow: #FFF12E;
+  --color-brand-yellow-hover: #E8DC24;
+  --color-brand-white: #FFFFFF;
+  --color-brand-canvas: #F8FAFC;
 
+  --color-social-facebook: #1877F2;
+  --color-social-instagram: #E1306C;
+  --color-social-whatsapp: #25D366;
+
+  --font-display: var(--font-bebas), "Bebas Neue", sans-serif;
+  --font-subheading: var(--font-anton), "Anton", sans-serif;
+  --font-sans: var(--font-outfit), "Outfit", sans-serif;
+  --font-mono: var(--font-mono), "Geist Mono", monospace;
+
+  --shadow-glow-yellow: 0 0 35px rgba(255, 241, 46, 0.45);
+  --shadow-glow-wa: 0 0 25px rgba(37, 211, 102, 0.75);
+  --shadow-glow-fb: 0 0 25px rgba(24, 119, 242, 0.75);
+  --shadow-glow-ig: 0 0 25px rgba(225, 48, 108, 0.75);
+
+  --radius-card-lg: 28px;
+}
+
+@layer base {
   body {
-    background-color: var(--brand-blue);
-    color: var(--brand-white);
+    background-color: var(--color-brand-blue);
+    color: var(--color-brand-white);
     font-family: var(--font-outfit), "Outfit", sans-serif;
     overflow-x: hidden;
   }
 
   ::selection {
-    background-color: #FFF12E;
-    color: #0950F6;
+    background-color: var(--color-brand-yellow);
+    color: var(--color-brand-blue);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

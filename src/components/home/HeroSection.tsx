@@ -120,14 +120,14 @@ export default function HeroSection() {
                     </span>
                   </div>
 
-                  {/* Imagen / Mapa Logístico con Fallback */}
+                  {/* Imagen / Mapa Logístico con Fallback y Recursos 3D */}
                   <div className="relative w-full aspect-square max-w-[280px] sm:max-w-[320px] flex items-center justify-center my-2">
                     <img
-                      src="https://www.enviosdosruedas.com/card_mapa.webp"
+                      src="/recursos_envios/pin_mapa.png"
                       alt="Envíos DosRuedas - Mapa Logístico"
                       className="object-contain w-full h-full transform transition-transform duration-500 group-hover:scale-105"
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = "https://placehold.co/600x600/0950F6/FFF12E?text=Mapa+Cobertura+MDQ";
+                        (e.target as HTMLImageElement).src = "https://www.enviosdosruedas.com/card_mapa.webp";
                       }}
                     />
                   </div>

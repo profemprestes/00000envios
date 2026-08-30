@@ -32,13 +32,21 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-4">
           
-          {/* Logotipo */}
+          {/* Logotipo Oficial */}
           <Link
             href="#hero-animado"
             className="flex items-center gap-3 group rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow"
           >
-            <div className="relative w-10 h-10 shrink-0 bg-brand-blue border border-brand-yellow rounded-xl p-1.5 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform">
-              <span className="font-display font-black text-2xl text-brand-yellow leading-none">2R</span>
+            <div className="relative w-11 h-11 shrink-0 bg-brand-blue border border-brand-yellow rounded-xl p-1 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform shadow-glow-yellow">
+              <img
+                src="/logo.webp"
+                alt="Logo Envíos DosRuedas"
+                className="w-full h-full object-contain"
+                onError={(e) => {
+                  (e.target as HTMLElement).style.display = "none";
+                  (e.target as HTMLElement).parentElement!.innerHTML = '<span class="font-display font-black text-2xl text-brand-yellow leading-none">2R</span>';
+                }}
+              />
             </div>
 
             <span className="font-display text-2xl sm:text-3xl tracking-tight leading-none uppercase flex flex-row items-center gap-1.5">
@@ -167,7 +175,7 @@ export default function Header() {
                   className="dropdown-panel show-state absolute top-full left-0 mt-2 w-64 bg-brand-blue border border-brand-white/25 rounded-2xl shadow-2xl p-2 z-50"
                 >
                   <Link
-                    href="#vision-section"
+                    href="#vision-mar-del-plata"
                     onClick={() => setAboutOpen(false)}
                     className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group"
                   >

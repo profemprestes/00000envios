@@ -33,7 +33,7 @@ export default function CarruselRedes() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full">
 
           {/* CARD 1: FACEBOOK */}
-          <article className="group relative rounded-[28px] p-6 sm:p-7 bg-[#052c87]/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[420px] transition-all duration-300 hover:-translate-y-1">
+          <article className="group relative rounded-[28px] p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[420px] transition-all duration-300 hover:-translate-y-1">
             <i className="ph-fill ph-facebook-logo absolute -right-6 -bottom-6 text-[14rem] text-brand-white/[0.04] pointer-events-none"></i>
 
             <div className="relative z-10 space-y-4">
@@ -42,7 +42,7 @@ export default function CarruselRedes() {
                   FACEBOOK OFICIAL
                 </span>
 
-                <div className="w-12 h-12 rounded-full flex items-center justify-center bg-[#1877F2] text-white shadow-glow-fb transition-transform duration-300 group-hover:scale-110">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center bg-social-facebook text-white shadow-glow-fb transition-transform duration-300 group-hover:scale-110">
                   <i className="ph-fill ph-facebook-logo text-2xl"></i>
                 </div>
               </div>
@@ -66,7 +66,7 @@ export default function CarruselRedes() {
                 href="https://www.facebook.com/enviosdosruedas"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-300 bg-[#1877F2] hover:bg-[#166fe5] text-white shadow-glow-fb group/btn"
+                className="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-300 bg-social-facebook hover:bg-[#166fe5] text-white shadow-glow-fb group/btn"
               >
                 <span>SEGUIR COMUNIDAD</span>
                 <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center shrink-0 ml-2 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform">
@@ -77,7 +77,7 @@ export default function CarruselRedes() {
           </article>
 
           {/* CARD 2: INSTAGRAM */}
-          <article className="group relative rounded-[28px] p-6 sm:p-7 bg-[#052c87]/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[420px] transition-all duration-300 hover:-translate-y-1">
+          <article className="group relative rounded-[28px] p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[420px] transition-all duration-300 hover:-translate-y-1">
             <i className="ph-fill ph-instagram-logo absolute -right-6 -bottom-6 text-[14rem] text-brand-white/[0.04] pointer-events-none"></i>
 
             <div className="relative z-10 space-y-4">
@@ -121,7 +121,7 @@ export default function CarruselRedes() {
           </article>
 
           {/* CARD 3: WHATSAPP */}
-          <article className="group relative rounded-[28px] p-6 sm:p-7 bg-[#052c87]/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[420px] transition-all duration-300 hover:-translate-y-1">
+          <article className="group relative rounded-[28px] p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[420px] transition-all duration-300 hover:-translate-y-1">
             <i className="ph-fill ph-whatsapp-logo absolute -right-6 -bottom-6 text-[14rem] text-brand-white/[0.04] pointer-events-none"></i>
 
             <div className="relative z-10 space-y-4">
@@ -130,7 +130,7 @@ export default function CarruselRedes() {
                   WHATSAPP DIRECTO
                 </span>
 
-                <div className="w-12 h-12 rounded-full flex items-center justify-center bg-[#25D366] text-white shadow-glow-wa transition-transform duration-300 group-hover:scale-110">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center bg-social-whatsapp text-white shadow-glow-wa transition-transform duration-300 group-hover:scale-110">
                   <i className="ph-fill ph-whatsapp-logo text-2xl"></i>
                 </div>
               </div>
@@ -139,7 +139,7 @@ export default function CarruselRedes() {
                 <h3 className="font-display text-4xl sm:text-5xl uppercase tracking-tight leading-none text-brand-white">
                   WHATSAPP
                 </h3>
-                <p className="font-mono text-sm font-semibold mt-1 text-[#25D366]">
+                <p className="font-mono text-sm font-semibold mt-1 text-social-whatsapp">
                   +54 223 660-2699
                 </p>
               </div>
@@ -154,11 +154,11 @@ export default function CarruselRedes() {
                 href="https://wa.me/542236602699"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-300 bg-[#25D366] hover:bg-[#20bd5a] text-brand-blue shadow-glow-wa group/btn font-black"
+                className="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-300 bg-social-whatsapp hover:bg-[#20bd5a] text-brand-blue-deep shadow-glow-wa group/btn font-black"
               >
                 <span>INICIAR CHAT</span>
-                <span className="w-7 h-7 rounded-full bg-brand-blue/15 flex items-center justify-center shrink-0 ml-2 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform">
-                  <i className="ph-bold ph-arrow-up-right text-sm text-brand-blue"></i>
+                <span className="w-7 h-7 rounded-full bg-brand-blue-deep/15 flex items-center justify-center shrink-0 ml-2 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform">
+                  <i className="ph-bold ph-arrow-up-right text-sm text-brand-blue-deep"></i>
                 </span>
               </a>
             </div>

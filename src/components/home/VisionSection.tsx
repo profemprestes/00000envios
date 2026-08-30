@@ -4,7 +4,7 @@ import React from "react";
 
 export default function VisionSection() {
   return (
-    <section id="vision-mar-del-plata" className="py-20 sm:py-28 bg-[#f8fafc] text-brand-blue relative overflow-hidden w-full border-t border-slate-200">
+    <section id="vision-mar-del-plata" className="py-20 sm:py-28 bg-brand-canvas text-brand-blue relative overflow-hidden w-full border-t border-brand-blue/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -37,7 +37,7 @@ export default function VisionSection() {
                   <i className="ph-fill ph-clock text-2xl"></i>
                 </div>
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-subheading uppercase tracking-wider text-brand-blue leading-none mb-1.5 font-bold group-hover:text-[#052c87] transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-subheading uppercase tracking-wider text-brand-blue leading-none mb-1.5 font-bold group-hover:text-brand-blue-deep transition-colors">
                     Entregas a Tiempo Garantizadas
                   </h3>
                   <p className="text-xs sm:text-sm text-brand-blue/75 font-sans leading-relaxed">
@@ -52,7 +52,7 @@ export default function VisionSection() {
                   <i className="ph-fill ph-shield-check text-2xl"></i>
                 </div>
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-subheading uppercase tracking-wider text-brand-blue leading-none mb-1.5 font-bold group-hover:text-[#052c87] transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-subheading uppercase tracking-wider text-brand-blue leading-none mb-1.5 font-bold group-hover:text-brand-blue-deep transition-colors">
                     Custodia y Protección Total
                   </h3>
                   <p className="text-xs sm:text-sm text-brand-blue/75 font-sans leading-relaxed">
@@ -75,7 +75,7 @@ export default function VisionSection() {
                   <div className="p-3 bg-brand-yellow text-brand-blue rounded-2xl shadow-glow-yellow">
                     <i className="ph-fill ph-package text-2xl"></i>
                   </div>
-                  <span className="text-[10px] font-mono tracking-widest uppercase px-3 py-1.5 rounded-lg bg-[#052c87] border border-brand-white/20 text-brand-yellow font-bold">
+                  <span className="text-[10px] font-mono tracking-widest uppercase px-3 py-1.5 rounded-lg bg-brand-blue-deep border border-brand-white/20 text-brand-yellow font-bold">
                     TRAYECTORIA MDQ
                   </span>
                 </div>

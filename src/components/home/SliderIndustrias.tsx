@@ -90,7 +90,7 @@ export default function SliderIndustrias() {
   const current = INDUSTRIES[currentIdx];
 
   return (
-    <section id="slider-industrias" className="py-20 sm:py-28 bg-[#f8fafc] text-brand-blue relative overflow-hidden w-full border-t border-slate-200">
+    <section id="slider-industrias" className="py-20 sm:py-28 bg-brand-canvas text-brand-blue relative overflow-hidden w-full border-t border-brand-blue/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header & Controles del Slider */}
@@ -160,7 +160,7 @@ export default function SliderIndustrias() {
 
         {/* Showcase Card Principal */}
         <div className="rounded-[32px] p-2 sm:p-3 bg-brand-blue border border-brand-white/20 shadow-2xl">
-          <div className="p-6 sm:p-10 lg:p-12 rounded-[24px] bg-[#052c87] border border-brand-white/15 relative overflow-hidden text-brand-white">
+          <div className="p-6 sm:p-10 lg:p-12 rounded-[24px] bg-brand-blue-deep border border-brand-white/15 relative overflow-hidden text-brand-white">
             <i className={`ph-fill ${current.icon} absolute right-4 bottom-4 text-[18rem] text-brand-white/[0.04] pointer-events-none transition-all duration-500`}></i>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
