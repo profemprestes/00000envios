@@ -32,6 +32,17 @@ export default function AddressAutocomplete({
   const [isLoading, setIsLoading] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const debounceRef = useRef<NodeJS.Timeout | null>(null);
+  const sessionTokenRef = useRef<string | null>(null);
+
+  // Helper para generar UUIDv4 para Places Autocomplete Session Tokens
+  const getOrCreateSessionToken = () => {
+    if (!sessionTokenRef.current) {
+      sessionTokenRef.current = typeof crypto !== 'undefined' && crypto.randomUUID
+        ? crypto.randomUUID()
+        : Math.random().toString(36).substring(2) + Date.now().toString(36);
+    }
+    return sessionTokenRef.current;
+  };
 
   // Click outside listener to close dropdown
   useEffect(() => {
@@ -45,7 +56,7 @@ export default function AddressAutocomplete({
   }, []);
 
   const searchAddresses = async (searchQuery: string) => {
-    if (searchQuery.trim().length < 3) {
+    if (searchQuery.trim().length < 4) {
       setSuggestions([]);
       return;
     }
@@ -53,8 +64,9 @@ export default function AddressAutocomplete({
     setIsLoading(true);
 
     try {
-      // Llamar al endpoint proxy local en lugar de directo a Google para evitar CORS y proteger la Key
-      const url = `/api/places/autocomplete?input=${encodeURIComponent(searchQuery)}`;
+      const token = getOrCreateSessionToken();
+      // Llamar al endpoint proxy local pasando sessiontoken para agrupar facturación
+      const url = `/api/places/autocomplete?input=${encodeURIComponent(searchQuery)}&sessiontoken=${encodeURIComponent(token)}`;
 
       const res = await fetch(url);
       const data = await res.json();
@@ -77,7 +89,7 @@ export default function AddressAutocomplete({
     onChange(val);
     onSelectCoordinate(null);
 
-    if (val.trim() === '') {
+    if (val.trim().length < 4) {
       setSuggestions([]);
       setIsOpen(false);
       return;
@@ -87,9 +99,10 @@ export default function AddressAutocomplete({
       clearTimeout(debounceRef.current);
     }
 
+    // Debounce a 450ms para no disparar llamadas mientras el usuario escribe
     debounceRef.current = setTimeout(() => {
       searchAddresses(val);
-    }, 300);
+    }, 450);
   };
 
   const handleSelect = async (suggestion: Suggestion) => {
@@ -97,9 +110,15 @@ export default function AddressAutocomplete({
     setIsOpen(false);
     setSuggestions([]);
 
-    // Obtener las coordenadas a través de nuestro endpoint proxy de details
+    const token = sessionTokenRef.current;
+    // Reiniciar token para la próxima búsqueda
+    sessionTokenRef.current = null;
+
+    // Obtener las coordenadas pasando el mismo sessiontoken (cierra la sesión de facturación de Google)
     try {
-      const url = `/api/places/details?place_id=${suggestion.place_id}`;
+      const url = `/api/places/details?place_id=${encodeURIComponent(suggestion.place_id)}${
+        token ? `&sessiontoken=${encodeURIComponent(token)}` : ''
+      }`;
       const res = await fetch(url);
       const data = await res.json();
       if (data.status === 'OK' && data.result?.geometry?.location) {
