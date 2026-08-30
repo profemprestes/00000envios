@@ -6,6 +6,9 @@ import CotizadorLowCostHero from '@/src/components/cotizar/lowcost/CotizadorLowC
 import CotizadorLowCostForm from '@/src/components/cotizar/lowcost/CotizadorLowCostForm';
 import CotizadorLowCostDetails from '@/src/components/cotizar/lowcost/CotizadorLowCostDetails';
 import CotizadorLowCostHelp from '@/src/components/cotizar/lowcost/CotizadorLowCostHelp';
+import CarruselRedes from "@/components/home/CarruselRedes";
+import Footer from "@/components/home/Footer";
+import Header from "@/components/home/Header";
 
 const baseUrl = 'https://www.enviosdosruedas.com';
 
@@ -61,6 +64,9 @@ export default async function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}
       />
       <div id="cotizar-lowcost-page" className="w-full gradient-dark text-white min-h-screen relative overflow-hidden">
+      {/* Header Global */}
+      <Header />
+
       {/* Hero Section */}
       <CotizadorLowCostHero />
 
@@ -83,6 +89,12 @@ export default async function Page() {
         </div>
 
       </div>
+
+      {/* Carrusel de Comunidad Digital / Redes */}
+      <CarruselRedes />
+
+      {/* Footer Global */}
+      <Footer />
     </div>
     </>
   );
