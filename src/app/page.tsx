@@ -9,7 +9,10 @@ import Footer from "@/components/home/Footer";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen flex flex-col w-full overflow-x-hidden bg-brand-blue">
+    <main
+      className="min-h-screen flex flex-col w-full overflow-x-hidden bg-brand-blue"
+      suppressHydrationWarning
+    >
       <Header />
       <HeroSection />
       <VisionSection />

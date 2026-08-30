@@ -53,7 +53,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-12 pt-8 border-t border-white/10 text-center text-xs font-mono text-white/60">
-          © {new Date().getFullYear()} Envíos DosRuedas · Todos los derechos reservados · Mar del Plata, Argentina.
+          © 2026 Envíos DosRuedas · Todos los derechos reservados · Mar del Plata, Argentina.
         </div>
       </div>
     </footer>

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, Anton, Outfit } from "next/font/google";
 import "./globals.css";
 
@@ -22,12 +22,17 @@ const outfit = Outfit({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0950F6",
+};
+
 export const metadata: Metadata = {
   title: "Envíos DosRuedas · Mensajería y Logística Mar del Plata",
   description: "Servicio líder de cadetería, e-commerce, logística express y última milla en Mar del Plata.",
   keywords: ["envíos", "mensajería", "logística", "mar del plata", "delivery", "e-commerce"],
   authors: [{ name: "Envíos DosRuedas" }],
-  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({
@@ -36,7 +41,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${bebasNeue.variable} ${anton.variable} ${outfit.variable} scroll-smooth`}>
+    <html
+      lang="es"
+      className={`${bebasNeue.variable} ${anton.variable} ${outfit.variable} scroll-smooth`}
+      suppressHydrationWarning
+    >
       <head>
         <link
           rel="stylesheet"
@@ -54,7 +63,7 @@ export default function RootLayout({
           href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css"
         />
       </head>
-      <body className="bg-brand-blue text-brand-white antialiased">
+      <body className="bg-brand-blue text-brand-white antialiased" suppressHydrationWarning>
         {children}
       </body>
     </html>
