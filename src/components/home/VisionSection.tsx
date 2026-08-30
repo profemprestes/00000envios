@@ -1,6 +1,7 @@
 'use client';
 
 import React from "react";
+import { Reveal } from "@/components/ui/Reveal";
 
 export default function VisionSection() {
   return (
@@ -10,7 +11,7 @@ export default function VisionSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
           {/* Columna Izquierda: Visión y Pilares Operativos */}
-          <div className="lg:col-span-6 space-y-8">
+          <Reveal className="lg:col-span-6 space-y-8">
             <div>
               <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-subheading font-bold uppercase tracking-widest bg-brand-blue text-brand-yellow shadow-md border border-brand-blue">
                 <i className="ph-fill ph-handshake text-sm text-brand-yellow"></i> PARTNER LOGÍSTICO ESPECIALIZADO
@@ -61,13 +62,13 @@ export default function VisionSection() {
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
 
           {/* Columna Derecha: Bento Grid Asimétrico de Métricas */}
           <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
-            
+
             {/* Bento Card Principal: +50k Envíos (Full Width) */}
-            <div className="sm:col-span-2 p-8 rounded-[30px] bg-brand-blue text-brand-white border border-brand-white/20 shadow-2xl hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden group">
+            <Reveal delay={0} className="sm:col-span-2 p-8 rounded-[30px] bg-brand-blue text-brand-white border border-brand-white/20 shadow-2xl hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden group">
               <i className="ph-fill ph-motorcycle absolute -right-6 -bottom-6 text-[13rem] text-brand-white/[0.05] pointer-events-none group-hover:scale-105 transition-transform duration-500"></i>
               
               <div className="relative z-10 flex flex-col justify-between h-full space-y-6">
@@ -92,10 +93,10 @@ export default function VisionSection() {
                   </p>
                 </div>
               </div>
-            </div>
+            </Reveal>
 
             {/* Bento Card 2: 0 Paquetes Extraviados */}
-            <div className="p-6 rounded-[26px] bg-white border border-brand-blue/20 shadow-md hover:-translate-y-1 hover:border-brand-blue transition-transform duration-300 flex flex-col justify-between min-h-[190px]">
+            <Reveal delay={0.08} className="p-6 rounded-[26px] bg-white border border-brand-blue/20 shadow-md hover:-translate-y-1 hover:border-brand-blue transition-transform duration-300 flex flex-col justify-between min-h-[190px]">
               <div className="flex justify-between items-start">
                 <div className="p-2.5 rounded-xl bg-brand-blue text-brand-yellow shadow-sm">
                   <i className="ph-fill ph-shield-check text-xl"></i>
@@ -113,10 +114,10 @@ export default function VisionSection() {
                   Compromiso y custodia real
                 </p>
               </div>
-            </div>
+            </Reveal>
 
             {/* Bento Card 3: +100 Comercios y Emprendedores */}
-            <div className="p-6 rounded-[26px] bg-white border border-brand-blue/20 shadow-md hover:-translate-y-1 hover:border-brand-blue transition-transform duration-300 flex flex-col justify-between min-h-[190px]">
+            <Reveal delay={0.16} className="p-6 rounded-[26px] bg-white border border-brand-blue/20 shadow-md hover:-translate-y-1 hover:border-brand-blue transition-transform duration-300 flex flex-col justify-between min-h-[190px]">
               <div className="flex justify-between items-start">
                 <div className="p-2.5 rounded-xl bg-brand-yellow text-brand-blue shadow-sm">
                   <i className="ph-fill ph-users-three text-xl"></i>
@@ -134,7 +135,7 @@ export default function VisionSection() {
                   Cuentas activas en MDQ
                 </p>
               </div>
-            </div>
+            </Reveal>
 
           </div>
 

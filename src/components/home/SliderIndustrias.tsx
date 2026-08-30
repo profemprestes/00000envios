@@ -1,6 +1,9 @@
 'use client';
 
 import React, { useState } from "react";
+import Link from "next/link";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { Reveal } from "@/components/ui/Reveal";
 
 interface Industry {
   title: string;
@@ -78,6 +81,7 @@ const INDUSTRIES: Industry[] = [
 
 export default function SliderIndustrias() {
   const [currentIdx, setCurrentIdx] = useState(0);
+  const reduce = useReducedMotion();
 
   const prevSlide = () => {
     setCurrentIdx((prev) => (prev - 1 + INDUSTRIES.length) % INDUSTRIES.length);
@@ -94,7 +98,7 @@ export default function SliderIndustrias() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header & Controles del Slider */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
+        <Reveal className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
           <div className="lg:col-span-8 space-y-4">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-subheading font-bold uppercase tracking-widest bg-brand-blue text-brand-yellow shadow-md border border-brand-blue">
               <i className="ph-fill ph-sparkle text-sm text-brand-yellow"></i> LOGÍSTICA A MEDIDA DE TU RUBRO · MDQ 2026
@@ -134,7 +138,7 @@ export default function SliderIndustrias() {
               <i className="ph-bold ph-caret-right text-lg"></i>
             </button>
           </div>
-        </div>
+        </Reveal>
 
         {/* Pestañas Interactivas de Rubros */}
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar" role="tablist">
@@ -163,65 +167,74 @@ export default function SliderIndustrias() {
           <div className="p-6 sm:p-10 lg:p-12 rounded-[24px] bg-brand-blue-deep border border-brand-white/15 relative overflow-hidden text-brand-white">
             <i className={`ph-fill ${current.icon} absolute right-4 bottom-4 text-[18rem] text-brand-white/[0.04] pointer-events-none transition-all duration-500`}></i>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
-              
-              <div className="lg:col-span-4 flex flex-col items-center justify-center text-center space-y-4">
-                <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-3xl bg-brand-yellow text-brand-blue flex items-center justify-center shadow-glow-yellow border-2 border-brand-yellow transition-transform duration-300 hover:scale-105">
-                  <i className={`ph-fill ${current.icon} text-5xl sm:text-6xl`}></i>
-                </div>
-                <div className="px-4 py-1.5 rounded-full font-mono text-xs font-bold uppercase tracking-wider bg-brand-white/15 text-brand-yellow border border-brand-white/20 flex items-center gap-2">
-                  <i className="ph-fill ph-clock"></i>
-                  <span>{current.sla}</span>
-                </div>
-              </div>
-
-              <div className="lg:col-span-8 space-y-5 text-left">
-                <div className="space-y-2">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="px-3 py-1 rounded-md text-[10px] font-mono font-bold uppercase tracking-widest bg-brand-yellow text-brand-blue">
-                      {current.badge}
-                    </span>
-                    <span className="text-xs font-subheading uppercase tracking-wider font-bold text-brand-yellow">
-                      {current.subtitle}
-                    </span>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentIdx}
+                initial={reduce ? false : { opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={reduce ? undefined : { opacity: 0, y: -12 }}
+                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10"
+              >
+                <div className="lg:col-span-4 flex flex-col items-center justify-center text-center space-y-4">
+                  <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-3xl bg-brand-yellow text-brand-blue flex items-center justify-center shadow-glow-yellow border-2 border-brand-yellow transition-transform duration-300 hover:scale-105">
+                    <i className={`ph-fill ${current.icon} text-5xl sm:text-6xl`}></i>
                   </div>
-                  <h3 className="text-3xl sm:text-4xl lg:text-5xl font-display uppercase tracking-tight leading-none text-brand-white">
-                    {current.title}
-                  </h3>
+                  <div className="px-4 py-1.5 rounded-full font-mono text-xs font-bold uppercase tracking-wider bg-brand-white/15 text-brand-yellow border border-brand-white/20 flex items-center gap-2">
+                    <i className="ph-fill ph-clock"></i>
+                    <span>{current.sla}</span>
+                  </div>
                 </div>
 
-                <p className="font-sans text-sm sm:text-base lg:text-lg leading-relaxed text-brand-white/90 font-light max-w-2xl">
-                  {current.desc}
-                </p>
-
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                  {current.benefits.map((b, i) => (
-                    <div key={i} className="p-3 rounded-xl bg-brand-white/10 border border-brand-white/15 flex items-center gap-2 text-xs font-sans text-brand-white">
-                      <i className="ph-fill ph-check-circle text-brand-yellow text-base shrink-0"></i>
-                      <span>{b}</span>
+                <div className="lg:col-span-8 space-y-5 text-left">
+                  <div className="space-y-2">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="px-3 py-1 rounded-md text-[10px] font-mono font-bold uppercase tracking-widest bg-brand-yellow text-brand-blue">
+                        {current.badge}
+                      </span>
+                      <span className="text-xs font-subheading uppercase tracking-wider font-bold text-brand-yellow">
+                        {current.subtitle}
+                      </span>
                     </div>
-                  ))}
+                    <h3 className="text-3xl sm:text-4xl lg:text-5xl font-display uppercase tracking-tight leading-none text-brand-white">
+                      {current.title}
+                    </h3>
+                  </div>
+
+                  <p className="font-sans text-sm sm:text-base lg:text-lg leading-relaxed text-brand-white/90 font-light max-w-2xl">
+                    {current.desc}
+                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                    {current.benefits.map((b, i) => (
+                      <div key={i} className="p-3 rounded-xl bg-brand-white/10 border border-brand-white/15 flex items-center gap-2 text-xs font-sans text-brand-white">
+                        <i className="ph-fill ph-check-circle text-brand-yellow text-base shrink-0"></i>
+                        <span>{b}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="pt-3 flex flex-wrap items-center gap-4">
+                    <a
+                      href="https://wa.me/542236602699"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-3 px-8 py-3.5 rounded-full font-subheading text-sm uppercase tracking-wider font-bold bg-brand-yellow text-brand-blue hover:bg-brand-yellow-hover hover:shadow-glow-yellow transition-all duration-300 group"
+                    >
+                      <span>{current.cta}</span>
+                      <span className="w-6 h-6 rounded-full bg-brand-blue/15 flex items-center justify-center group-hover:translate-x-1 transition-transform">
+                        <i className="ph-bold ph-arrow-right text-xs text-brand-blue"></i>
+                      </span>
+                    </a>
+                    <Link href="/#contacto" className="font-subheading text-xs sm:text-sm uppercase tracking-wider font-bold text-brand-white/80 hover:text-brand-yellow underline-offset-4 hover:underline py-2 transition-colors inline-flex items-center gap-1.5">
+                      Cuenta Corriente Comercial
+                      <i className="ph ph-arrow-right text-xs"></i>
+                    </Link>
+                  </div>
                 </div>
 
-                <div className="pt-3 flex flex-wrap items-center gap-4">
-                  <a
-                    href="https://wa.me/542236602699"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 px-8 py-3.5 rounded-full font-subheading text-sm uppercase tracking-wider font-bold bg-brand-yellow text-brand-blue hover:bg-brand-yellow-hover hover:shadow-glow-yellow transition-all duration-300 group"
-                  >
-                    <span>{current.cta}</span>
-                    <span className="w-6 h-6 rounded-full bg-brand-blue/15 flex items-center justify-center group-hover:translate-x-1 transition-transform">
-                      <i className="ph-bold ph-arrow-right text-xs text-brand-blue"></i>
-                    </span>
-                  </a>
-                  <a href="#contacto" className="font-subheading text-xs sm:text-sm uppercase tracking-wider font-bold text-brand-white/80 hover:text-brand-yellow underline-offset-4 hover:underline py-2 transition-colors">
-                    Cuenta Corriente Comercial →
-                  </a>
-                </div>
-              </div>
-
-            </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
 

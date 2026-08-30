@@ -2,11 +2,13 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 export default function Header() {
   const [servicesOpen, setServicesOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const reduce = useReducedMotion();
 
   const servicesRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -30,12 +32,12 @@ export default function Header() {
       className="fixed top-0 left-0 right-0 z-50 bg-brand-blue/95 backdrop-blur-md py-3.5 border-b border-brand-white/20 shadow-xl"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-4">
-          
+        <div className="flex items-center justify-between gap-2 sm:gap-4">
+
           {/* Logotipo Oficial */}
           <Link
             href="/#hero-animado"
-            className="flex items-center gap-3 group rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow"
+            className="flex items-center gap-2 sm:gap-3 group rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow min-w-0"
           >
             <div className="relative w-11 h-11 shrink-0 bg-brand-blue border border-brand-yellow rounded-xl p-1 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform shadow-glow-yellow">
               <img
@@ -49,7 +51,7 @@ export default function Header() {
               />
             </div>
 
-            <span className="font-display text-2xl sm:text-3xl tracking-tight leading-none uppercase flex flex-row items-center gap-1.5">
+            <span className="font-display text-lg sm:text-3xl tracking-tight leading-none uppercase flex flex-row items-center gap-1 sm:gap-1.5 min-w-0 truncate">
               <span className="text-brand-white">Envíos</span>
               <span className="text-brand-yellow">DosRuedas</span>
             </span>
@@ -82,9 +84,14 @@ export default function Header() {
                 <i className={`ph ph-caret-down dropdown-arrow text-xs transition-transform duration-200 ${servicesOpen ? "rotate-180" : ""}`}></i>
               </button>
 
+              <AnimatePresence>
               {servicesOpen && (
-                <div
-                  className="dropdown-panel show-state absolute top-full left-0 mt-2 w-72 bg-brand-blue border border-brand-white/25 rounded-2xl shadow-2xl p-2 z-50"
+                <motion.div
+                  initial={reduce ? false : { opacity: 0, y: -8, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={reduce ? undefined : { opacity: 0, y: -8, scale: 0.98 }}
+                  transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute top-full left-0 mt-2 w-72 bg-brand-blue border border-brand-white/25 rounded-2xl shadow-2xl p-2 z-50 origin-top"
                 >
                   <Link
                     href="/#servicios-overview"
@@ -149,8 +156,9 @@ export default function Header() {
                       <div className="font-sans text-xs text-brand-white/80">Picking, packing y guarda</div>
                     </div>
                   </Link>
-                </div>
+                </motion.div>
               )}
+              </AnimatePresence>
             </div>
 
             {/* Dropdown Nosotros */}
@@ -170,9 +178,14 @@ export default function Header() {
                 <i className={`ph ph-caret-down dropdown-arrow text-xs transition-transform duration-200 ${aboutOpen ? "rotate-180" : ""}`}></i>
               </button>
 
+              <AnimatePresence>
               {aboutOpen && (
-                <div
-                  className="dropdown-panel show-state absolute top-full left-0 mt-2 w-64 bg-brand-blue border border-brand-white/25 rounded-2xl shadow-2xl p-2 z-50"
+                <motion.div
+                  initial={reduce ? false : { opacity: 0, y: -8, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={reduce ? undefined : { opacity: 0, y: -8, scale: 0.98 }}
+                  transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute top-full left-0 mt-2 w-64 bg-brand-blue border border-brand-white/25 rounded-2xl shadow-2xl p-2 z-50 origin-top"
                 >
                   <Link
                     href="/nosotros/sobre-nosotros"
@@ -215,8 +228,9 @@ export default function Header() {
                       <div className="font-sans text-xs text-brand-white/80">Redes y reputación</div>
                     </div>
                   </Link>
-                </div>
+                </motion.div>
               )}
+              </AnimatePresence>
             </div>
 
             <Link
@@ -274,11 +288,17 @@ export default function Header() {
         </div>
 
         {/* Menú Desplegable Mobile */}
+        <AnimatePresence>
         {mobileMenuOpen && (
-          <div
+          <motion.div
             id="mobile-menu"
-            className="menu-open lg:hidden border-t border-brand-white/20 bg-brand-blue mt-3 pt-3 rounded-2xl px-3 space-y-2 shadow-2xl"
+            initial={reduce ? false : { opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={reduce ? undefined : { opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:hidden overflow-hidden"
           >
+          <div className="border-t border-brand-white/20 bg-brand-blue mt-3 pt-3 rounded-2xl px-3 space-y-2 shadow-2xl pb-1">
             <Link
               href="/#hero-animado"
               onClick={() => setMobileMenuOpen(false)}
@@ -392,7 +412,9 @@ export default function Header() {
               </a>
             </div>
           </div>
+          </motion.div>
         )}
+        </AnimatePresence>
       </div>
     </header>
   );

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from "react";
+import { Reveal } from "@/components/ui/Reveal";
 
 type ServiceKey = "express" | "lowcost" | "flex" | "3pl";
 
@@ -87,7 +88,7 @@ export default function ServicesOverview() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Encabezado de Sección */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6 border-b border-brand-white/20 pb-8">
+        <Reveal className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6 border-b border-brand-white/20 pb-8">
           <div className="space-y-3">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-subheading font-bold uppercase tracking-widest bg-brand-yellow text-brand-blue shadow-glow-yellow border border-brand-yellow">
               <i className="ph-fill ph-lightning text-sm"></i> NUESTROS SERVICIOS CLAVE
@@ -97,13 +98,13 @@ export default function ServicesOverview() {
               <span className="text-brand-yellow underline decoration-brand-white/40 underline-offset-8">A TU MEDIDA</span>
             </h2>
           </div>
-        </div>
+        </Reveal>
 
         {/* Grid de 4 Tarjetas de Servicios */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-          
+
           {/* SERVICIO 1: EXPRESS */}
-          <article className="group relative rounded-[28px] p-6 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60">
+          <Reveal as="article" delay={0} className="group relative rounded-[28px] p-6 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60">
             <i className="ph-fill ph-lightning absolute -right-6 -bottom-6 text-[13rem] text-brand-white/[0.04] pointer-events-none group-hover:scale-105 transition-transform duration-500"></i>
             
             <div className="relative z-10 space-y-4">
@@ -155,10 +156,10 @@ export default function ServicesOverview() {
                 </span>
               </button>
             </div>
-          </article>
+          </Reveal>
 
           {/* SERVICIO 2: LOWCOST */}
-          <article className="group relative rounded-[28px] p-6 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60">
+          <Reveal as="article" delay={0.08} className="group relative rounded-[28px] p-6 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60">
             <i className="ph-fill ph-tag absolute -right-6 -bottom-6 text-[13rem] text-brand-white/[0.04] pointer-events-none group-hover:scale-105 transition-transform duration-500"></i>
             
             <div className="relative z-10 space-y-4">
@@ -210,10 +211,10 @@ export default function ServicesOverview() {
                 </span>
               </button>
             </div>
-          </article>
+          </Reveal>
 
           {/* SERVICIO 3: FLEX */}
-          <article className="group relative rounded-[28px] p-6 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60">
+          <Reveal as="article" delay={0.16} className="group relative rounded-[28px] p-6 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60">
             <i className="ph-fill ph-package absolute -right-6 -bottom-6 text-[13rem] text-brand-white/[0.04] pointer-events-none group-hover:scale-105 transition-transform duration-500"></i>
             
             <div className="relative z-10 space-y-4">
@@ -265,10 +266,10 @@ export default function ServicesOverview() {
                 </span>
               </button>
             </div>
-          </article>
+          </Reveal>
 
           {/* SERVICIO 4: 3PL */}
-          <article className="group relative rounded-[28px] p-6 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60">
+          <Reveal as="article" delay={0.24} className="group relative rounded-[28px] p-6 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60">
             <i className="ph-fill ph-warehouse absolute -right-6 -bottom-6 text-[13rem] text-brand-white/[0.04] pointer-events-none group-hover:scale-105 transition-transform duration-500"></i>
             
             <div className="relative z-10 space-y-4">
@@ -320,7 +321,7 @@ export default function ServicesOverview() {
                 </span>
               </button>
             </div>
-          </article>
+          </Reveal>
 
         </div>
       </div>
@@ -328,7 +329,7 @@ export default function ServicesOverview() {
       {/* MODAL INTERACTIVO DE FICHA TÉCNICA */}
       {activeService && (
         <div
-          className="fixed inset-0 z-50 bg-brand-blue-deep/90 backdrop-blur-md flex items-center justify-center p-4 transition-opacity duration-300"
+          className="fixed inset-0 z-50 bg-brand-blue-deep/90 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in"
           role="dialog"
           aria-modal="true"
           onClick={() => setActiveModalKey(null)}

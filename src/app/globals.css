@@ -90,13 +90,6 @@
   box-shadow: 0 0 25px rgba(225, 48, 108, 0.75);
 }
 
-/* Animaciones Reveal y Transiciones de docs/index.css */
-.reveal-on-scroll {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
 .dropdown-panel {
   transform-origin: top center;
   transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -118,4 +111,43 @@
 
 .animate-logos-scroll:hover {
   animation-play-state: paused;
+}
+
+/* Oculta la scrollbar nativa en tiras de scroll horizontal (tabs, carruseles) */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Entrada del modal de fichas técnicas (ServicesOverview) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-scale-up {
+  animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
 }

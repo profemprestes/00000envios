@@ -22,6 +22,13 @@ Sólo `pnpm`. Definition of Done mientras lint esté roto: `pnpm exec tsc --noEm
 ## Arquitectura (lo no obvio)
 
 - **`src/app/page.tsx`** es `'use client'` con gate `isMounted`: en SSR devuelve un `<main>` vacío y recién en cliente monta las secciones. Consecuencia: el HTML servido no tiene contenido (afecta SEO). Es una decisión existente, no la revirtás sin pedirlo.
+- **Creación de Nuevas Páginas (Estructura Obligatoria)**: Toda nueva página (`src/app/**/page.tsx`) debe basarse en [`docs/plantilla-pagina.example.tsx`](docs/plantilla-pagina.example.tsx). La estructura fija es:
+  1. `import type { Metadata } from "next";` (metadatos SEO).
+  2. `import Header from "@/components/home/Header";`
+  3. **Hero de página** (sección Hero con título, badge y CTA WhatsApp).
+  4. **Secciones específicas** requeridas para la página.
+  5. `import CarruselRedes from "@/components/home/CarruselRedes";` (antes del footer).
+  6. `import Footer from "@/components/home/Footer";`
 - **Orden de secciones y alternancia de fondo** (regla de diseño, no la rompas al insertar una sección nueva):
   `Header` → `HeroSection#hero-animado` (azul) → `VisionSection#vision-mar-del-plata` (canvas) → `ServicesOverview#servicios-overview` (azul) → `SliderIndustrias#slider-industrias` (canvas) → `EmprendedoresHome#emprendedores-mdq` (azul) → `CarruselRedes#carrusel-redes` (canvas) → `Footer#contacto` (azul).
 - Cada sección es **autocontenida**: `'use client'`, sin props, datos inline (arrays de servicios/industrias/métricas dentro del mismo archivo). No hay estado compartido ni context.

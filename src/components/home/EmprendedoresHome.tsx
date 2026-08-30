@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { Reveal } from "@/components/ui/Reveal";
 
 const LOCAL_BRANDS = [
   "TOY PIOLA JUGUETERÍA",
@@ -24,7 +25,7 @@ export default function EmprendedoresHome() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header de Sección Editorial */}
-        <div className="max-w-4xl mb-16 space-y-4 text-left">
+        <Reveal className="max-w-4xl mb-16 space-y-4 text-left">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-subheading font-bold uppercase tracking-widest bg-brand-yellow text-brand-blue shadow-glow-yellow border border-brand-yellow">
             <i className="ph-fill ph-storefront text-sm"></i> SOCIO ESTRATÉGICO LOCAL
           </span>
@@ -38,13 +39,13 @@ export default function EmprendedoresHome() {
           </p>
 
           <div className="h-1 w-20 bg-brand-yellow rounded-full mt-4"></div>
-        </div>
+        </Reveal>
 
         {/* Asymmetric Bento Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
-          
+
           {/* Bento Card 1: Logística E-Commerce (7 cols) */}
-          <div className="lg:col-span-7 rounded-[32px] p-2 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl hover:-translate-y-1 transition-transform duration-300 flex flex-col justify-between">
+          <Reveal delay={0} className="lg:col-span-7 rounded-[32px] p-2 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl hover:-translate-y-1 transition-transform duration-300 flex flex-col justify-between">
             <div className="p-6 sm:p-8 rounded-[24px] bg-brand-blue border border-brand-white/15 h-full flex flex-col justify-between space-y-6 relative overflow-hidden">
               <i className="ph-fill ph-shopping-bag absolute -right-6 -bottom-6 text-[14rem] text-brand-white/[0.03] pointer-events-none"></i>
               
@@ -106,10 +107,10 @@ export default function EmprendedoresHome() {
                 </a>
               </div>
             </div>
-          </div>
+          </Reveal>
 
           {/* Bento Card 2: Corporativo & Cuenta Corriente (5 cols) */}
-          <div className="lg:col-span-5 rounded-[32px] p-2 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl hover:-translate-y-1 transition-transform duration-300 flex flex-col justify-between">
+          <Reveal delay={0.1} className="lg:col-span-5 rounded-[32px] p-2 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl hover:-translate-y-1 transition-transform duration-300 flex flex-col justify-between">
             <div className="p-6 sm:p-8 rounded-[24px] bg-brand-blue border border-brand-white/15 h-full flex flex-col justify-between space-y-6 relative overflow-hidden">
               <i className="ph-fill ph-buildings absolute -right-6 -bottom-6 text-[14rem] text-brand-white/[0.03] pointer-events-none"></i>
               
@@ -146,7 +147,7 @@ export default function EmprendedoresHome() {
 
               <div className="pt-4 border-t border-brand-white/15 relative z-10 flex justify-end">
                 <Link
-                  href="#contacto"
+                  href="/#contacto"
                   className="inline-flex items-center gap-2 rounded-full font-subheading uppercase tracking-wider font-bold px-6 py-3 text-xs bg-brand-white/15 text-brand-white hover:bg-brand-yellow hover:text-brand-blue border border-brand-white/20 transition-all group"
                 >
                   <span>Abrir Cuenta Comercial</span>
@@ -156,7 +157,7 @@ export default function EmprendedoresHome() {
                 </Link>
               </div>
             </div>
-          </div>
+          </Reveal>
 
         </div>
 
