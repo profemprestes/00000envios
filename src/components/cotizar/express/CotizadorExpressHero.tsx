@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import Image from 'next/image';
 import { motion, useSpring, useMotionValue, useTransform } from 'motion/react';
 import { Calculator, Zap, ShieldCheck, Clock, Navigation } from 'lucide-react';
 
@@ -110,18 +109,6 @@ export default function CotizadorExpressHero() {
       {/* Ambient background glows */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_35%,var(--color-brand-blue-700),transparent_55%)] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_65%,var(--color-brand-yellow-500),transparent_45%)] pointer-events-none" />
-
-      {/* Decorative logistics illustration overlay */}
-      <div className="absolute inset-0 opacity-[0.04] mix-blend-overlay pointer-events-none">
-        <Image
-          src="/delivery-background.jpg"
-          alt="Fondo de reparto"
-          fill={true}
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <motion.div

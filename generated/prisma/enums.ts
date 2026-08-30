@@ -9,9 +9,7 @@
 * 🟢 You can import this file directly.
 */
 
-export const ServiceType = {
-  LOW_COST: 'LOW_COST',
-  EXPRESS: 'EXPRESS'
-} as const
 
-export type ServiceType = (typeof ServiceType)[keyof typeof ServiceType]
+
+// This file is empty because there are no enums in the schema.
+export {}

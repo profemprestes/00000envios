@@ -8,10 +8,14 @@ generator client {
 }
 
 // Starter models — replace with your own
+// @@map(...) en cada modelo apunta a las tablas ya existentes en la base real
+// (creadas en minúscula: user, post, priceRange, etc.) para no perder datos.
 model User {
     id    Int    @id @default(autoincrement())
     email String @unique
     posts Post[]
+
+    @@map("user")
 }
 
 model Post {
@@ -19,20 +23,23 @@ model Post {
     title    String
     authorId Int
     author   User   @relation(fields: [authorId], references: [id])
+
+    @@map("post")
 }
 
-enum ServiceType {
-    LOW_COST
-    EXPRESS
-}
-
+// La columna real en la base es texto con un CHECK constraint ('LOW_COST'/'EXPRESS'),
+// no un enum nativo de Postgres — se modela como String para no forzar una conversión
+// de tipo de columna sobre datos ya existentes. Los valores válidos se validan en la
+// app (ver src/lib/pricing.ts y src/actions/quote.ts).
 model PriceRange {
-    id             Int         @id @default(autoincrement())
-    serviceType    ServiceType
+    id             Int    @id @default(autoincrement())
+    serviceType    String
     distanciaMinKm Float
     distanciaMaxKm Float
     precioRango    Float
     descripcion    String
+
+    @@map("priceRange")
 }
 
 model Feedback {
@@ -42,6 +49,8 @@ model Feedback {
     currentText   String
     suggestedEdit String
     createdAt     DateTime @default(now())
+
+    @@map("feedback")
 }
 
 model ImageMetadata {
@@ -51,6 +60,8 @@ model ImageMetadata {
     createdAt          DateTime             @default(now())
     updatedAt          DateTime             @updatedAt
     promptSuggestions  AiPromptSuggestion[]
+
+    @@map("imageMetadata")
 }
 
 model AiPromptSuggestion {
@@ -61,4 +72,6 @@ model AiPromptSuggestion {
     imageId     Int
     image       ImageMetadata @relation(fields: [imageId], references: [id], onDelete: Cascade)
     createdAt   DateTime      @default(now())
+
+    @@map("aiPromptSuggestion")
 }

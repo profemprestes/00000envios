@@ -63,7 +63,7 @@ export default async function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}
       />
-      <div id="cotizar-lowcost-page" className="w-full gradient-dark text-white min-h-screen relative overflow-hidden">
+      <div id="cotizar-lowcost-page" className="w-full bg-brand-blue text-brand-white min-h-screen relative overflow-hidden">
       {/* Header Global */}
       <Header />
 

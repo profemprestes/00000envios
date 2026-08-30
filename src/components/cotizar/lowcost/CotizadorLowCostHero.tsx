@@ -1,9 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import Image from 'next/image';
 import { motion, useSpring, useMotionValue, useTransform } from 'motion/react';
-import { Calculator, ShoppingBag, ShieldCheck, Truck, Percent } from 'lucide-react';
 
 const SIMULATED_TRIPS = [
   { origen: "Centro de Distribución", destino: "Zona Güemes", distancia: 4.2 },
@@ -17,7 +15,7 @@ const SIMULATED_TRIPS = [
 
 export default function CotizadorLowCostHero() {
   const cardRef = useRef<HTMLDivElement>(null);
-  
+
   // Trip simulation state
   const [trip, setTrip] = useState({ origen: "Centro de Distribución", destino: "Zona Güemes", distancia: 4.2 });
 
@@ -31,9 +29,9 @@ export default function CotizadorLowCostHero() {
   // Rangos fijos hasta 10 km; por encima se cobra $700 por km entero excedente (sin prorrateo)
   const distanceKm = trip.distancia;
   function calcLowCostPrice(d: number): number {
-    if (d <= 3)  return 3000;
-    if (d <= 5)  return 4000;
-    if (d <= 7)  return 5300;
+    if (d <= 3) return 3000;
+    if (d <= 5) return 4000;
+    if (d <= 7) return 5300;
     if (d <= 10) return 7000;
     // Más de 10 km: base 7000 + $700 por cada km entero que exceda los 10 km
     return 7000 + Math.ceil(d - 10) * 700;
@@ -43,39 +41,28 @@ export default function CotizadorLowCostHero() {
   // Motion values for smooth 3D mouse tracking spring animations
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  
+
   const springConfig = { damping: 25, stiffness: 120, mass: 0.5 };
   const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [15, -15]), springConfig);
   const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-15, 15]), springConfig);
-  
-  const [lightX, setLightX] = useState(50);
-  const [lightY, setLightY] = useState(50);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const width = rect.width;
     const height = rect.height;
-    
+
     // Normalized mouse position between -0.5 and 0.5
     const relativeX = (e.clientX - rect.left) / width - 0.5;
     const relativeY = (e.clientY - rect.top) / height - 0.5;
-    
+
     x.set(relativeX);
     y.set(relativeY);
-
-    // Dynamic reflection highlight positioning
-    const lightPercentX = ((e.clientX - rect.left) / width) * 100;
-    const lightPercentY = ((e.clientY - rect.top) / height) * 100;
-    setLightX(lightPercentX);
-    setLightY(lightPercentY);
   };
 
   const handleMouseLeave = () => {
     x.set(0);
     y.set(0);
-    setLightX(50);
-    setLightY(50);
   };
 
   const containerVariants = {
@@ -105,23 +92,11 @@ export default function CotizadorLowCostHero() {
   return (
     <section
       id="cotizador-lowcost-hero"
-      className="relative min-h-[65vh] flex items-center justify-center pt-32 pb-12 overflow-hidden bg-gradient-to-b from-brand-blue-700 via-brand-dark to-brand-dark text-white border-b border-white/10"
+      className="relative min-h-[70vh] flex items-center justify-center pt-32 pb-16 overflow-hidden bg-brand-blue text-brand-white border-b border-brand-white/15"
     >
-      {/* Ambient background glows */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_35%,var(--color-brand-blue-700),transparent_55%)] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_65%,var(--color-brand-yellow-500),transparent_45%)] pointer-events-none" />
-
-      {/* Decorative logistics illustration overlay */}
-      <div className="absolute inset-0 opacity-[0.04] mix-blend-overlay pointer-events-none">
-        <Image
-          src="/delivery-background.jpg"
-          alt="Fondo de reparto"
-          fill={true}
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-      </div>
+      {/* Luces y ambientación */}
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-brand-yellow/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-brand-blue-deep/60 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <motion.div
@@ -130,101 +105,101 @@ export default function CotizadorLowCostHero() {
           initial="hidden"
           animate="visible"
         >
-          {/* Left Column: Title and Description */}
+          {/* Columna Izquierda: Título y Descripción */}
           <div className="lg:col-span-7 text-center lg:text-left space-y-6">
-            
-            {/* Badge (Bebas Neue) */}
+
+            {/* Badge */}
             <motion.div variants={itemVariants} className="inline-flex justify-center lg:justify-start">
-              <span className="px-4 py-1.5 rounded-full text-sm font-subheading uppercase tracking-widest bg-brand-blue border-2 border-brand-yellow text-brand-yellow flex items-center gap-1.5 shadow-[0_0_20px_var(--color-brand-yellow-500)] font-bold">
-                <ShoppingBag className="h-4 w-4 text-brand-yellow animate-pulse shrink-0" />
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-subheading font-bold uppercase tracking-widest bg-brand-yellow text-brand-blue shadow-glow-yellow border border-brand-yellow">
+                <i className="ph-fill ph-shopping-bag-open text-sm text-brand-blue"></i>
                 Servicio Económico y Programado
               </span>
             </motion.div>
 
             <motion.h1
               variants={itemVariants}
-              className="text-5xl sm:text-6xl lg:text-7xl font-display uppercase tracking-[0.02em] leading-none text-white flex flex-wrap items-center justify-center lg:justify-start gap-x-4 gap-y-2"
+              className="text-5xl sm:text-6xl lg:text-7xl font-display uppercase tracking-tight leading-[0.98] text-brand-white flex flex-wrap items-center justify-center lg:justify-start gap-x-4 gap-y-2"
             >
               <span>COTIZÁ TU</span>
-              <span className="text-brand-yellow text-glow-yellow">ENVÍO</span>
+              <span className="text-brand-yellow">ENVÍO</span>
               <span>LOWCOST</span>
             </motion.h1>
 
-            {/* Description */}
+            {/* Descripción */}
             <motion.p
               variants={itemVariants}
-              className="text-base sm:text-lg text-brand-blue-200 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-sans"
+              className="text-base sm:text-lg lg:text-xl font-sans text-brand-white/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light border-l-2 border-brand-yellow pl-4 text-left"
             >
               Eficiencia y rentabilidad. Calculá tu envío con entrega garantizada en el día si es solicitado antes de 13hs.
             </motion.p>
 
-            {/* Features Indicators */}
+            {/* Indicadores de Features */}
             <motion.div
               variants={itemVariants}
-              className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 max-w-xl mx-auto lg:mx-0 text-left font-sans text-xs"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 max-w-xl mx-auto lg:mx-0 text-left font-sans text-xs"
             >
-              <div className="flex items-center gap-2 text-brand-blue-200 bg-white/5 border border-white/10 rounded-2xl p-3 backdrop-blur-sm hover:border-white/20 transition-colors">
-                <Percent className="h-4 w-4 text-brand-yellow shrink-0" />
+              <div className="flex items-center gap-2 text-brand-white/85 bg-brand-white/10 border border-brand-white/20 rounded-2xl p-3 hover:border-brand-yellow/40 transition-colors">
+                <i className="ph-fill ph-percent text-brand-yellow text-base shrink-0"></i>
                 <span>Hasta 40% de Ahorro</span>
               </div>
-              <div className="flex items-center gap-2 text-brand-blue-200 bg-white/5 border border-white/10 rounded-2xl p-3 backdrop-blur-sm hover:border-white/20 transition-colors">
-                <Truck className="h-4 w-4 text-brand-yellow shrink-0" />
+              <div className="flex items-center gap-2 text-brand-white/85 bg-brand-white/10 border border-brand-white/20 rounded-2xl p-3 hover:border-brand-yellow/40 transition-colors">
+                <i className="ph-fill ph-motorcycle text-brand-yellow text-base shrink-0"></i>
                 <span>Entrega Same-Day</span>
               </div>
-              <div className="flex items-center gap-2 text-brand-blue-200 bg-white/5 border border-white/10 rounded-2xl p-3 backdrop-blur-sm hover:border-white/20 transition-colors">
-                <ShieldCheck className="h-4 w-4 text-brand-yellow shrink-0" />
+              <div className="flex items-center gap-2 text-brand-white/85 bg-brand-white/10 border border-brand-white/20 rounded-2xl p-3 hover:border-brand-yellow/40 transition-colors">
+                <i className="ph-fill ph-shield-check text-brand-yellow text-base shrink-0"></i>
                 <span>Tarifa Plana PyME</span>
               </div>
             </motion.div>
           </div>
 
-          {/* Right Column: Dynamic 3D Spring Floating Card */}
-          <div className="lg:col-span-5 relative hidden lg:block h-[380px] perspective-1000">
+          {/* Columna Derecha: Tarjeta 3D flotante */}
+          <div className="lg:col-span-5 relative hidden lg:block h-[380px]" style={{ perspective: '1000px' }}>
             <motion.div
               ref={cardRef}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
-              style={{ rotateX, rotateY }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] z-20 preserve-3d cursor-pointer"
+              style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] z-20 cursor-pointer"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1, transition: { duration: 0.8, delay: 0.3 } }}
             >
-              {/* Double-Bezel Card wrapper */}
-              <div className="double-bezel-outer bg-brand-blue-50/80 shadow-brutalist border border-brand-blue-100 p-2 rounded-2xl transition-all duration-300">
-                <div className="double-bezel-inner bg-white p-8 rounded-xl border border-brand-blue-50/50 text-brand-blue-700">
+              {/* Tarjeta doble bisel: bisel translúcido + ticket blanco */}
+              <div className="rounded-[28px] p-2 bg-brand-white/10 border border-brand-white/20 shadow-2xl transition-all duration-300">
+                <div className="bg-brand-white rounded-[20px] p-6 sm:p-8 text-brand-blue">
                   <div className="space-y-6 relative z-10">
-                    <div className="flex items-center justify-between border-b border-brand-blue-100/60 pb-4">
+                    <div className="flex items-center justify-between border-b border-brand-blue/15 pb-4">
                       <div>
-                        <h4 className="text-xl font-subheading uppercase text-brand-blue-700 tracking-wider">
+                        <h4 className="text-xl font-subheading uppercase text-brand-blue tracking-wider">
                           CÁLCULO AUTOMÁTICO
                         </h4>
-                        <p className="text-[10px] text-brand-blue-600 font-subheading tracking-wider uppercase mt-0.5">SISTEMA LOWCOST BATCH</p>
+                        <p className="text-[10px] text-brand-blue/70 font-subheading tracking-wider uppercase mt-0.5">SISTEMA LOWCOST BATCH</p>
                       </div>
-                      <Calculator className="h-6 w-6 text-brand-blue-700 shrink-0 animate-pulse" />
+                      <i className="ph-fill ph-calculator text-2xl text-brand-blue shrink-0 animate-pulse"></i>
                     </div>
 
-                    {/* Calculator Simulation items */}
-                    <div className="space-y-3 text-xs text-brand-blue-900">
-                      <div className="flex justify-between items-center py-1 border-b border-brand-blue-100/60">
-                        <span className="font-subheading font-bold uppercase tracking-wider text-[10px] text-brand-blue-600">ORIGEN</span>
-                        <span className="text-brand-blue-700 font-semibold font-sans truncate max-w-[150px] inline-block align-middle">{trip.origen}</span>
+                    {/* Simulación del calculador */}
+                    <div className="space-y-3 text-xs">
+                      <div className="flex justify-between items-center py-1 border-b border-brand-blue/10">
+                        <span className="font-subheading font-bold uppercase tracking-wider text-[10px] text-brand-blue/60">ORIGEN</span>
+                        <span className="text-brand-blue font-semibold font-sans truncate max-w-[150px] inline-block align-middle">{trip.origen}</span>
                       </div>
-                      <div className="flex justify-between items-center py-1 border-b border-brand-blue-100/60">
-                        <span className="font-subheading font-bold uppercase tracking-wider text-[10px] text-brand-blue-600">DESTINO</span>
-                        <span className="text-brand-blue-700 font-semibold font-sans truncate max-w-[150px] inline-block align-middle">{trip.destino}</span>
+                      <div className="flex justify-between items-center py-1 border-b border-brand-blue/10">
+                        <span className="font-subheading font-bold uppercase tracking-wider text-[10px] text-brand-blue/60">DESTINO</span>
+                        <span className="text-brand-blue font-semibold font-sans truncate max-w-[150px] inline-block align-middle">{trip.destino}</span>
                       </div>
-                      <div className="flex justify-between items-center py-1 border-b border-brand-blue-100/60">
-                        <span className="font-subheading font-bold uppercase tracking-wider text-[10px] text-brand-blue-600">DISTANCIA</span>
-                        <span className="text-brand-blue-700 font-bold font-mono">{trip.distancia} km</span>
+                      <div className="flex justify-between items-center py-1 border-b border-brand-blue/10">
+                        <span className="font-subheading font-bold uppercase tracking-wider text-[10px] text-brand-blue/60">DISTANCIA</span>
+                        <span className="text-brand-blue font-bold font-mono">{trip.distancia} km</span>
                       </div>
-                      <div className="flex justify-between items-center py-1 text-sm pt-2 border-t border-brand-blue-100/60">
-                        <span className="font-subheading font-bold text-brand-blue-700 tracking-wide">TARIFA FINAL</span>
-                        <span className="text-brand-blue-700 font-bold text-lg font-mono">${price.toLocaleString('es-AR')} ARS</span>
+                      <div className="flex justify-between items-center py-1 text-sm pt-2 border-t border-brand-blue/15">
+                        <span className="font-subheading font-bold text-brand-blue tracking-wide">TARIFA FINAL</span>
+                        <span className="text-brand-blue font-bold text-lg font-mono">${price.toLocaleString('es-AR')} ARS</span>
                       </div>
                     </div>
 
                     <div className="pt-2 flex justify-center">
-                      <span className="px-3 py-1 bg-brand-yellow-50 border border-brand-yellow text-brand-blue-700 rounded-xl text-[10px] font-subheading tracking-wider uppercase">
+                      <span className="px-3 py-1 bg-brand-yellow/15 border border-brand-yellow text-brand-blue rounded-xl text-[10px] font-subheading tracking-wider uppercase">
                         ENTREGA INCLUIDA EN EL DÍA
                       </span>
                     </div>

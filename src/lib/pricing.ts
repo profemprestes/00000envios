@@ -9,7 +9,8 @@ export type ServiceTypeProp = "EXPRESS" | "LOW_COST";
 
 export interface PriceRangeProp {
   id: number;
-  serviceType: ServiceTypeProp;
+  /** En BD es texto plano con un CHECK constraint (no un enum de Prisma), ver schema.prisma. */
+  serviceType: string;
   distanciaMinKm: number;
   distanciaMaxKm: number;
   precioRango: number;

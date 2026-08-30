@@ -42,7 +42,7 @@ export type PriceRangeSumAggregateOutputType = {
 
 export type PriceRangeMinAggregateOutputType = {
   id: number | null
-  serviceType: $Enums.ServiceType | null
+  serviceType: string | null
   distanciaMinKm: number | null
   distanciaMaxKm: number | null
   precioRango: number | null
@@ -51,7 +51,7 @@ export type PriceRangeMinAggregateOutputType = {
 
 export type PriceRangeMaxAggregateOutputType = {
   id: number | null
-  serviceType: $Enums.ServiceType | null
+  serviceType: string | null
   distanciaMinKm: number | null
   distanciaMaxKm: number | null
   precioRango: number | null
@@ -199,7 +199,7 @@ export type PriceRangeGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 
 export type PriceRangeGroupByOutputType = {
   id: number
-  serviceType: $Enums.ServiceType
+  serviceType: string
   distanciaMinKm: number
   distanciaMaxKm: number
   precioRango: number
@@ -231,7 +231,7 @@ export type PriceRangeWhereInput = {
   OR?: Prisma.PriceRangeWhereInput[]
   NOT?: Prisma.PriceRangeWhereInput | Prisma.PriceRangeWhereInput[]
   id?: Prisma.IntFilter<"PriceRange"> | number
-  serviceType?: Prisma.EnumServiceTypeFilter<"PriceRange"> | $Enums.ServiceType
+  serviceType?: Prisma.StringFilter<"PriceRange"> | string
   distanciaMinKm?: Prisma.FloatFilter<"PriceRange"> | number
   distanciaMaxKm?: Prisma.FloatFilter<"PriceRange"> | number
   precioRango?: Prisma.FloatFilter<"PriceRange"> | number
@@ -252,7 +252,7 @@ export type PriceRangeWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.PriceRangeWhereInput | Prisma.PriceRangeWhereInput[]
   OR?: Prisma.PriceRangeWhereInput[]
   NOT?: Prisma.PriceRangeWhereInput | Prisma.PriceRangeWhereInput[]
-  serviceType?: Prisma.EnumServiceTypeFilter<"PriceRange"> | $Enums.ServiceType
+  serviceType?: Prisma.StringFilter<"PriceRange"> | string
   distanciaMinKm?: Prisma.FloatFilter<"PriceRange"> | number
   distanciaMaxKm?: Prisma.FloatFilter<"PriceRange"> | number
   precioRango?: Prisma.FloatFilter<"PriceRange"> | number
@@ -278,7 +278,7 @@ export type PriceRangeScalarWhereWithAggregatesInput = {
   OR?: Prisma.PriceRangeScalarWhereWithAggregatesInput[]
   NOT?: Prisma.PriceRangeScalarWhereWithAggregatesInput | Prisma.PriceRangeScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"PriceRange"> | number
-  serviceType?: Prisma.EnumServiceTypeWithAggregatesFilter<"PriceRange"> | $Enums.ServiceType
+  serviceType?: Prisma.StringWithAggregatesFilter<"PriceRange"> | string
   distanciaMinKm?: Prisma.FloatWithAggregatesFilter<"PriceRange"> | number
   distanciaMaxKm?: Prisma.FloatWithAggregatesFilter<"PriceRange"> | number
   precioRango?: Prisma.FloatWithAggregatesFilter<"PriceRange"> | number
@@ -286,7 +286,7 @@ export type PriceRangeScalarWhereWithAggregatesInput = {
 }
 
 export type PriceRangeCreateInput = {
-  serviceType: $Enums.ServiceType
+  serviceType: string
   distanciaMinKm: number
   distanciaMaxKm: number
   precioRango: number
@@ -295,7 +295,7 @@ export type PriceRangeCreateInput = {
 
 export type PriceRangeUncheckedCreateInput = {
   id?: number
-  serviceType: $Enums.ServiceType
+  serviceType: string
   distanciaMinKm: number
   distanciaMaxKm: number
   precioRango: number
@@ -303,7 +303,7 @@ export type PriceRangeUncheckedCreateInput = {
 }
 
 export type PriceRangeUpdateInput = {
-  serviceType?: Prisma.EnumServiceTypeFieldUpdateOperationsInput | $Enums.ServiceType
+  serviceType?: Prisma.StringFieldUpdateOperationsInput | string
   distanciaMinKm?: Prisma.FloatFieldUpdateOperationsInput | number
   distanciaMaxKm?: Prisma.FloatFieldUpdateOperationsInput | number
   precioRango?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -312,7 +312,7 @@ export type PriceRangeUpdateInput = {
 
 export type PriceRangeUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  serviceType?: Prisma.EnumServiceTypeFieldUpdateOperationsInput | $Enums.ServiceType
+  serviceType?: Prisma.StringFieldUpdateOperationsInput | string
   distanciaMinKm?: Prisma.FloatFieldUpdateOperationsInput | number
   distanciaMaxKm?: Prisma.FloatFieldUpdateOperationsInput | number
   precioRango?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -321,7 +321,7 @@ export type PriceRangeUncheckedUpdateInput = {
 
 export type PriceRangeCreateManyInput = {
   id?: number
-  serviceType: $Enums.ServiceType
+  serviceType: string
   distanciaMinKm: number
   distanciaMaxKm: number
   precioRango: number
@@ -329,7 +329,7 @@ export type PriceRangeCreateManyInput = {
 }
 
 export type PriceRangeUpdateManyMutationInput = {
-  serviceType?: Prisma.EnumServiceTypeFieldUpdateOperationsInput | $Enums.ServiceType
+  serviceType?: Prisma.StringFieldUpdateOperationsInput | string
   distanciaMinKm?: Prisma.FloatFieldUpdateOperationsInput | number
   distanciaMaxKm?: Prisma.FloatFieldUpdateOperationsInput | number
   precioRango?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -338,7 +338,7 @@ export type PriceRangeUpdateManyMutationInput = {
 
 export type PriceRangeUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  serviceType?: Prisma.EnumServiceTypeFieldUpdateOperationsInput | $Enums.ServiceType
+  serviceType?: Prisma.StringFieldUpdateOperationsInput | string
   distanciaMinKm?: Prisma.FloatFieldUpdateOperationsInput | number
   distanciaMaxKm?: Prisma.FloatFieldUpdateOperationsInput | number
   precioRango?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -384,10 +384,6 @@ export type PriceRangeSumOrderByAggregateInput = {
   distanciaMinKm?: Prisma.SortOrder
   distanciaMaxKm?: Prisma.SortOrder
   precioRango?: Prisma.SortOrder
-}
-
-export type EnumServiceTypeFieldUpdateOperationsInput = {
-  set?: $Enums.ServiceType
 }
 
 export type FloatFieldUpdateOperationsInput = {
@@ -443,7 +439,7 @@ export type $PriceRangePayload<ExtArgs extends runtime.Types.Extensions.Internal
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    serviceType: $Enums.ServiceType
+    serviceType: string
     distanciaMinKm: number
     distanciaMaxKm: number
     precioRango: number
@@ -872,7 +868,7 @@ export interface Prisma__PriceRangeClient<T, Null = never, ExtArgs extends runti
  */
 export interface PriceRangeFieldRefs {
   readonly id: Prisma.FieldRef<"PriceRange", 'Int'>
-  readonly serviceType: Prisma.FieldRef<"PriceRange", 'ServiceType'>
+  readonly serviceType: Prisma.FieldRef<"PriceRange", 'String'>
   readonly distanciaMinKm: Prisma.FieldRef<"PriceRange", 'Float'>
   readonly distanciaMaxKm: Prisma.FieldRef<"PriceRange", 'Float'>
   readonly precioRango: Prisma.FieldRef<"PriceRange", 'Float'>

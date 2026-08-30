@@ -4,11 +4,15 @@ import React, { useState, useTransition } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Bike, Calculator, CheckCircle2, AlertTriangle } from 'lucide-react';
 import AddressAutocomplete from '../../ui/AddressAutocomplete';
-import DynamicRouteMap from '../../ui/DynamicRouteMap';
+import dynamic from 'next/dynamic';
 import { useGoogleRoute, type Coordinate } from '@/src/hooks/useGoogleRoute';
 import { type PriceRangeProp } from '@/src/lib/pricing';
 import { calculateQuoteAction, type QuoteState } from '@/src/actions/quote';
 import { useActionState } from 'react';
+
+// Leaflet toca `window` al evaluar el módulo; sin ssr:false, next build lo
+// ejecuta durante el prerender en el servidor y rompe con "window is not defined".
+const DynamicRouteMap = dynamic(() => import('../../ui/DynamicRouteMap'), { ssr: false });
 
 
 export default function CotizadorExpressForm({ priceRanges = [] }: { priceRanges?: PriceRangeProp[] }) {
