@@ -1,0 +1,266 @@
+'use client';
+
+import React, { useRef } from 'react';
+import { Card, CardContent, CardHeader } from '@/src/components/ui/card';
+import { Sparkles } from '@/src/components/ui/sparkles';
+import { TimelineContent } from '@/src/components/ui/timeline-animation';
+import { VerticalCutReveal } from '@/src/components/ui/vertical-cut-reveal';
+import NumberFlow from '@number-flow/react';
+
+export default function EmprendedoresPricing() {
+  const pricingRef = useRef<HTMLDivElement>(null);
+
+  const plans = [
+    {
+      name: 'E-Commerce Same Day',
+      price: '$6.000',
+      period: 'Fijo toda la ciudad',
+      description: 'Stock almacenado en Friuli 1972 (productos chicos/medianos). Sale empaquetado inmediatamente con picking QR.',
+      bullets: [
+        'Picking por código QR y empaquetado',
+        'Despacho y logística en el día',
+        'Contrareembolso sin cargo extra',
+        'Rechazos devueltos 100% sin costo'
+      ],
+      highlight: true,
+      badge: 'STOCK EN DEPÓSITO'
+    },
+    {
+      name: 'E-Commerce Next Day (24hs)',
+      price: '$3.800',
+      period: 'Desde $3.800',
+      description: 'Retiro programado en tu local para entrega al día siguiente. A mayor cantidad de envíos, baja la tarifa.',
+      bullets: [
+        'Entrega garantizada en 24 horas',
+        'Recolección gratis para +10 envíos (sino $4.000)',
+        'Ideal para volúmenes diarios constantes',
+        'Resúmenes y reportes de envíos'
+      ],
+      highlight: false,
+      badge: 'RETIRO EN TU LOCAL'
+    },
+    {
+      name: 'Opción DropOFF (-20% OFF)',
+      price: '20% OFF',
+      period: 'Descuento directo en tarifa',
+      description: 'Traé tus paquetes terminados a nuestro depósito central de Friuli 1972 y obtené un 20% de descuento.',
+      bullets: [
+        '20% de descuento sobre la tarifa final',
+        'Recepción directa en Friuli 1972',
+        'Ideal para emprendedores con vehículo',
+        'Cobro contrareembolso sin comisiones'
+      ],
+      highlight: false,
+      badge: 'AHORRO MÁXIMO'
+    },
+  ];
+
+  const revealVariants = {
+    visible: (i: number) => ({
+      y: 0,
+      opacity: 1,
+      filter: "blur(0px)",
+      transition: {
+        delay: i * 0.15,
+        duration: 0.5,
+      },
+    }),
+    hidden: {
+      filter: "blur(10px)",
+      y: -20,
+      opacity: 0,
+    },
+  };
+
+  return (
+    <section
+      id="emprendedores-pricing"
+      className="py-24 bg-brand-canvas relative overflow-hidden border-t-4 border-b-4 border-brand-yellow"
+      ref={pricingRef}
+    >
+      {/* Overlay de destellos de fondo */}
+      <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,white,transparent_85%)] opacity-30">
+        <Sparkles
+          density={1200}
+          direction="bottom"
+          speed={0.8}
+          color="#0950F6"
+          className="absolute inset-0 h-full w-full"
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+
+        {/* Bloque de encabezado */}
+        <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
+          <TimelineContent
+            animationNum={0}
+            timelineRef={pricingRef}
+            customVariants={revealVariants}
+            as="span"
+            className="px-4 py-1.5 bg-brand-blue text-brand-yellow rounded-full text-xs font-subheading uppercase tracking-widest inline-block border-2 border-brand-blue shadow-[2px_2px_0px_var(--color-brand-blue-deep)] font-bold"
+          >
+            MODALIDADES E-COMMERCE Y 3PL 2026
+          </TimelineContent>
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display uppercase tracking-tight text-brand-blue flex justify-center border-l-4 border-brand-yellow pl-4">
+            <VerticalCutReveal
+              splitBy="words"
+              staggerDuration={0.1}
+              staggerFrom="first"
+              containerClassName="justify-center"
+            >
+              PLANES PAQUETERÍA Y FULFILLMENT
+            </VerticalCutReveal>
+          </h2>
+
+          <TimelineContent
+            animationNum={1}
+            timelineRef={pricingRef}
+            customVariants={revealVariants}
+            as="p"
+            className="text-brand-blue/80 font-sans text-sm sm:text-base max-w-lg mx-auto leading-relaxed"
+          >
+            Elegí la modalidad e-commerce que mejor impulse tu marca. Desde almacenamiento con picking QR en Friuli 1972 hasta opción DropOFF con 20% OFF.
+          </TimelineContent>
+          <div className="h-2 w-16 bg-brand-yellow mx-auto rounded-full" />
+        </div>
+
+        {/* Grilla de planes (card en fondo claro, DESIGN.md 4.2) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+          {plans.map((plan, idx) => {
+            const isNumericPrice = plan.price.startsWith('$');
+            const numericValue = isNumericPrice ? parseInt(plan.price.replace('$', '').replace('.', '')) : null;
+
+            return (
+              <TimelineContent
+                key={plan.name}
+                animationNum={2 + idx}
+                timelineRef={pricingRef}
+                customVariants={revealVariants}
+                as="div"
+                className="lg:col-span-4 flex flex-col"
+              >
+                <Card
+                  className={`rounded-2xl border border-brand-blue/20 bg-white text-brand-blue shadow-lg hover:border-brand-blue hover:shadow-xl flex flex-col justify-between h-full transition-all duration-300 group text-left ${
+                    plan.highlight ? 'lg:scale-[1.03] relative z-20 border-brand-blue shadow-xl' : ''
+                  }`}
+                >
+                  <CardHeader className="p-8 pb-2 text-left relative">
+                    {plan.highlight && (
+                      <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-brand-yellow text-brand-blue border-2 border-brand-blue font-bold font-subheading text-xs tracking-wider px-4 py-1 rounded-full shadow-md">
+                        {plan.badge}
+                      </span>
+                    )}
+
+                    <div>
+                      <span className="text-xs font-subheading tracking-wider uppercase text-brand-blue font-bold">
+                        {plan.badge}
+                      </span>
+                      <h3 className="text-2xl font-display uppercase tracking-wider mt-1 min-h-14 leading-tight text-brand-blue font-bold">
+                        {plan.name}
+                      </h3>
+                    </div>
+
+                    <div className="py-2">
+                      {isNumericPrice && numericValue ? (
+                        <div className="flex items-baseline">
+                          <span className="text-5xl font-display uppercase font-bold tracking-tight text-brand-blue">
+                            $
+                            <NumberFlow
+                              value={numericValue}
+                              format={{ minimumFractionDigits: 0 }}
+                              className="inline-block"
+                            />
+                          </span>
+                        </div>
+                      ) : (
+                        <span className="text-5xl font-display uppercase font-bold tracking-tight text-brand-blue">
+                          {plan.price}
+                        </span>
+                      )}
+                      <span className="text-xs font-subheading tracking-wider uppercase block mt-1 text-brand-blue/60">{plan.period}</span>
+                    </div>
+
+                    <p className="text-sm leading-relaxed font-sans min-h-12 text-brand-blue/75">
+                      {plan.description}
+                    </p>
+                  </CardHeader>
+
+                  <CardContent className="p-8 pt-0 flex flex-col justify-between grow">
+                    {/* Bullets */}
+                    <ul className="space-y-2.5 pt-4 border-t-2 border-brand-blue/15 mb-6">
+                      {plan.bullets.map((bullet) => (
+                        <li key={bullet} className="flex items-center gap-2 text-xs text-brand-blue/80">
+                          <i className="ph-bold ph-check text-lg shrink-0 text-brand-blue" />
+                          <span className="font-sans text-sm">{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div>
+                      <a
+                        href="https://wa.me/542236602699"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full inline-flex items-center justify-between gap-2 rounded-full bg-brand-blue px-5 py-3 font-subheading text-xs uppercase tracking-wider text-brand-yellow transition-all hover:bg-brand-blue-deep"
+                      >
+                        <span>Elegir {plan.name.split(' ')[0]}</span>
+                        <i className="ph-bold ph-arrow-right text-base shrink-0" />
+                      </a>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TimelineContent>
+            );
+          })}
+        </div>
+
+        {/* Callout especial: contrareembolso (tarjeta ancho completo) */}
+        <TimelineContent
+          animationNum={5}
+          timelineRef={pricingRef}
+          customVariants={revealVariants}
+          as="div"
+          className="relative overflow-hidden"
+        >
+          <div className="rounded-3xl border border-brand-blue/20 bg-white shadow-lg text-brand-blue p-8 relative overflow-hidden">
+            <div className="absolute right-0 bottom-0 translate-y-6 translate-x-6 text-brand-blue/10 pointer-events-none -z-10">
+              <i className="ph-fill ph-briefcase text-[16rem]" />
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+
+              <div className="lg:col-span-8 space-y-4 text-left">
+                <span className="px-4 py-1 bg-brand-blue/10 text-brand-blue rounded-full text-xs font-subheading uppercase tracking-widest inline-block border border-brand-blue/20 font-bold">
+                  CONTRAREEMBOLSO SIN COSTO EXTRA
+                </span>
+                <h3 className="text-3xl font-display uppercase tracking-tight text-brand-blue">
+                  ¿Cobrás tus ventas en puerta?
+                </h3>
+                <p className="text-sm text-brand-blue/75 leading-relaxed font-sans max-w-2xl">
+                  Realizamos cobros contrareembolso en Mar del Plata sin ningún costo adicional sobre el valor del producto. Además, podés llevar tus envíos a Friuli 1972 con un 20% de descuento en la tarifa final.
+                </p>
+              </div>
+
+              <div className="lg:col-span-4 flex justify-start lg:justify-end">
+                <a
+                  href="https://wa.me/542236602699"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  id="emprendedores-pricing-cta-whatsapp"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-full bg-brand-yellow px-7 py-3.5 font-subheading text-sm uppercase tracking-wider text-brand-blue shadow-glow-yellow transition-all hover:bg-brand-yellow-hover"
+                >
+                  <i className="ph-bold ph-chat-circle text-lg shrink-0" />
+                  <span>Agendar Asesoría 3PL</span>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </TimelineContent>
+
+      </div>
+    </section>
+  );
+}

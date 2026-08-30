@@ -113,7 +113,7 @@ export default function DynamicRouteMap({ origin, destination, routeCoords }: Dy
   const routeLatLng: [number, number][] = routeCoords.map(([lng, lat]) => [lat, lng]);
 
   return (
-    <div className="relative w-full h-full min-h-[300px] select-none">
+    <div className="relative w-full h-full min-h-75 select-none">
       <style jsx global>{`
         .leaflet-container {
           width: 100% !important;

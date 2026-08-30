@@ -114,7 +114,7 @@ export default function AboutHero() {
           </div>
 
           {/* Columna Derecha: Tarjeta Reviews */}
-          <div className="lg:col-span-5 relative hidden lg:block h-[400px]">
+          <div className="lg:col-span-5 relative hidden lg:block h-100">
             <motion.div
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95%] z-20"
               initial={{ scale: 0.9, opacity: 0 }}
@@ -122,8 +122,8 @@ export default function AboutHero() {
               whileHover={{ scale: 1.02, y: -4 }}
               transition={{ type: 'spring', stiffness: 200, damping: 20 }}
             >
-              <div className="rounded-[28px] p-6 sm:p-8 bg-brand-blue-deep/95 border border-brand-white/20 shadow-2xl space-y-6 text-brand-white relative overflow-hidden">
-                <i className="ph-fill ph-shield-check absolute -right-6 -bottom-6 text-[12rem] text-brand-white/[0.03] pointer-events-none"></i>
+              <div className="rounded-card-lg p-6 sm:p-8 bg-brand-blue-deep/95 border border-brand-white/20 shadow-2xl space-y-6 text-brand-white relative overflow-hidden">
+                <i className="ph-fill ph-shield-check absolute -right-6 -bottom-6 text-[12rem] text-brand-white/3 pointer-events-none"></i>
 
                 <div className="flex items-center justify-between pt-1 relative z-10">
                   <div className="flex items-center gap-1 text-brand-yellow text-lg">

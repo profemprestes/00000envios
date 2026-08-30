@@ -14,6 +14,34 @@
   --color-brand-white: #FFFFFF;
   --color-brand-canvas: #F8FAFC;
 
+  /* Escala 50-950 derivada por color-mix() de los 3 hex de marca de arriba.
+     Se agregó porque los componentes de servicios/ y cotizar/ (double-bezel
+     cards, CTA nested pill, tarjetas de precios) fueron escritos asumiendo
+     una escala tipo Tailwind (brand-blue-100, brand-blue-700, etc.) que
+     nunca existió acá: esas clases no generaban CSS y las secciones
+     quedaban sin fondo/borde/texto. No se suman colores nuevos, todo deriva
+     de --color-brand-blue / --color-brand-blue-dark / --color-brand-blue-deep
+     y --color-brand-yellow. */
+  --color-brand-blue-50: color-mix(in srgb, var(--color-brand-blue) 4%, white);
+  --color-brand-blue-100: color-mix(in srgb, var(--color-brand-blue) 10%, white);
+  --color-brand-blue-200: color-mix(in srgb, var(--color-brand-blue) 20%, white);
+  --color-brand-blue-300: color-mix(in srgb, var(--color-brand-blue) 35%, white);
+  --color-brand-blue-400: color-mix(in srgb, var(--color-brand-blue) 55%, white);
+  --color-brand-blue-500: var(--color-brand-blue);
+  --color-brand-blue-600: color-mix(in srgb, var(--color-brand-blue) 85%, black);
+  --color-brand-blue-700: var(--color-brand-blue-dark);
+  --color-brand-blue-800: color-mix(in srgb, var(--color-brand-blue-dark) 70%, black);
+  --color-brand-blue-900: var(--color-brand-blue-deep);
+  --color-brand-blue-950: color-mix(in srgb, var(--color-brand-blue-deep) 70%, black);
+
+  --color-brand-yellow-50: color-mix(in srgb, var(--color-brand-yellow) 8%, white);
+  --color-brand-yellow-100: color-mix(in srgb, var(--color-brand-yellow) 18%, white);
+  --color-brand-yellow-200: color-mix(in srgb, var(--color-brand-yellow) 35%, white);
+  --color-brand-yellow-400: color-mix(in srgb, var(--color-brand-yellow) 90%, white);
+  --color-brand-yellow-500: var(--color-brand-yellow);
+
+  --color-brand-white-50: var(--color-brand-canvas);
+
   --color-social-facebook: #1877F2;
   --color-social-instagram: #E1306C;
   --color-social-whatsapp: #25D366;
@@ -42,6 +70,56 @@
   ::selection {
     background-color: var(--color-brand-yellow);
     color: var(--color-brand-blue);
+  }
+}
+
+@layer components {
+  /* Double Bezel Card: marco exterior con aire + panel interior blanco.
+     Usado en 24 archivos (servicios, cotizar, ui/card.tsx) que ya agregan
+     su propio radio y padding junto a esta clase; esto sólo da un
+     fallback razonable cuando no lo hacen. */
+  .double-bezel-outer {
+    border-radius: 1.25rem;
+    padding: 0.5rem;
+  }
+
+  .double-bezel-inner {
+    height: 100%;
+    border-radius: 0.875rem;
+    overflow: hidden;
+  }
+
+  /* CTA Nested Pill: botón píldora con ícono circular anidado (ver
+     card.tsx y los CTA de Hero/Pricing en servicios/ y cotizar/). */
+  .cta-nested-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.875rem 1.5rem;
+    border-radius: 9999px;
+    font-family: var(--font-anton), "Anton", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.875rem;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cta-nested-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    height: 1.75rem;
+    width: 1.75rem;
+    border-radius: 9999px;
+  }
+
+  .glass-card {
+    background: color-mix(in srgb, var(--color-brand-white) 70%, transparent);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border: 1px solid color-mix(in srgb, var(--color-brand-white) 30%, transparent);
   }
 }
 
@@ -88,6 +166,40 @@
 
 .shadow-glow-ig {
   box-shadow: 0 0 25px rgba(225, 48, 108, 0.75);
+}
+
+/* Sombras de las Double Bezel Cards y CTAs (servicios/*, cotizar/*) */
+.shadow-float,
+.shadow-float-shadow {
+  box-shadow: 0 20px 45px -12px rgba(5, 44, 135, 0.18), 0 8px 16px -8px rgba(5, 44, 135, 0.12);
+}
+
+.shadow-antigravity-deep {
+  box-shadow: 0 30px 60px -15px rgba(5, 44, 135, 0.35), 0 12px 24px -8px rgba(5, 44, 135, 0.2);
+}
+
+.shadow-elevated {
+  box-shadow: 0 12px 32px -8px rgba(5, 44, 135, 0.16);
+}
+
+.shadow-hover-lift {
+  box-shadow: 0 20px 40px -10px rgba(5, 44, 135, 0.25);
+}
+
+.shadow-brutalist {
+  box-shadow: 4px 4px 0px var(--color-brand-blue);
+}
+
+.shadow-accent-sm {
+  box-shadow: 0 4px 14px -2px rgba(255, 241, 46, 0.35);
+}
+
+.shadow-accent-md {
+  box-shadow: 0 8px 22px -4px rgba(255, 241, 46, 0.4);
+}
+
+.shadow-cta-glow {
+  box-shadow: 0 0 28px rgba(255, 241, 46, 0.55);
 }
 
 .dropdown-panel {

@@ -8,40 +8,40 @@ import { TimelineContent } from '@/src/components/ui/timeline-animation';
 import { VerticalCutReveal } from '@/src/components/ui/vertical-cut-reveal';
 import NumberFlow from '@number-flow/react';
 
-export default function ExpressPricing() {
+export default function LowCostPricing() {
   const pricingRef = useRef<HTMLDivElement>(null);
 
   const zones = [
     {
       name: 'Zona 1',
       scope: 'Hasta 3 km',
-      price: '$3.700',
-      description: 'Ideal para entregas inmediatas de cercanía.',
-      bullets: ['Elegís rango horario', 'Mínimo 2hs anticipación', 'Notificación digital de estado', 'Custodia digital'],
+      price: '$3.000',
+      description: 'La mejor tarifa para ruteo diario de cercanía.',
+      bullets: ['Eficiencia en ruteo masivo', 'Corte de carga 13:00 hs', 'Entrega antes de las 19:00 hs', 'SLA de entrega garantizada'],
       highlight: false,
     },
     {
       name: 'Zona 2',
       scope: '3 a 5 km',
-      price: '$4.600',
-      description: 'Cobertura intermedia rápida.',
-      bullets: ['Elegís rango horario', 'Mínimo 2hs anticipación', 'Notificación digital de estado', 'Custodia digital'],
+      price: '$4.000',
+      description: 'Cobertura intermedia económica para PyMEs.',
+      bullets: ['Eficiencia en ruteo masivo', 'Corte de carga 13:00 hs', 'Entrega antes de las 19:00 hs', 'SLA de entrega garantizada'],
       highlight: true,
     },
     {
       name: 'Zona 3',
       scope: '5 a 7 km',
-      price: '$6.100',
-      description: 'Llegamos a distancias medias.',
-      bullets: ['Elegís rango horario', 'Mínimo 2hs anticipación', 'Notificación digital de estado', 'Custodia digital'],
+      price: '$5.300',
+      description: 'Llegamos a distancias medias al mejor costo.',
+      bullets: ['Eficiencia en ruteo masivo', 'Corte de carga 13:00 hs', 'Entrega antes de las 19:00 hs', 'SLA de entrega garantizada'],
       highlight: false,
     },
     {
       name: 'Zona 4',
       scope: '7 a 10 km',
-      price: '$8.200',
-      description: 'Máxima cobertura urbana estándar.',
-      bullets: ['Elegís rango horario', 'Mínimo 2hs anticipación', 'Notificación digital de estado', 'Custodia digital'],
+      price: '$7.000',
+      description: 'Máximo ahorro en distancias urbanas largas.',
+      bullets: ['Eficiencia en ruteo masivo', 'Corte de carga 13:00 hs', 'Entrega antes de las 19:00 hs', 'SLA de entrega garantizada'],
       highlight: false,
     },
   ];
@@ -65,17 +65,17 @@ export default function ExpressPricing() {
 
   return (
     <section
-      id="express-pricing"
-      className="py-24 bg-brand-canvas relative overflow-hidden text-brand-blue border-t-4 border-b-4 border-brand-yellow"
+      id="lowcost-pricing"
+      className="py-24 bg-brand-blue relative overflow-hidden text-brand-white border-t-4 border-b-4 border-brand-yellow"
       ref={pricingRef}
     >
       {/* Overlay de destellos de fondo */}
-      <div className="absolute inset-0 mask-[radial-gradient(ellipse_at_center,white,transparent_85%)] opacity-30">
+      <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,white,transparent_85%)] opacity-30">
         <Sparkles
           density={1200}
           direction="bottom"
           speed={0.8}
-          color="#0950F6"
+          color="#FFFFFF"
           className="absolute inset-0 h-full w-full"
         />
       </div>
@@ -89,24 +89,20 @@ export default function ExpressPricing() {
             timelineRef={pricingRef}
             customVariants={revealVariants}
             as="span"
-            className="px-4 py-1.5 bg-brand-blue text-brand-yellow rounded-full text-xs font-subheading uppercase tracking-widest inline-block border-2 border-brand-blue shadow-[2px_2px_0px_var(--color-brand-blue-deep)] font-bold"
+            className="px-4 py-1.5 bg-brand-yellow text-brand-blue rounded-full text-xs font-subheading uppercase tracking-widest inline-block border-2 border-brand-blue shadow-[2px_2px_0px_var(--color-brand-blue-deep)] font-bold"
           >
-            Envíos Dos Ruedas
+            Tarifario Inteligente
           </TimelineContent>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display uppercase tracking-tight flex justify-center">
-            <span className="relative inline-block bg-brand-blue px-3 py-1 my-1 transform -rotate-1 rounded-xl border border-brand-yellow/60 shadow-xl">
-              <span className="relative z-10 bg-brand-yellow text-brand-blue px-3.5 py-0.5 inline-block font-display font-black rounded-lg">
-                <VerticalCutReveal
-                  splitBy="words"
-                  staggerDuration={0.1}
-                  staggerFrom="first"
-                  containerClassName="justify-center"
-                >
-                  TARIFAS
-                </VerticalCutReveal>
-              </span>
-            </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display uppercase tracking-tight text-brand-white flex justify-center">
+            <VerticalCutReveal
+              splitBy="words"
+              staggerDuration={0.1}
+              staggerFrom="first"
+              containerClassName="justify-center"
+            >
+              TARIFAS 2026 ENVÍOS LOWCOST
+            </VerticalCutReveal>
           </h2>
 
           <TimelineContent
@@ -114,13 +110,14 @@ export default function ExpressPricing() {
             timelineRef={pricingRef}
             customVariants={revealVariants}
             as="p"
-            className="text-brand-blue/85 font-sans text-sm sm:text-base max-w-lg mx-auto leading-relaxed"
+            className="text-brand-white/85 font-sans text-sm sm:text-base max-w-lg mx-auto leading-relaxed"
           >
-            Consultá los precios actualizados para nuestro servicio premium con rango horario a elección.
+            Eficiencia en ruteo masivo. Garantizamos entregas antes de las 19:00 hs para pedidos cargados antes de las 13:00 hs.
           </TimelineContent>
+          <div className="h-2 w-16 bg-brand-yellow mx-auto rounded-full" />
         </div>
 
-        {/* Grilla de tarjetas de precios (fondo claro, DESIGN.md 4.2) */}
+        {/* Grilla de tarjetas de precios (card en fondo claro, DESIGN.md 4.2) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-12">
           {zones.map((zone, idx) => {
             const isNumericPrice = zone.price.startsWith('$');
@@ -143,7 +140,7 @@ export default function ExpressPricing() {
                   <CardHeader className="p-6 pb-2 text-left relative">
                     {zone.highlight && (
                       <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-brand-yellow text-brand-blue border-2 border-brand-blue font-bold font-subheading text-xs tracking-wider px-3 py-1 rounded-full shadow-md">
-                        RECOMENDADO
+                        RECOMENDADO PYME
                       </span>
                     )}
 
@@ -194,10 +191,10 @@ export default function ExpressPricing() {
 
                     <div>
                       <Link
-                        href="/cotizar/express"
+                        href="/cotizar/lowcost"
                         className="w-full inline-flex items-center justify-between gap-2 rounded-full bg-brand-blue px-5 py-3 font-subheading text-xs uppercase tracking-wider text-brand-yellow transition-all hover:bg-brand-blue-deep"
                       >
-                        <span>Seleccionar {zone.name}</span>
+                        <span>Ver {zone.name}</span>
                         <i className="ph-bold ph-arrow-right text-base shrink-0" />
                       </Link>
                     </div>
@@ -208,7 +205,7 @@ export default function ExpressPricing() {
           })}
         </div>
 
-        {/* Zona 5: llamado a cotización dinámica (tarjeta ancho completo) */}
+        {/* Zona 5: consulta especial (tarjeta ancho completo) */}
         <TimelineContent
           animationNum={6}
           timelineRef={pricingRef}
@@ -216,10 +213,9 @@ export default function ExpressPricing() {
           as="div"
           className="relative overflow-hidden"
         >
-          <div className="rounded-3xl border border-brand-blue/20 bg-white shadow-lg text-brand-blue p-8 relative overflow-hidden text-left">
-            {/* Ícono decorativo de fondo, sutil */}
+          <div className="rounded-3xl border border-brand-blue/20 bg-white shadow-lg text-brand-blue p-8 relative overflow-hidden">
             <div className="absolute right-0 bottom-0 translate-y-6 translate-x-6 text-brand-blue/10 pointer-events-none -z-10">
-              <i className="ph-fill ph-calculator text-[16rem]" />
+              <i className="ph-fill ph-bank text-[16rem]" />
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
@@ -229,22 +225,24 @@ export default function ExpressPricing() {
                   Zona 5 (Más de 10 km)
                 </span>
                 <h3 className="text-3xl font-mono uppercase tracking-tight text-brand-blue font-bold">
-                  $1.000 x km
+                  $700 x km
                 </h3>
                 <p className="text-sm text-brand-blue/75 leading-relaxed font-sans max-w-2xl">
-                  Para envíos de larga distancia fuera del ejido urbano o si querés obtener una cotización de altísima precisión basada en mapa y geolocalización exacta, utilizá nuestro cotizador inteligente en línea.
+                  Para envíos de larga distancia fuera del ejido urbano masivo tradicional, te ofrecemos la tarifa por kilómetro más competitiva del mercado local para que sigas ruteando con rentabilidad total.
                 </p>
               </div>
 
               <div className="lg:col-span-4 flex justify-start lg:justify-end">
-                <Link
-                  href="/cotizar/express"
-                  id="express-pricing-cta-cotizador"
+                <a
+                  href="https://wa.me/542236602699"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  id="lowcost-pricing-cta-whatsapp"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-full bg-brand-yellow px-7 py-3.5 font-subheading text-sm uppercase tracking-wider text-brand-blue shadow-glow-yellow transition-all hover:bg-brand-yellow-hover"
                 >
-                  <i className="ph-bold ph-calculator text-lg shrink-0" />
-                  <span>Ir al Cotizador</span>
-                </Link>
+                  <i className="ph-bold ph-chat-circle text-lg shrink-0" />
+                  <span>Consultar por WhatsApp</span>
+                </a>
               </div>
 
             </div>

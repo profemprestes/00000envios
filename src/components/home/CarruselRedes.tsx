@@ -34,8 +34,8 @@ export default function CarruselRedes() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full">
 
           {/* CARD 1: FACEBOOK */}
-          <Reveal as="article" delay={0} className="group relative rounded-[28px] p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[420px] transition-all duration-300 hover:-translate-y-1">
-            <i className="ph-fill ph-facebook-logo absolute -right-6 -bottom-6 text-[14rem] text-brand-white/[0.04] pointer-events-none"></i>
+          <Reveal as="article" delay={0} className="group relative rounded-card-lg p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-105 transition-all duration-300 hover:-translate-y-1">
+            <i className="ph-fill ph-facebook-logo absolute -right-6 -bottom-6 text-[14rem] text-brand-white/4 pointer-events-none"></i>
 
             <div className="relative z-10 space-y-4">
               <div className="flex items-center justify-between">
@@ -78,8 +78,8 @@ export default function CarruselRedes() {
           </Reveal>
 
           {/* CARD 2: INSTAGRAM */}
-          <Reveal as="article" delay={0.08} className="group relative rounded-[28px] p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[420px] transition-all duration-300 hover:-translate-y-1">
-            <i className="ph-fill ph-instagram-logo absolute -right-6 -bottom-6 text-[14rem] text-brand-white/[0.04] pointer-events-none"></i>
+          <Reveal as="article" delay={0.08} className="group relative rounded-card-lg p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-105 transition-all duration-300 hover:-translate-y-1">
+            <i className="ph-fill ph-instagram-logo absolute -right-6 -bottom-6 text-[14rem] text-brand-white/4 pointer-events-none"></i>
 
             <div className="relative z-10 space-y-4">
               <div className="flex items-center justify-between">
@@ -87,7 +87,7 @@ export default function CarruselRedes() {
                   INSTAGRAM MDQ
                 </span>
 
-                <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-gradient-to-tr from-[#f97316] via-[#e11d48] to-[#9333ea] text-white shadow-glow-ig transition-transform duration-300 group-hover:scale-110">
+                <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-linear-to-tr from-[#f97316] via-[#e11d48] to-[#9333ea] text-white shadow-glow-ig transition-transform duration-300 group-hover:scale-110">
                   <i className="ph-fill ph-instagram-logo text-2xl"></i>
                 </div>
               </div>
@@ -111,7 +111,7 @@ export default function CarruselRedes() {
                 href="https://www.instagram.com/enviosdosruedas/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-300 bg-gradient-to-r from-[#9b2c8a] via-[#e11d48] to-[#f97316] hover:opacity-95 text-white shadow-glow-ig group/btn"
+                className="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-300 bg-linear-to-r from-[#9b2c8a] via-[#e11d48] to-[#f97316] hover:opacity-95 text-white shadow-glow-ig group/btn"
               >
                 <span>VER CONTENIDO</span>
                 <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center shrink-0 ml-2 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform">
@@ -122,8 +122,8 @@ export default function CarruselRedes() {
           </Reveal>
 
           {/* CARD 3: WHATSAPP */}
-          <Reveal as="article" delay={0.16} className="group relative rounded-[28px] p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[420px] transition-all duration-300 hover:-translate-y-1">
-            <i className="ph-fill ph-whatsapp-logo absolute -right-6 -bottom-6 text-[14rem] text-brand-white/[0.04] pointer-events-none"></i>
+          <Reveal as="article" delay={0.16} className="group relative rounded-card-lg p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-105 transition-all duration-300 hover:-translate-y-1">
+            <i className="ph-fill ph-whatsapp-logo absolute -right-6 -bottom-6 text-[14rem] text-brand-white/4 pointer-events-none"></i>
 
             <div className="relative z-10 space-y-4">
               <div className="flex items-center justify-between">
@@ -155,7 +155,7 @@ export default function CarruselRedes() {
                 href="https://wa.me/542236602699"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-300 bg-social-whatsapp hover:bg-[#20bd5a] text-brand-blue-deep shadow-glow-wa group/btn font-black"
+                className="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-300 bg-social-whatsapp hover:bg-[#20bd5a] text-brand-blue-deep shadow-glow-wa group/btn"
               >
                 <span>INICIAR CHAT</span>
                 <span className="w-7 h-7 rounded-full bg-brand-blue-deep/15 flex items-center justify-center shrink-0 ml-2 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform">

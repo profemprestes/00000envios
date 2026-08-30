@@ -6,7 +6,7 @@ import { HelpCircle, Mail, PhoneCall } from 'lucide-react';
 
 export default function CotizadorExpressHelp() {
   return (
-    <div id="cotizador-express-help" className="bg-gradient-to-r from-brand-blue-700 to-brand-blue-600 text-white rounded-3xl p-6 sm:p-10 mt-12 relative overflow-hidden border border-white/10 shadow-[0_20px_50px_var(--color-brand-blue-700)]">
+    <div id="cotizador-express-help" className="bg-linear-to-r from-brand-blue-700 to-brand-blue-600 text-white rounded-3xl p-6 sm:p-10 mt-12 relative overflow-hidden border border-white/10 shadow-[0_20px_50px_var(--color-brand-blue-700)]">
       {/* Background gradients */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_90%_10%,var(--color-brand-yellow-500),transparent_40%)] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_90%,var(--color-brand-white-50),transparent_40%)] pointer-events-none" />

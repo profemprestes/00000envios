@@ -104,7 +104,7 @@ export default function CotizadorExpressHero() {
   return (
     <section
       id="cotizador-express-hero"
-      className="relative min-h-[65vh] flex items-center justify-center pt-32 pb-12 overflow-hidden bg-gradient-to-b from-brand-blue-700 via-brand-dark to-brand-dark text-white border-b border-white/10"
+      className="relative min-h-[65vh] flex items-center justify-center pt-32 pb-12 overflow-hidden bg-linear-to-b from-brand-blue-700 via-brand-dark to-brand-dark text-white border-b border-white/10"
     >
       {/* Ambient background glows */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_35%,var(--color-brand-blue-700),transparent_55%)] pointer-events-none" />
@@ -167,7 +167,7 @@ export default function CotizadorExpressHero() {
           </div>
 
           {/* Right Column: Dynamic 3D Spring Floating Card */}
-          <div className="lg:col-span-5 relative hidden lg:block h-[380px] perspective-1000">
+          <div className="lg:col-span-5 relative hidden lg:block h-95 perspective-1000">
             <motion.div
               ref={cardRef}
               onMouseMove={handleMouseMove}
@@ -195,11 +195,11 @@ export default function CotizadorExpressHero() {
                     <div className="space-y-3 text-xs text-brand-blue-900">
                       <div className="flex justify-between items-center py-1 border-b border-brand-blue-100/60">
                         <span className="font-subheading font-bold uppercase tracking-wider text-[10px] text-brand-blue-600">ORIGEN</span>
-                        <span className="text-brand-blue-700 font-semibold font-sans truncate max-w-[150px] inline-block align-middle">{trip.origen}</span>
+                        <span className="text-brand-blue-700 font-semibold font-sans truncate max-w-37.5 inline-block align-middle">{trip.origen}</span>
                       </div>
                       <div className="flex justify-between items-center py-1 border-b border-brand-blue-100/60">
                         <span className="font-subheading font-bold uppercase tracking-wider text-[10px] text-brand-blue-600">DESTINO</span>
-                        <span className="text-brand-blue-700 font-semibold font-sans truncate max-w-[150px] inline-block align-middle">{trip.destino}</span>
+                        <span className="text-brand-blue-700 font-semibold font-sans truncate max-w-37.5 inline-block align-middle">{trip.destino}</span>
                       </div>
                       <div className="flex justify-between items-center py-1 border-b border-brand-blue-100/60">
                         <span className="font-subheading font-bold uppercase tracking-wider text-[10px] text-brand-blue-600">DISTANCIA</span>

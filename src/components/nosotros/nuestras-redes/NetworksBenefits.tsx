@@ -76,7 +76,7 @@ export default function NetworksBenefits() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className={`${benefit.colSpan} rounded-[28px] p-6 sm:p-8 bg-brand-blue-deep/90 border border-brand-white/20 shadow-xl flex flex-col justify-between min-h-[220px]`}
+              className={`${benefit.colSpan} rounded-card-lg p-6 sm:p-8 bg-brand-blue-deep/90 border border-brand-white/20 shadow-xl flex flex-col justify-between min-h-55`}
             >
               <div className="space-y-4">
                 <div className="w-12 h-12 bg-brand-blue text-brand-yellow border border-brand-white/15 rounded-2xl flex items-center justify-center text-2xl shrink-0">

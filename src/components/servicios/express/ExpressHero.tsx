@@ -4,7 +4,8 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'motion/react';
-import { Bike, Phone, Clock, ArrowRight, ShieldCheck, Zap } from 'lucide-react';
+
+import HeroProceduralBackground from '@/components/ui/HeroProceduralBackground';
 
 export default function ExpressHero() {
   const containerVariants = {
@@ -34,32 +35,37 @@ export default function ExpressHero() {
   return (
     <section
       id="express-hero"
-      className="relative w-full min-h-dvh pt-32 pb-12 lg:py-0 flex items-center justify-center overflow-hidden bg-brand-blue-700 text-white"
+      className="relative w-full overflow-hidden bg-brand-blue text-brand-white min-h-[80vh] flex items-center pt-24 pb-16 lg:pt-32 lg:pb-20 border-b border-brand-white/15"
     >
-      {/* Background atmospheric depth - only brand gradients */}
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(6,54,165,0.15)_0%,transparent_70%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_25%,rgba(6,54,165,0.2),transparent_50%)] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_75%,rgba(255,236,1,0.08),transparent_50%)] pointer-events-none" />
+      {/* Fondo procedural vectorial */}
+      <HeroProceduralBackground variant="express" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full py-6 my-auto">
+      {/* Marca de agua tipográfica de fondo */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden z-0">
+        <span className="font-display uppercase text-[16vw] leading-none text-brand-white/[0.03] tracking-tighter whitespace-nowrap">
+          ENVÍOS EXPRESS MDQ
+        </span>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
         <motion.div
           className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* Main Copy Column */}
+          {/* Columna de copy principal */}
           <div className="lg:col-span-7 text-center lg:text-left space-y-8">
 
             {/* Badge */}
             <motion.div variants={itemVariants} className="inline-flex justify-center lg:justify-start">
               <span className="px-4 py-1.5 rounded-full text-sm font-subheading uppercase tracking-widest bg-brand-yellow text-brand-blue border-2 border-brand-blue flex items-center gap-1.5 shadow-[2px_2px_0px_var(--color-brand-blue)] font-bold">
-                <span className="h-2.5 w-2.5 rounded-full bg-brand-blue-400 animate-pulse shrink-0" />
+                <span className="h-2.5 w-2.5 rounded-full bg-brand-blue-deep animate-pulse shrink-0" />
                 Disponible en Mar del Plata
               </span>
             </motion.div>
 
-            {/* Title with Inline Image Typography */}
+            {/* Título con tipografía inline */}
             <motion.h1
               variants={itemVariants}
               className="text-4xl sm:text-5xl lg:text-6xl font-display uppercase tracking-tight leading-none flex flex-wrap items-center justify-center lg:justify-start gap-x-4 gap-y-3"
@@ -77,25 +83,23 @@ export default function ExpressHero() {
               <span className="text-brand-yellow font-bold">EXPRESS - ENTREGA INMEDIATA</span>
             </motion.h1>
 
-            {/* Description */}
+            {/* Descripción */}
             <motion.p
               variants={itemVariants}
-              className="text-lg max-w-2xl mx-auto lg:mx-0 font-sans leading-relaxed text-brand-blue-100"
+              className="text-lg max-w-2xl mx-auto lg:mx-0 font-sans leading-relaxed text-brand-white/85"
             >
               Prioridad total. Tu paquete entregado en el día si es solicitado antes de 15hs.
             </motion.p>
 
-            {/* CTA Buttons */}
+            {/* Botones CTA */}
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-2">
               <Link
                 href="/cotizar/express"
                 id="express-hero-cta-cotizar"
-                className="w-full sm:w-auto cta-nested-pill bg-brand-yellow-500 text-brand-blue-900 hover:bg-brand-yellow-400 font-bold cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-full bg-brand-yellow px-7 py-3.5 font-subheading text-sm uppercase tracking-wider text-brand-blue shadow-glow-yellow transition-all hover:bg-brand-yellow-hover cursor-pointer"
               >
                 <span>Cotizá tu Envío Express</span>
-                <span className="cta-nested-icon bg-brand-blue-700/10 text-brand-blue-700">
-                  <ArrowRight className="h-5 w-5 shrink-0" />
-                </span>
+                <i className="ph-bold ph-arrow-right text-lg shrink-0" />
               </Link>
 
               <a
@@ -103,121 +107,115 @@ export default function ExpressHero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 id="express-hero-cta-whatsapp"
-                className="w-full sm:w-auto cta-nested-pill bg-brand-yellow-500 text-brand-blue-900 hover:bg-brand-yellow-400 border-2 border-brand-blue-700 cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-full border-2 border-brand-white/30 bg-brand-white/10 px-7 py-3.5 font-subheading text-sm uppercase tracking-wider text-brand-white transition-all hover:bg-brand-white/20 cursor-pointer"
               >
-                <span className="cta-nested-icon bg-brand-blue-700/10 text-brand-blue-700 mr-2">
-                  <Phone className="h-5 w-5 shrink-0" />
-                </span>
+                <i className="ph-bold ph-phone text-lg shrink-0" />
                 <span>Hablar por WhatsApp</span>
               </a>
             </motion.div>
 
-            {/* Feature stats summary line */}
+            {/* Línea de estadísticas destacadas */}
             <motion.div
               variants={itemVariants}
-              className="grid grid-cols-2 gap-4 pt-8 border-t-2 border-white/15 max-w-md mx-auto lg:mx-0"
+              className="grid grid-cols-2 gap-4 pt-8 border-t-2 border-brand-white/15 max-w-md mx-auto lg:mx-0"
             >
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-brand-blue-100/30 rounded-xl text-brand-yellow border border-brand-blue-200/50">
-                  <Clock className="h-5 w-5 shrink-0" />
+                <div className="p-2 bg-brand-white/10 rounded-xl text-brand-yellow border border-brand-white/20">
+                  <i className="ph-bold ph-clock text-xl shrink-0" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-wide text-brand-blue-200 leading-none mb-1">Entregas en</p>
-                  <p className="text-sm font-subheading uppercase font-semibold text-white">Menos de 2 Horas</p>
+                  <p className="text-xs font-bold uppercase tracking-wide text-brand-white/70 leading-none mb-1">Entregas en</p>
+                  <p className="text-sm font-subheading uppercase font-semibold text-brand-white">Menos de 2 Horas</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-brand-blue-100/30 rounded-xl text-brand-yellow border border-brand-blue-200/50">
-                  <ShieldCheck className="h-5 w-5 shrink-0" />
+                <div className="p-2 bg-brand-white/10 rounded-xl text-brand-yellow border border-brand-white/20">
+                  <i className="ph-bold ph-shield-check text-xl shrink-0" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-wide text-brand-blue-200 leading-none mb-1">Despacho con</p>
-                  <p className="text-sm font-subheading uppercase font-semibold text-white">Custodia Digital</p>
+                  <p className="text-xs font-bold uppercase tracking-wide text-brand-white/70 leading-none mb-1">Despacho con</p>
+                  <p className="text-sm font-subheading uppercase font-semibold text-brand-white">Custodia Digital</p>
                 </div>
               </div>
             </motion.div>
 
           </div>
 
-          {/* Graphics Column */}
-          <div className="lg:col-span-5 relative hidden lg:block h-[450px]">
-            {/* Card 1: Map/Tracking Card - Double Bezel */}
+          {/* Columna de gráficos */}
+          <div className="lg:col-span-5 relative hidden lg:block h-112.5">
+            {/* Tarjeta 1: Mapa / Rastreo (card en fondo azul, DESIGN.md 4.2) */}
             <motion.div
               className="absolute top-8 right-4 w-[80%] z-20"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0, transition: { duration: 0.8, delay: 0.4 } }}
               whileHover={{ scale: 1.02, zIndex: 40 }}
             >
-              <div className="double-bezel-outer bg-brand-blue-50/80 border border-brand-blue-100 rounded-2xl p-2 shadow-float hover:shadow-antigravity-deep hover:border-brand-blue-300 transition-all duration-500 w-full">
-                <div className="double-bezel-inner bg-white rounded-xl border border-brand-blue-50/50 shadow-sm p-3.5">
-                  <div className="relative h-44 w-full rounded-2xl overflow-hidden mb-3.5 bg-brand-blue-50 border border-brand-blue-100">
-                    <Image
-                      src="/card_mapa.webp"
-                      alt="Mapa de Cobertura de Mar del Plata"
-                      fill={true}
-                      referrerPolicy="no-referrer"
-                      sizes="(max-width: 1024px) 100vw, 40vw"
-                      className="object-cover"
-                    />
-                    <div className="absolute top-3 right-3 bg-brand-blue text-brand-yellow border border-brand-yellow px-2.5 py-1 rounded text-[9px] font-bold uppercase tracking-widest font-mono">
-                      MAPA EN VIVO
-                    </div>
+              <div className="rounded-2xl bg-brand-blue-deep/90 border border-brand-white/20 shadow-xl p-4 transition-all duration-500 hover:border-brand-white/30 w-full">
+                <div className="relative h-44 w-full rounded-2xl overflow-hidden mb-3.5 bg-brand-blue border border-brand-white/10">
+                  <Image
+                    src="/card_mapa.webp"
+                    alt="Mapa de Cobertura de Mar del Plata"
+                    fill={true}
+                    referrerPolicy="no-referrer"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute top-3 right-3 bg-brand-blue text-brand-yellow border border-brand-yellow px-2.5 py-1 rounded text-[9px] font-bold uppercase tracking-widest font-mono">
+                    MAPA EN VIVO
                   </div>
-                  <div className="flex items-center justify-between text-brand-blue-700">
-                    <div>
-                      <span className="text-xs font-bold uppercase tracking-wider block">Rango de Entrega</span>
-                      <span className="text-[10px] text-brand-blue-400 font-sans block mt-0.5">Asignación prioritaria directa</span>
-                    </div>
-                    <span className="text-[10px] px-2.5 py-1 rounded-lg bg-brand-blue-50 text-brand-blue-700 border border-brand-blue-100 font-bold uppercase font-mono tracking-wider">
-                      Activo
-                    </span>
+                </div>
+                <div className="flex items-center justify-between text-brand-white">
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-wider block">Rango de Entrega</span>
+                    <span className="text-[10px] text-brand-white/60 font-sans block mt-0.5">Asignación prioritaria directa</span>
                   </div>
+                  <span className="text-[10px] px-2.5 py-1 rounded-lg bg-brand-white/10 text-brand-white border border-brand-white/20 font-bold uppercase font-mono tracking-wider">
+                    Activo
+                  </span>
                 </div>
               </div>
             </motion.div>
 
-            {/* Card 2: Messenger On Road Card - Double Bezel Dark variant */}
+            {/* Tarjeta 2: Mensajero en ruta */}
             <motion.div
               className="absolute bottom-8 left-0 w-[75%] z-30"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0, transition: { duration: 0.8, delay: 0.6 } }}
               whileHover={{ scale: 1.02, zIndex: 40 }}
             >
-              <div className="double-bezel-outer bg-brand-blue-50/80 border border-brand-blue-100 rounded-2xl p-2 shadow-float hover:shadow-antigravity-deep hover:border-brand-blue-300 transition-all duration-500 w-full">
-                <div className="double-bezel-inner bg-brand-blue-700 rounded-xl border border-brand-blue-600/50 shadow-sm p-5 text-white">
-                  <div className="flex items-center gap-3.5 mb-4">
-                    <div className="p-2.5 rounded-xl bg-brand-yellow text-brand-blue border border-brand-blue">
-                      <Bike className="h-5.5 w-5.5 animate-pulse shrink-0" />
-                    </div>
-                    <div>
-                      <h4 className="text-[10px] font-bold uppercase tracking-widest text-brand-yellow leading-none mb-1">MOTO MENSAJERO</h4>
-                      <p className="text-sm font-subheading uppercase font-semibold text-white leading-tight">MATIAS CEJAS</p>
-                    </div>
+              <div className="rounded-2xl bg-brand-blue-deep border border-brand-white/15 shadow-xl p-5 text-brand-white transition-all duration-500 hover:border-brand-white/25 w-full">
+                <div className="flex items-center gap-3.5 mb-4">
+                  <div className="p-2.5 rounded-xl bg-brand-yellow text-brand-blue border border-brand-blue">
+                    <i className="ph-fill ph-moped text-xl animate-pulse shrink-0" />
                   </div>
+                  <div>
+                    <h4 className="text-[10px] font-bold uppercase tracking-widest text-brand-yellow leading-none mb-1">MOTO MENSAJERO</h4>
+                    <p className="text-sm font-subheading uppercase font-semibold text-brand-white leading-tight">MATIAS CEJAS</p>
+                  </div>
+                </div>
 
-                  <div className="space-y-2.5 text-xs">
-                    <div className="flex justify-between border-b border-white/10 pb-1.5">
-                      <span className="text-brand-blue-200 font-sans">Velocidad Promedio</span>
-                      <span className="font-semibold font-mono">Tránsito optimizado</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-brand-blue-200 font-sans">Tiempo Estimado</span>
-                      <span className="font-semibold text-brand-yellow font-mono"> 120 Minutos</span>
-                    </div>
+                <div className="space-y-2.5 text-xs">
+                  <div className="flex justify-between border-b border-brand-white/10 pb-1.5">
+                    <span className="text-brand-white/70 font-sans">Velocidad Promedio</span>
+                    <span className="font-semibold font-mono">Tránsito optimizado</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-brand-white/70 font-sans">Tiempo Estimado</span>
+                    <span className="font-semibold text-brand-yellow font-mono"> 120 Minutos</span>
                   </div>
                 </div>
               </div>
             </motion.div>
 
-            {/* Floating Info Badge */}
+            {/* Badge flotante */}
             <motion.div
-              className="absolute top-1/2 left-1/4 -translate-y-1/2 z-35"
+              className="absolute top-1/2 left-1/4 -translate-y-1/2 z-40"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1, transition: { duration: 0.6, delay: 0.8 } }}
             >
-              <div className="px-4 py-2 bg-brand-yellow-500 text-brand-blue-900 border-2 border-brand-blue-700 font-bold rounded-full text-xs font-subheading tracking-wider uppercase shadow-[3px_3px_0px_var(--color-brand-blue-700)] flex items-center gap-1.5">
-                <Zap className="h-4.5 w-4.5 animate-bounce fill-current shrink-0" />
+              <div className="px-4 py-2 bg-brand-yellow text-brand-blue border-2 border-brand-blue font-bold rounded-full text-xs font-subheading tracking-wider uppercase shadow-[3px_3px_0px_var(--color-brand-blue)] flex items-center gap-1.5">
+                <i className="ph-fill ph-lightning text-base animate-bounce shrink-0" />
                 Entrega Inmediata
               </div>
             </motion.div>
