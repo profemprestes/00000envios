@@ -1,0 +1,224 @@
+<header id="main-header"
+    class="fixed top-0 left-0 right-0 z-50 bg-brand-blue/95 backdrop-blur-md py-3.5 border-b border-brand-white/20 shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between gap-4">
+
+            <!-- Logotipo -->
+            <a href="#inicio"
+                class="flex items-center gap-3 group rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow">
+                <div
+                    class="relative w-10 h-10 shrink-0 bg-brand-blue border border-brand-yellow rounded-xl p-1.5 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform">
+                    <img src="https://www.enviosdosruedas.com/logo-envios-simplified.webp" alt="Logo Envíos DosRuedas"
+                        class="w-full h-full object-contain"
+                        onerror="this.src='https://placehold.co/80x80/0950F6/FFF12E?text=2R'">
+                </div>
+
+                <span
+                    class="font-display text-2xl sm:text-3xl tracking-tight leading-none uppercase flex flex-row items-center gap-1.5">
+                    <span class="text-brand-white">Envíos</span>
+                    <span class="text-brand-yellow">DosRuedas</span>
+                </span>
+            </a>
+
+            <!-- Menú Desktop -->
+            <nav class="hidden lg:flex items-center gap-1" aria-label="Navegación principal">
+                <a href="#inicio"
+                    class="px-3.5 py-2 text-base font-subheading tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 text-brand-yellow bg-brand-white/10 hover:bg-brand-white/20">
+                    <i class="ph-fill ph-house text-brand-yellow text-lg"></i>
+                    Inicio
+                </a>
+
+                <!-- Dropdown Servicios -->
+                <div class="relative dropdown-container">
+                    <button id="services-toggle" type="button" aria-haspopup="true" aria-expanded="false"
+                        class="px-3.5 py-2 text-base font-subheading tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 text-brand-white hover:text-brand-yellow hover:bg-brand-white/10">
+                        <i class="ph-fill ph-motorcycle text-brand-yellow text-lg"></i>
+                        Servicios
+                        <i class="ph ph-caret-down dropdown-arrow text-xs transition-transform duration-200"></i>
+                    </button>
+
+                    <div id="services-dropdown"
+                        class="dropdown-panel hidden-state absolute top-full left-0 mt-2 w-72 bg-brand-blue border border-brand-white/25 rounded-2xl shadow-2xl p-2 z-50">
+                        <a href="#servicios"
+                            class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+                            <div class="p-2 rounded-lg bg-brand-yellow text-brand-blue">
+                                <i class="ph-fill ph-lightning text-lg"></i>
+                            </div>
+                            <div>
+                                <div
+                                    class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">
+                                    Envíos Express</div>
+                                <div class="font-sans text-xs text-brand-white/80">Entregas en 30-90 min</div>
+                            </div>
+                        </a>
+
+                        <a href="#servicios"
+                            class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+                            <div class="p-2 rounded-lg bg-brand-white/20 text-brand-white">
+                                <i class="ph-fill ph-tag text-lg"></i>
+                            </div>
+                            <div>
+                                <div
+                                    class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">
+                                    Envíos LowCost</div>
+                                <div class="font-sans text-xs text-brand-white/80">Envíos en el día para PyMEs</div>
+                            </div>
+                        </a>
+
+                        <a href="#servicios"
+                            class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+                            <div class="p-2 rounded-lg bg-brand-yellow text-brand-blue">
+                                <i class="ph-fill ph-package text-lg"></i>
+                            </div>
+                            <div>
+                                <div
+                                    class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">
+                                    MercadoLibre Flex</div>
+                                <div class="font-sans text-xs text-brand-white/80">Socio logístico oficial</div>
+                            </div>
+                        </a>
+
+                        <a href="#servicios"
+                            class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+                            <div class="p-2 rounded-lg bg-brand-white/20 text-brand-yellow">
+                                <i class="ph-fill ph-warehouse text-lg"></i>
+                            </div>
+                            <div>
+                                <div
+                                    class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">
+                                    3PL & Depósito</div>
+                                <div class="font-sans text-xs text-brand-white/80">Picking, packing y guarda</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Dropdown Nosotros -->
+                <div class="relative dropdown-container">
+                    <button id="about-toggle" type="button" aria-haspopup="true" aria-expanded="false"
+                        class="px-3.5 py-2 text-base font-subheading tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 text-brand-white hover:text-brand-yellow hover:bg-brand-white/10">
+                        <i class="ph-fill ph-info text-brand-yellow text-lg"></i>
+                        Nosotros
+                        <i class="ph ph-caret-down dropdown-arrow text-xs transition-transform duration-200"></i>
+                    </button>
+
+                    <div id="about-dropdown"
+                        class="dropdown-panel hidden-state absolute top-full left-0 mt-2 w-64 bg-brand-blue border border-brand-white/25 rounded-2xl shadow-2xl p-2 z-50">
+                        <a href="#carrusel-redes"
+                            class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+                            <i class="ph-fill ph-shield-check text-xl text-brand-yellow"></i>
+                            <div>
+                                <div
+                                    class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">
+                                    Nuestra Flota</div>
+                                <div class="font-sans text-xs text-brand-white/80">100% propia en MDQ</div>
+                            </div>
+                        </a>
+
+                        <a href="#carrusel-redes"
+                            class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+                            <i class="ph-fill ph-star text-xl text-brand-yellow"></i>
+                            <div>
+                                <div
+                                    class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">
+                                    Comunidad MDQ</div>
+                                <div class="font-sans text-xs text-brand-white/80">Redes y reputación</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="#contacto"
+                    class="px-3.5 py-2 text-base font-subheading tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 text-brand-white hover:text-brand-yellow hover:bg-brand-white/10">
+                    <i class="ph-fill ph-envelope text-brand-yellow text-lg"></i>
+                    Contacto
+                </a>
+            </nav>
+
+            <!-- CTA Directo Desktop -->
+            <div class="hidden lg:flex items-center gap-4">
+                <a href="tel:+542236602699"
+                    class="flex items-center gap-2 text-brand-white hover:text-brand-yellow transition-colors font-mono text-xs font-semibold">
+                    <i class="ph-fill ph-phone text-brand-yellow text-base"></i>
+                    223 660-2699
+                </a>
+
+                <a href="https://wa.me/542236602699" target="_blank" rel="noopener noreferrer"
+                    class="group inline-flex items-center gap-2.5 rounded-full font-subheading uppercase tracking-wider font-bold px-5 py-2.5 text-xs bg-brand-yellow text-brand-blue hover:bg-brand-yellow-hover hover:shadow-glow-yellow transition-all duration-300">
+                    <span>Cotizá tu envío</span>
+                    <span
+                        class="w-6 h-6 rounded-full flex items-center justify-center bg-brand-blue/15 text-brand-blue group-hover:bg-brand-blue group-hover:text-brand-yellow transition-all">
+                        <i class="ph ph-arrow-right text-xs"></i>
+                    </span>
+                </a>
+            </div>
+
+            <!-- Botones Mobile -->
+            <div class="lg:hidden flex items-center gap-2">
+                <a href="tel:+542236602699"
+                    class="p-2 rounded-xl bg-brand-white/15 text-brand-yellow hover:bg-brand-white/25 active:scale-95 transition-all"
+                    aria-label="Llamar por teléfono">
+                    <i class="ph-fill ph-phone text-xl"></i>
+                </a>
+
+                <button id="mobile-menu-toggle" type="button"
+                    class="p-2 rounded-xl bg-brand-white/15 text-brand-white hover:text-brand-yellow active:scale-95 transition-all"
+                    aria-label="Abrir menú" aria-expanded="false">
+                    <i id="menu-icon-bars" class="ph ph-list text-2xl"></i>
+                    <i id="menu-icon-close" class="ph ph-x text-2xl hidden"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menú Desplegable Mobile -->
+        <div id="mobile-menu"
+            class="menu-closed lg:hidden border-t border-brand-white/20 bg-brand-blue mt-3 pt-3 rounded-2xl px-3 space-y-2 shadow-2xl">
+            <a href="#inicio"
+                class="flex items-center gap-3 py-2.5 px-3 rounded-xl font-subheading text-base uppercase text-brand-yellow bg-brand-white/15">
+                <i class="ph-fill ph-house text-lg"></i>
+                Inicio
+            </a>
+
+            <div class="space-y-1 pl-2 border-l border-brand-white/20 my-1">
+                <p class="font-subheading text-xs uppercase text-brand-yellow px-2 pt-1 tracking-wider">Servicios
+                    principales</p>
+                <a href="#servicios"
+                    class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+                    <i class="ph-fill ph-lightning text-brand-yellow"></i> Envíos Express
+                </a>
+                <a href="#servicios"
+                    class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+                    <i class="ph-fill ph-tag text-brand-yellow"></i> Envíos LowCost
+                </a>
+                <a href="#servicios"
+                    class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+                    <i class="ph-fill ph-package text-brand-yellow"></i> Mercado Envíos Flex
+                </a>
+                <a href="#servicios"
+                    class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+                    <i class="ph-fill ph-warehouse text-brand-yellow"></i> Logística 3PL & Depósito
+                </a>
+            </div>
+
+            <a href="#carrusel-redes"
+                class="flex items-center gap-3 py-2.5 px-3 rounded-xl font-subheading text-base uppercase text-brand-white hover:bg-brand-white/15">
+                <i class="ph-fill ph-users-three text-brand-yellow text-lg"></i>
+                Comunidad Digital
+            </a>
+
+            <a href="#contacto"
+                class="flex items-center gap-3 py-2.5 px-3 rounded-xl font-subheading text-base uppercase text-brand-white hover:bg-brand-white/15">
+                <i class="ph-fill ph-envelope text-brand-yellow text-lg"></i>
+                Contacto
+            </a>
+
+            <div class="pt-2 pb-2">
+                <a href="https://wa.me/542236602699" target="_blank" rel="noopener noreferrer"
+                    class="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-brand-yellow text-brand-blue font-subheading uppercase tracking-wider text-sm font-bold shadow-lg">
+                    <i class="ph-fill ph-whatsapp-logo text-xl"></i>
+                    Pedir envío por WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+</header>

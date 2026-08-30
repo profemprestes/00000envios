@@ -1,0 +1,411 @@
+<!-- ==========================================================================
+     COMPONENTE: SERVICIOS OVERVIEW (3D Carousel & Ficha Técnica Modal)
+     Paleta Estricta: Azul Eléctrico (#0950F6), Amarillo Neón (#FFF12E), Blanco (#ffffff)
+     Tipografías: Bebas Neue, Anton, Outfit, Geist Mono
+     Iconos: Phosphor Icons
+     ========================================================================== -->
+<section id="servicios-overview" class="py-20 sm:py-28 bg-brand-blue relative overflow-hidden w-full border-t border-brand-white/15">
+    <!-- Resplandor decorativo de fondo -->
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-yellow/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 right-10 w-[450px] h-[450px] bg-brand-white/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <!-- Encabezado de Sección Editorial -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6 border-b border-brand-white/20 pb-8 reveal-on-scroll">
+            <div class="space-y-3">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-subheading font-bold uppercase tracking-widest bg-brand-yellow text-brand-blue shadow-glow-yellow border border-brand-yellow">
+                    <i class="ph-fill ph-lightning text-sm"></i> NUESTROS SERVICIOS CLAVE
+                </div>
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-display uppercase tracking-tight leading-none text-brand-white">
+                    SOLUCIONES LOGÍSTICAS <br>
+                    <span class="text-brand-yellow underline decoration-brand-white/40 underline-offset-8">A TU MEDIDA</span>
+                </h2>
+            </div>
+
+            <!-- Controles del Slider -->
+            <div class="flex items-center gap-3">
+                <button type="button" id="overview-prev-btn" aria-label="Servicio anterior"
+                    class="p-3 rounded-full bg-brand-white/10 hover:bg-brand-yellow hover:text-brand-blue text-brand-white border border-brand-white/20 transition-all duration-200 active:scale-95 shadow-md">
+                    <i class="ph-bold ph-caret-left text-xl"></i>
+                </button>
+                <button type="button" id="overview-next-btn" aria-label="Siguiente servicio"
+                    class="p-3 rounded-full bg-brand-yellow text-brand-blue hover:bg-brand-yellow-hover transition-all duration-200 active:scale-95 shadow-glow-yellow font-bold">
+                    <i class="ph-bold ph-caret-right text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Grid de Tarjetas de Servicios (Glassmorphic Containers) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+            
+            <!-- SERVICIO 1: ENVÍOS EXPRESS -->
+            <article class="group relative rounded-[28px] p-6 bg-[#052c87]/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60 reveal-on-scroll">
+                <!-- Marca de agua de fondo -->
+                <i class="ph-fill ph-lightning absolute -right-6 -bottom-6 text-[13rem] text-brand-white/[0.04] pointer-events-none group-hover:scale-105 transition-transform duration-500"></i>
+                
+                <div class="relative z-10 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div class="p-3 bg-brand-yellow text-brand-blue rounded-xl shadow-md">
+                            <i class="ph-fill ph-lightning text-2xl"></i>
+                        </div>
+                        <span class="text-[10px] font-bold font-mono tracking-widest px-3 py-1 rounded-full uppercase bg-brand-yellow text-brand-blue border border-brand-yellow">
+                            URGENTE
+                        </span>
+                    </div>
+
+                    <div class="pt-2">
+                        <span class="text-[11px] font-mono font-bold text-brand-yellow uppercase tracking-wider block">COBERTURA TOTAL MDQ</span>
+                        <h3 class="font-display text-3xl sm:text-4xl uppercase tracking-tight leading-none text-brand-white group-hover:text-brand-yellow transition-colors mt-1">
+                            ENVÍOS EXPRESS
+                        </h3>
+                    </div>
+
+                    <p class="font-sans text-xs sm:text-sm leading-relaxed text-brand-white/85 font-light">
+                        Mensajería urbana inmediata con repartidor exclusivo asignado para trámites, encomiendas y despacho prioritario.
+                    </p>
+                </div>
+
+                <!-- Métricas & CTA -->
+                <div class="relative z-10 pt-4 space-y-4">
+                    <div class="grid grid-cols-3 gap-1.5 p-2 bg-brand-white/10 rounded-2xl border border-brand-white/15 text-center">
+                        <div class="p-1">
+                            <div class="font-subheading text-xs font-bold text-brand-yellow uppercase">30-90 min</div>
+                            <div class="font-mono text-[9px] text-brand-white/70">TIEMPO</div>
+                        </div>
+                        <div class="p-1 border-x border-brand-white/15">
+                            <div class="font-subheading text-xs font-bold text-brand-white uppercase">$3.700</div>
+                            <div class="font-mono text-[9px] text-brand-white/70">BASE</div>
+                        </div>
+                        <div class="p-1">
+                            <div class="font-subheading text-xs font-bold text-brand-yellow uppercase">10 kg</div>
+                            <div class="font-mono text-[9px] text-brand-white/70">MÁXIMO</div>
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="openServiceModal('express')"
+                        class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs px-5 py-3 rounded-full bg-brand-yellow text-brand-blue hover:bg-brand-yellow-hover hover:shadow-glow-yellow transition-all duration-300 group/btn">
+                        <span>Ficha Técnica</span>
+                        <span class="w-6 h-6 rounded-full bg-brand-blue/15 flex items-center justify-center shrink-0 ml-1 group-hover/btn:translate-x-1 transition-transform">
+                            <i class="ph-bold ph-arrow-right text-xs text-brand-blue"></i>
+                        </span>
+                    </button>
+                </div>
+            </article>
+
+            <!-- SERVICIO 2: ENVÍOS LOWCOST -->
+            <article class="group relative rounded-[28px] p-6 bg-[#052c87]/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60 reveal-on-scroll">
+                <i class="ph-fill ph-tag absolute -right-6 -bottom-6 text-[13rem] text-brand-white/[0.04] pointer-events-none group-hover:scale-105 transition-transform duration-500"></i>
+                
+                <div class="relative z-10 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div class="p-3 bg-brand-white/20 text-brand-yellow rounded-xl shadow-md border border-brand-white/20">
+                            <i class="ph-fill ph-tag text-2xl"></i>
+                        </div>
+                        <span class="text-[10px] font-bold font-mono tracking-widest px-3 py-1 rounded-full uppercase bg-brand-white/15 text-brand-white border border-brand-white/30">
+                            ECONÓMICO
+                        </span>
+                    </div>
+
+                    <div class="pt-2">
+                        <span class="text-[11px] font-mono font-bold text-brand-yellow uppercase tracking-wider block">GRAL. PUEYRREDÓN</span>
+                        <h3 class="font-display text-3xl sm:text-4xl uppercase tracking-tight leading-none text-brand-white group-hover:text-brand-yellow transition-colors mt-1">
+                            ENVÍOS LOWCOST
+                        </h3>
+                    </div>
+
+                    <p class="font-sans text-xs sm:text-sm leading-relaxed text-brand-white/85 font-light">
+                        Envíos agrupados en rutas inteligentes diarias para PyMEs y comercios con la tarifa más competitiva de la ciudad.
+                    </p>
+                </div>
+
+                <div class="relative z-10 pt-4 space-y-4">
+                    <div class="grid grid-cols-3 gap-1.5 p-2 bg-brand-white/10 rounded-2xl border border-brand-white/15 text-center">
+                        <div class="p-1">
+                            <div class="font-subheading text-xs font-bold text-brand-yellow uppercase">En el día</div>
+                            <div class="font-mono text-[9px] text-brand-white/70">TIEMPO</div>
+                        </div>
+                        <div class="p-1 border-x border-brand-white/15">
+                            <div class="font-subheading text-xs font-bold text-brand-white uppercase">$3.000</div>
+                            <div class="font-mono text-[9px] text-brand-white/70">BASE</div>
+                        </div>
+                        <div class="p-1">
+                            <div class="font-subheading text-xs font-bold text-brand-yellow uppercase">15 kg</div>
+                            <div class="font-mono text-[9px] text-brand-white/70">MÁXIMO</div>
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="openServiceModal('lowcost')"
+                        class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs px-5 py-3 rounded-full bg-brand-white/15 text-brand-white hover:bg-brand-yellow hover:text-brand-blue border border-brand-white/20 transition-all duration-300 group/btn">
+                        <span>Ficha Técnica</span>
+                        <span class="w-6 h-6 rounded-full bg-brand-white/20 group-hover/btn:bg-brand-blue/15 flex items-center justify-center shrink-0 ml-1 group-hover/btn:translate-x-1 transition-transform">
+                            <i class="ph-bold ph-arrow-right text-xs"></i>
+                        </span>
+                    </button>
+                </div>
+            </article>
+
+            <!-- SERVICIO 3: MERCADOLIBRE FLEX -->
+            <article class="group relative rounded-[28px] p-6 bg-[#052c87]/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60 reveal-on-scroll">
+                <i class="ph-fill ph-package absolute -right-6 -bottom-6 text-[13rem] text-brand-white/[0.04] pointer-events-none group-hover:scale-105 transition-transform duration-500"></i>
+                
+                <div class="relative z-10 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div class="p-3 bg-brand-yellow text-brand-blue rounded-xl shadow-md">
+                            <i class="ph-fill ph-package text-2xl"></i>
+                        </div>
+                        <span class="text-[10px] font-bold font-mono tracking-widest px-3 py-1 rounded-full uppercase bg-brand-yellow text-brand-blue border border-brand-yellow">
+                            OFICIAL MELI
+                        </span>
+                    </div>
+
+                    <div class="pt-2">
+                        <span class="text-[11px] font-mono font-bold text-brand-yellow uppercase tracking-wider block">CORTE EXTENDIDO 15HS</span>
+                        <h3 class="font-display text-3xl sm:text-4xl uppercase tracking-tight leading-none text-brand-white group-hover:text-brand-yellow transition-colors mt-1">
+                            MERCADO FLEX
+                        </h3>
+                    </div>
+
+                    <p class="font-sans text-xs sm:text-sm leading-relaxed text-brand-white/85 font-light">
+                        Socio logístico homologado para tus ventas con entrega Same-Day. Retiro bonificado en tu local y reputación blindada.
+                    </p>
+                </div>
+
+                <div class="relative z-10 pt-4 space-y-4">
+                    <div class="grid grid-cols-3 gap-1.5 p-2 bg-brand-white/10 rounded-2xl border border-brand-white/15 text-center">
+                        <div class="p-1">
+                            <div class="font-subheading text-xs font-bold text-brand-yellow uppercase">Mismo día</div>
+                            <div class="font-mono text-[9px] text-brand-white/70">TIEMPO</div>
+                        </div>
+                        <div class="p-1 border-x border-brand-white/15">
+                            <div class="font-subheading text-xs font-bold text-brand-white uppercase">Flex</div>
+                            <div class="font-mono text-[9px] text-brand-white/70">OFICIAL</div>
+                        </div>
+                        <div class="p-1">
+                            <div class="font-subheading text-xs font-bold text-brand-yellow uppercase">Flota</div>
+                            <div class="font-mono text-[9px] text-brand-white/70">MOTO/AUTO</div>
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="openServiceModal('flex')"
+                        class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs px-5 py-3 rounded-full bg-brand-yellow text-brand-blue hover:bg-brand-yellow-hover hover:shadow-glow-yellow transition-all duration-300 group/btn">
+                        <span>Ficha Técnica</span>
+                        <span class="w-6 h-6 rounded-full bg-brand-blue/15 flex items-center justify-center shrink-0 ml-1 group-hover/btn:translate-x-1 transition-transform">
+                            <i class="ph-bold ph-arrow-right text-xs text-brand-blue"></i>
+                        </span>
+                    </button>
+                </div>
+            </article>
+
+            <!-- SERVICIO 4: 3PL & DEPÓSITO -->
+            <article class="group relative rounded-[28px] p-6 bg-[#052c87]/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60 reveal-on-scroll">
+                <i class="ph-fill ph-warehouse absolute -right-6 -bottom-6 text-[13rem] text-brand-white/[0.04] pointer-events-none group-hover:scale-105 transition-transform duration-500"></i>
+                
+                <div class="relative z-10 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div class="p-3 bg-brand-white/20 text-brand-yellow rounded-xl shadow-md border border-brand-white/20">
+                            <i class="ph-fill ph-warehouse text-2xl"></i>
+                        </div>
+                        <span class="text-[10px] font-bold font-mono tracking-widest px-3 py-1 rounded-full uppercase bg-brand-white/15 text-brand-white border border-brand-white/30">
+                            FULFILLMENT
+                        </span>
+                    </div>
+
+                    <div class="pt-2">
+                        <span class="text-[11px] font-mono font-bold text-brand-yellow uppercase tracking-wider block">DEPÓSITO FRIULI 1972</span>
+                        <h3 class="font-display text-3xl sm:text-4xl uppercase tracking-tight leading-none text-brand-white group-hover:text-brand-yellow transition-colors mt-1">
+                            LOGÍSTICA 3PL
+                        </h3>
+                    </div>
+
+                    <p class="font-sans text-xs sm:text-sm leading-relaxed text-brand-white/85 font-light">
+                        Almacenamiento de mercadería, picking con código de barras, empaque seguro y distribución integral para marcas.
+                    </p>
+                </div>
+
+                <div class="relative z-10 pt-4 space-y-4">
+                    <div class="grid grid-cols-3 gap-1.5 p-2 bg-brand-white/10 rounded-2xl border border-brand-white/15 text-center">
+                        <div class="p-1">
+                            <div class="font-subheading text-xs font-bold text-brand-yellow uppercase">24 hs</div>
+                            <div class="font-mono text-[9px] text-brand-white/70">STOCK</div>
+                        </div>
+                        <div class="p-1 border-x border-brand-white/15">
+                            <div class="font-subheading text-xs font-bold text-brand-white uppercase">A Medida</div>
+                            <div class="font-mono text-[9px] text-brand-white/70">PLANES</div>
+                        </div>
+                        <div class="p-1">
+                            <div class="font-subheading text-xs font-bold text-brand-yellow uppercase">Seguro</div>
+                            <div class="font-mono text-[9px] text-brand-white/70">CUSTODIA</div>
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="openServiceModal('3pl')"
+                        class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs px-5 py-3 rounded-full bg-brand-white/15 text-brand-white hover:bg-brand-yellow hover:text-brand-blue border border-brand-white/20 transition-all duration-300 group/btn">
+                        <span>Ficha Técnica</span>
+                        <span class="w-6 h-6 rounded-full bg-brand-white/20 group-hover/btn:bg-brand-blue/15 flex items-center justify-center shrink-0 ml-1 group-hover/btn:translate-x-1 transition-transform">
+                            <i class="ph-bold ph-arrow-right text-xs"></i>
+                        </span>
+                    </button>
+                </div>
+            </article>
+
+        </div>
+    </div>
+
+    <!-- MODAL INTERACTIVO DE FICHA TÉCNICA (Accesible con Escape y backdrop click) -->
+    <div id="service-modal" class="fixed inset-0 z-50 bg-[#02184d]/85 backdrop-blur-md hidden items-center justify-center p-4 transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-service-title">
+        <div class="relative w-full max-w-2xl bg-brand-blue border border-brand-white/25 rounded-3xl shadow-2xl p-6 sm:p-8 text-brand-white space-y-6 animate-scale-up">
+            <!-- Botón Cerrar -->
+            <button type="button" onclick="closeServiceModal()" aria-label="Cerrar modal"
+                class="absolute top-4 right-4 p-2 rounded-full bg-brand-white/15 hover:bg-brand-yellow hover:text-brand-blue transition-colors">
+                <i class="ph-bold ph-x text-lg"></i>
+            </button>
+
+            <!-- Encabezado del Modal -->
+            <div class="flex items-center gap-4 text-left">
+                <div id="modal-icon-box" class="p-3.5 bg-brand-yellow text-brand-blue rounded-2xl shadow-md text-2xl">
+                    <i class="ph-fill ph-lightning"></i>
+                </div>
+                <div>
+                    <span id="modal-service-badge" class="text-[10px] font-mono font-bold text-brand-yellow uppercase tracking-widest block"></span>
+                    <h3 id="modal-service-title" class="font-display text-3xl sm:text-4xl uppercase tracking-tight text-brand-white"></h3>
+                </div>
+            </div>
+
+            <!-- Resumen y Beneficios -->
+            <div class="p-5 bg-brand-white/10 rounded-2xl border border-brand-white/15 space-y-4 text-left">
+                <p id="modal-service-summary" class="font-sans text-sm sm:text-base leading-relaxed text-brand-white/90 font-light"></p>
+                <div class="space-y-2 pt-2 border-t border-brand-white/15">
+                    <span class="text-xs font-subheading font-bold uppercase text-brand-yellow tracking-wider block">Beneficios Operativos:</span>
+                    <ul id="modal-service-features" class="space-y-2 text-xs sm:text-sm text-brand-white/90"></ul>
+                </div>
+            </div>
+
+            <!-- Fila de Estadísticas -->
+            <div class="grid grid-cols-3 gap-3 text-center">
+                <div class="bg-brand-white/10 border border-brand-white/20 p-3 rounded-xl">
+                    <span id="modal-stat-time" class="text-lg font-bold font-subheading text-brand-yellow block truncate"></span>
+                    <span class="text-[10px] text-brand-white/70 font-mono uppercase tracking-wider">Tiempos</span>
+                </div>
+                <div class="bg-brand-white/10 border border-brand-white/20 p-3 rounded-xl">
+                    <span id="modal-stat-price" class="text-lg font-bold font-subheading text-brand-white block truncate"></span>
+                    <span class="text-[10px] text-brand-white/70 font-mono uppercase tracking-wider">Tarifa</span>
+                </div>
+                <div class="bg-brand-white/10 border border-brand-white/20 p-3 rounded-xl">
+                    <span id="modal-stat-weight" class="text-lg font-bold font-subheading text-brand-yellow block truncate"></span>
+                    <span class="text-[10px] text-brand-white/70 font-mono uppercase tracking-wider">Capacidad</span>
+                </div>
+            </div>
+
+            <!-- Botones de Acción -->
+            <div class="pt-2 flex justify-between items-center gap-4">
+                <button type="button" onclick="closeServiceModal()" class="text-xs text-brand-white/70 hover:text-brand-white underline uppercase font-bold tracking-wider">
+                    Volver
+                </button>
+                <a id="modal-cta-btn" href="https://wa.me/542236602699" target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 rounded-full font-subheading uppercase tracking-wider font-bold px-6 py-3 text-xs bg-brand-yellow text-brand-blue hover:bg-brand-yellow-hover hover:shadow-glow-yellow transition-all">
+                    <span>Cotizar por WhatsApp</span>
+                    <i class="ph ph-arrow-right text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Script para el modal de datos -->
+<script>
+    const SERVICES_DATA = {
+        express: {
+            title: "Envíos Express Inmediatos",
+            badge: "URGENTE · COBERTURA TOTAL MDQ",
+            icon: "ph-lightning",
+            summary: "Servicio de mensajería urbana punto a punto en moto. Asignación inmediata de un repartidor exclusivo para documentos, trámites bancarios y encomiendas que no pueden esperar.",
+            features: [
+                "Tarifa base transparente calculada por distancia.",
+                "Entrega garantizada puerta a puerta en tiempo récord (30-90 min).",
+                "Notificación automática y rendición por WhatsApp."
+            ],
+            time: "30-90 min",
+            price: "$3.700 Base",
+            weight: "Hasta 10 kg"
+        },
+        lowcost: {
+            title: "Envíos LowCost para PyMEs",
+            badge: "ECONÓMICO · TODO GRAL. PUEYRREDÓN",
+            icon: "ph-tag",
+            summary: "La alternativa más rentable para comercios y e-commerce locales. Agrupamos los despachos en franjas horarias diarias fijas para reducir costos sin perder velocidad.",
+            features: [
+                "Tarifa plana reducida para envíos diarios.",
+                "Retiro a domicilio en tu local o taller comercial.",
+                "Dos franjas de entrega coordinadas durante el día."
+            ],
+            time: "En el día",
+            price: "$3.000 Base",
+            weight: "Hasta 15 kg"
+        },
+        flex: {
+            title: "Mercado Envíos Flex Oficial",
+            badge: "OFICIAL MELI · CORTE 15HS",
+            icon: "ph-package",
+            summary: "Socio logístico habilitado para Mercado Libre Flex en Mar del Plata y Batán. Cumplimiento estricto del SLA para mantener tu medalla de MercadoLíder.",
+            features: [
+                "Retiros bonificados según volumen diario.",
+                "Entregas en el día antes de las 20:00 hs.",
+                "Escaneo de etiquetas y sincronización de entregas."
+            ],
+            time: "Mismo día",
+            price: "Tarifa Flex",
+            weight: "Apto Moto/Auto"
+        },
+        '3pl': {
+            title: "Logística 3PL & Centro de Distribución",
+            badge: "LOGÍSTICA INTEGRAL · FRIULI 1972",
+            icon: "ph-warehouse",
+            summary: "Guardamos tu stock en nuestro centro logístico de Chauvín, preparamos tus paquetes (picking & packing) apenas se realiza la venta y despachamos de inmediato.",
+            features: [
+                "Control de inventario diario con trazabilidad digital.",
+                "Embalaje y preparación profesional con insumos de alta seguridad.",
+                "Despacho Same-Day para ventas por tienda online y redes."
+            ],
+            time: "Stock 24 hs",
+            price: "Planes a Medida",
+            weight: "Sin límite"
+        }
+    };
+
+    function openServiceModal(serviceKey) {
+        const data = SERVICES_DATA[serviceKey];
+        if (!data) return;
+
+        document.getElementById("modal-service-title").innerText = data.title;
+        document.getElementById("modal-service-badge").innerText = data.badge;
+        document.getElementById("modal-service-summary").innerText = data.summary;
+        document.getElementById("modal-stat-time").innerText = data.time;
+        document.getElementById("modal-stat-price").innerText = data.price;
+        document.getElementById("modal-stat-weight").innerText = data.weight;
+        document.getElementById("modal-icon-box").innerHTML = `<i class="ph-fill ${data.icon}"></i>`;
+
+        const featuresList = document.getElementById("modal-service-features");
+        featuresList.innerHTML = data.features.map(f => `
+            <li class="flex items-start gap-2">
+                <i class="ph-fill ph-check-circle text-brand-yellow text-base shrink-0 mt-0.5"></i>
+                <span>${f}</span>
+            </li>
+        `).join("");
+
+        const modal = document.getElementById("service-modal");
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+    }
+
+    function closeServiceModal() {
+        const modal = document.getElementById("service-modal");
+        modal.classList.remove("flex");
+        modal.classList.add("hidden");
+    }
+
+    // Cerrar modal al clickear afuera
+    document.getElementById("service-modal")?.addEventListener("click", (e) => {
+        if (e.target.id === "service-modal") closeServiceModal();
+    });
+</script>
+

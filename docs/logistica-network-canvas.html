@@ -1,0 +1,199 @@
+<!-- ==========================================================================
+     COMPONENTE: LOGÍSTICA NETWORK CANVAS (Interactivo MDQ)
+     Paleta Estricta: Azul Eléctrico (#0950F6), Amarillo Neón (#FFF12E), Blanco (#ffffff)
+     Tipografías: Bebas Neue, Anton, Outfit, Geist Mono
+     Iconos: Phosphor Icons
+     ========================================================================== -->
+<div class="relative w-full h-[420px] sm:h-[500px] bg-brand-blue rounded-3xl border border-brand-white/20 overflow-hidden shadow-2xl group">
+    <!-- Canvas Interactivo con nodos y partículas de ruteo -->
+    <canvas id="network-canvas" class="w-full h-full block cursor-crosshair"></canvas>
+
+    <!-- Overlay de Datos Técnicos y Leyenda -->
+    <div class="absolute top-4 left-4 z-10 flex flex-col gap-2 pointer-events-none">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-blue/90 border border-brand-yellow/60 rounded-full text-brand-yellow font-mono text-[11px] font-bold uppercase tracking-wider shadow-md backdrop-blur-sm">
+            <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-yellow opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-yellow"></span>
+            </span>
+            <span>RUTEO DINÁMICO ACTIVO · MDQ</span>
+        </div>
+        <div class="text-[10px] font-mono text-brand-white/70 bg-brand-blue/80 px-2.5 py-0.5 rounded-md border border-brand-white/10 w-fit backdrop-blur-sm">
+            Mover cursor para interactuar con la red
+        </div>
+    </div>
+
+    <!-- Indicador de Base Central Chauvín -->
+    <div class="absolute bottom-4 right-4 z-10 bg-brand-blue/90 border border-brand-white/25 rounded-2xl p-3 shadow-xl backdrop-blur-md flex items-center gap-3 pointer-events-none">
+        <div class="w-8 h-8 rounded-xl bg-brand-yellow text-brand-blue flex items-center justify-center font-bold text-sm shadow-glow-yellow">
+            <i class="ph-fill ph-map-pin"></i>
+        </div>
+        <div>
+            <p class="font-subheading text-xs font-bold uppercase text-brand-white">Centro Operativo</p>
+            <p class="font-mono text-[10px] text-brand-yellow">Friuli 1972, Mar del Plata</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        const canvas = document.getElementById('network-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        let width = 0;
+        let height = 0;
+        let mouse = { x: -1000, y: -1000 };
+
+        // Definición de nodos de Mar del Plata
+        const nodeDefs = [
+            { id: 'cd', label: 'Centro Friuli', size: 6, xRatio: 0.45, yRatio: 0.58, isBase: true },
+            { id: 'centro', label: 'Centro', size: 4.5, xRatio: 0.68, yRatio: 0.40 },
+            { id: 'la_perla', label: 'La Perla', size: 4, xRatio: 0.64, yRatio: 0.28 },
+            { id: 'constitucion', label: 'Constitución', size: 4, xRatio: 0.50, yRatio: 0.16 },
+            { id: 'guemes', label: 'Zona Güemes', size: 4.5, xRatio: 0.72, yRatio: 0.52 },
+            { id: 'playa_grande', label: 'Playa Grande', size: 4, xRatio: 0.76, yRatio: 0.63 },
+            { id: 'puerto', label: 'Puerto', size: 4.5, xRatio: 0.70, yRatio: 0.75 },
+            { id: 'bosque', label: 'Peralta Ramos', size: 4, xRatio: 0.62, yRatio: 0.88 },
+            { id: 'batan', label: 'P. Industrial', size: 5, xRatio: 0.22, yRatio: 0.72 },
+        ];
+
+        const connections = [
+            { from: 'cd', to: 'batan' },
+            { from: 'cd', to: 'centro' },
+            { from: 'cd', to: 'guemes' },
+            { from: 'cd', to: 'puerto' },
+            { from: 'cd', to: 'constitucion' },
+            { from: 'constitucion', to: 'la_perla' },
+            { from: 'constitucion', to: 'centro' },
+            { from: 'la_perla', to: 'centro' },
+            { from: 'centro', to: 'guemes' },
+            { from: 'guemes', to: 'playa_grande' },
+            { from: 'playa_grande', to: 'puerto' },
+            { from: 'puerto', to: 'bosque' },
+        ];
+
+        let nodes = [];
+        let particles = [];
+
+        function resize() {
+            width = canvas.width = canvas.offsetWidth;
+            height = canvas.height = canvas.offsetHeight;
+            nodes = nodeDefs.map(def => ({
+                ...def,
+                x: width * def.xRatio,
+                y: height * def.yRatio
+            }));
+
+            // Inicializar partículas sobre conexiones
+            particles = [];
+            for (let i = 0; i < 20; i++) {
+                const conn = connections[i % connections.length];
+                particles.push({
+                    conn: conn,
+                    progress: Math.random(),
+                    speed: 0.002 + Math.random() * 0.003,
+                    color: i % 2 === 0 ? '#FFF12E' : '#ffffff',
+                    size: i % 2 === 0 ? 3.2 : 2.4
+                });
+            }
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        canvas.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        });
+
+        canvas.addEventListener('mouseleave', () => {
+            mouse.x = -1000;
+            mouse.y = -1000;
+        });
+
+        function getNode(id) {
+            return nodes.find(n => n.id === id);
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+
+            // 1. Dibujar Líneas de Conexión
+            connections.forEach(conn => {
+                const from = getNode(conn.from);
+                const to = getNode(conn.to);
+                if (!from || !to) return;
+
+                const midX = (from.x + to.x) / 2;
+                const midY = (from.y + to.y) / 2;
+                const distMouse = Math.hypot(midX - mouse.x, midY - mouse.y);
+                const isHovered = distMouse < 140;
+
+                ctx.strokeStyle = isHovered ? 'rgba(255, 241, 46, 0.65)' : 'rgba(255, 255, 255, 0.15)';
+                ctx.lineWidth = isHovered ? 2 : 1;
+
+                ctx.beginPath();
+                ctx.moveTo(from.x, from.y);
+                ctx.lineTo(to.x, to.y);
+                ctx.stroke();
+            });
+
+            // 2. Dibujar y Actualizar Partículas
+            particles.forEach(p => {
+                p.progress += p.speed;
+                if (p.progress >= 1) p.progress = 0;
+
+                const from = getNode(p.conn.from);
+                const to = getNode(p.conn.to);
+                if (!from || !to) return;
+
+                const curX = from.x + (to.x - from.x) * p.progress;
+                const curY = from.y + (to.y - from.y) * p.progress;
+
+                const dist = Math.hypot(curX - mouse.x, curY - mouse.y);
+                const isNear = dist < 100;
+
+                ctx.fillStyle = p.color;
+                ctx.shadowColor = p.color;
+                ctx.shadowBlur = isNear ? 12 : 4;
+
+                ctx.beginPath();
+                ctx.arc(curX, curY, isNear ? p.size * 1.5 : p.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            });
+
+            // 3. Dibujar Nodos
+            nodes.forEach(node => {
+                const dist = Math.hypot(node.x - mouse.x, node.y - mouse.y);
+                const isHovered = dist < 120 || node.isBase;
+
+                if (isHovered) {
+                    ctx.fillStyle = 'rgba(255, 241, 46, 0.25)';
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, node.size * 2.8, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                ctx.fillStyle = isHovered ? '#FFF12E' : '#ffffff';
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, node.size, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Etiquetas de nodos
+                if (isHovered || node.isBase) {
+                    ctx.fillStyle = isHovered ? '#FFF12E' : '#ffffff';
+                    ctx.font = '600 11px "Geist Mono", monospace';
+                    ctx.fillText(node.label.toUpperCase(), node.x + 10, node.y + 4);
+                }
+            });
+
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+    })();
+</script>
+

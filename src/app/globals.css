@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --brand-blue: #0950F6;
+    --brand-blue-dark: #06349e;
+    --brand-blue-deep: #052c87;
+    --brand-yellow: #FFF12E;
+    --brand-yellow-hover: #E8DC24;
+    --brand-white: #FFFFFF;
+    --brand-canvas: #F8FAFC;
+  }
+
+  body {
+    background-color: var(--brand-blue);
+    color: var(--brand-white);
+    font-family: "Outfit", sans-serif;
+    overflow-x: hidden;
+    selection-background-color: var(--brand-yellow);
+    selection-color: var(--brand-blue);
+  }
+
+  ::selection {
+    background-color: #FFF12E;
+    color: #0950F6;
+  }
+}
+
+/* Tipografías Utilitarias */
+.font-display {
+  font-family: "Bebas Neue", sans-serif;
+}
+
+.font-subheading {
+  font-family: "Anton", sans-serif;
+}
+
+.font-sans {
+  font-family: "Outfit", sans-serif;
+}
+
+.font-mono {
+  font-family: "Geist Mono", monospace;
+}
+
+/* Sombras Glow */
+.shadow-glow-yellow {
+  box-shadow: 0 0 35px rgba(255, 241, 46, 0.45);
+}
+
+.shadow-glow-wa {
+  box-shadow: 0 0 25px rgba(37, 211, 102, 0.75);
+}
+
+.shadow-glow-fb {
+  box-shadow: 0 0 25px rgba(24, 119, 242, 0.75);
+}
+
+.shadow-glow-ig {
+  box-shadow: 0 0 25px rgba(225, 48, 108, 0.75);
+}
