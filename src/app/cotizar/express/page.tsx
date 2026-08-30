@@ -7,6 +7,8 @@ import CotizadorExpressForm from '@/src/components/cotizar/express/CotizadorExpr
 import CotizadorExpressDetails from '@/src/components/cotizar/express/CotizadorExpressDetails';
 import CotizadorExpressHelp from '@/src/components/cotizar/express/CotizadorExpressHelp';
 import CarruselRedes from "@/components/home/CarruselRedes";
+import Footer from "@/components/home/Footer";
+import Header from "@/components/home/Header";
 
 const baseUrl = 'https://www.enviosdosruedas.com';
 
@@ -62,6 +64,9 @@ export default async function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}
       />
       <div id="cotizar-express-page" className="w-full gradient-dark text-white min-h-screen relative overflow-hidden">
+      {/* Header Global */}
+      <Header />
+
       {/* Hero Section */}
       <CotizadorExpressHero />
 
@@ -83,6 +88,12 @@ export default async function Page() {
         </div>
 
       </div>
+
+      {/* Carrusel de Comunidad Digital / Redes */}
+      <CarruselRedes />
+
+      {/* Footer Global */}
+      <Footer />
 
     </div>
     </>

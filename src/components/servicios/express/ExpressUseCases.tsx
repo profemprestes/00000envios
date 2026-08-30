@@ -1,0 +1,168 @@
+'use client';
+
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { FileText, Package, Clock, ChevronDown, CheckCircle2 } from 'lucide-react';
+
+export default function ExpressUseCases() {
+  const [activeTab, setActiveTab] = useState<number | null>(0);
+
+  const cases = [
+    {
+      title: 'Envíos de documentación',
+      desc: 'Contratos, documentos legales, certificados y papeles críticos que no pueden esperar.',
+      examples: ['Documentos notariales y escrituras', 'Contratos comerciales firmados', 'Certificados médicos y habilitaciones'],
+      icon: FileText,
+      badge: 'LEGAL & TRÁMITES',
+    },
+    {
+      title: 'Envío de insumos',
+      desc: 'Distribución rápida de repuestos, insumos médicos y todo tipo de suministros comerciales.',
+      examples: ['Repuestos y piezas críticas de maquinaria', 'Insumos y productos de stock', 'Suministros médicos urgentes'],
+      icon: Package,
+      badge: 'INSUMOS & REPUES.',
+    },
+    {
+      title: 'Entregas con necesidades de horarios',
+      desc: 'Envíos que requieren entregas sumamente precisas dentro de un rango de tiempo restringido.',
+      examples: ['Entregas con turnos específicos', 'Desayunos, meriendas y catering', 'Entregas coordinadas en obra'],
+      icon: Clock,
+      badge: 'HORARIOS ESTRICTOS',
+    },
+  ];
+
+  const toggleTab = (idx: number) => {
+    setActiveTab(activeTab === idx ? null : idx);
+  };
+
+  return (
+    <section
+      id="express-use-cases"
+      className="py-24 bg-brand-white-50 relative z-10 overflow-hidden border-t-4 border-brand-blue-700"
+    >
+      {/* Background decoration */}
+      <div className="absolute top-1/2 left-0 w-80 h-80 rounded-full bg-brand-white-50 blur-3xl -z-10 -translate-y-1/2 opacity-50" />
+      <div className="absolute top-1/2 right-0 w-80 h-80 rounded-full bg-brand-yellow-50 blur-3xl -z-10 -translate-y-1/2 opacity-40" />
+
+      <motion.div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={{
+          hidden: { opacity: 0, y: 40 },
+          visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+        }}
+      >
+
+        {/* Header segment */}
+        <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
+          <span className="px-4 py-1.5 bg-brand-blue-700 text-brand-yellow-500 rounded-full text-xs font-subheading uppercase tracking-widest inline-block border-2 border-brand-yellow-500 shadow-[2px_2px_0px_rgba(0,39,124,0.2)] font-bold">
+            CASOS DE USO
+          </span>
+          <h2 className="text-brand-blue-700 text-3xl sm:text-4xl lg:text-5xl font-display uppercase tracking-tight border-l-4 border-brand-yellow-500 pl-4 inline-block">
+            ¿CUÁNDO NECESITÁS EXPRESS?
+          </h2>
+          <p className="text-brand-blue-500 font-sans text-sm sm:text-base max-w-lg mx-auto">
+            Situaciones cotidianas y corporativas donde cada minuto cuenta y la rapidez es fundamental.
+          </p>
+          <div className="h-2 w-16 bg-brand-yellow-500 mx-auto rounded-full" />
+        </div>
+
+        {/* Interactive Case Columns/Accordions Grid Bento Layout with Double Bezel */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          {cases.map((useCase, idx) => {
+            const Icon = useCase.icon;
+            const isOpen = activeTab === idx;
+            const spanClass = 'lg:col-span-4';
+
+            return (
+              <motion.div
+                key={useCase.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ y: -5, x: 2 }}
+                className={`${spanClass} double-bezel-outer transition-all duration-300 flex flex-col group`}
+              >
+                <div className={`double-bezel-inner p-6 sm:p-7 space-y-6 h-full flex flex-col justify-between text-left ${
+                  isOpen
+                    ? 'bg-brand-blue-700 text-brand-white-50 border-brand-yellow-500 shadow-[6px_6px_0px_var(--color-brand-yellow)]'
+                    : 'bg-brand-white-50 text-brand-blue-700 border-brand-blue-100'
+                }`}>
+                  {/* Icon & Badge Header */}
+                  <div className="flex justify-between items-center">
+                    <div className="p-3 rounded-2xl w-fit border-2 border-brand-blue-700 bg-brand-yellow-500 text-brand-blue-900 shadow-[2px_2px_0px_var(--color-brand-blue)]">
+                      <Icon className="h-5.5 w-5.5 shrink-0" />
+                    </div>
+                    <span className={`text-[10px] font-subheading uppercase tracking-wider px-2.5 py-1 rounded-full border ${
+                      isOpen ? 'bg-brand-blue-200 text-brand-yellow-500 border-brand-yellow-200' : 'bg-brand-blue-100 text-brand-blue-500 border-brand-blue-200'
+                    }`}>
+                      {useCase.badge}
+                    </span>
+                  </div>
+
+                  {/* Title & Description */}
+                  <div className="space-y-2">
+                    <h3 className={`text-2xl font-display uppercase tracking-wide leading-none ${isOpen ? 'text-brand-white-50' : 'text-brand-blue-700'}`}>
+                      {useCase.title}
+                    </h3>
+                    <p className={`text-sm font-sans leading-relaxed ${isOpen ? 'text-brand-blue-200' : 'text-brand-blue-500'}`}>
+                      {useCase.desc}
+                    </p>
+                  </div>
+
+                  {/* Toggle button for examples */}
+                  <button
+                    onClick={() => toggleTab(idx)}
+                    className={`w-full py-2.5 rounded-xl text-xs font-bold tracking-wider uppercase font-subheading flex items-center justify-between border-2 transition-all cursor-pointer ${
+                      isOpen
+                        ? 'bg-brand-blue-700 text-brand-yellow-500 border-brand-yellow-500 hover:bg-brand-blue-600'
+                        : 'bg-brand-white-50 text-brand-blue-700 border-brand-blue-100 hover:bg-brand-blue-50'
+                    }`}
+                  >
+                    <span className="pl-3.5">Ver Ejemplos</span>
+                    <ChevronDown className={`h-4.5 w-4.5 shrink-0 pr-3.5 transition-transform duration-300 ${isOpen ? 'rotate-180 text-brand-yellow-500' : 'text-brand-blue-700'}`} />
+                  </button>
+
+                  {/* Expandable/Collapsible list of examples */}
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.35, ease: 'easeInOut' }}
+                        className="overflow-hidden"
+                      >
+                        <div className="space-y-3 pt-4 border-t-2 border-brand-blue-100">
+                          <p className="text-[10px] font-bold tracking-widest text-brand-yellow-500 uppercase">DESPACHOS HABITUALES</p>
+                          <ul className="space-y-2.5">
+                            {useCase.examples.map((ex, exIdx) => (
+                              <motion.li
+                                key={ex}
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: exIdx * 0.08 }}
+                                className="flex items-start gap-2 text-xs text-brand-blue-200 font-sans"
+                              >
+                                <CheckCircle2 className="h-4 w-4 text-brand-yellow-500 shrink-0 mt-0.5" />
+                                <span className="leading-tight">{ex}</span>
+                              </motion.li>
+                            ))}
+                          </ul>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+      </motion.div>
+    </section>
+  );
+}
