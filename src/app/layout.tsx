@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Bebas_Neue, Anton, Outfit } from "next/font/google";
+import { Bebas_Neue, Anton, Outfit, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const bebasNeue = Bebas_Neue({
@@ -17,8 +17,16 @@ const anton = Anton({
 });
 
 const outfit = Outfit({
+  weight: ["300", "400", "500", "600", "700", "800"],
   subsets: ["latin"],
   variable: "--font-outfit",
+  display: "swap",
+});
+
+const geistMono = Geist_Mono({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -43,26 +51,9 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${bebasNeue.variable} ${anton.variable} ${outfit.variable} scroll-smooth`}
+      className={`${bebasNeue.variable} ${anton.variable} ${outfit.variable} ${geistMono.variable} scroll-smooth`}
       suppressHydrationWarning
     >
-      <head>
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css"
-        />
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css"
-        />
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css"
-        />
-      </head>
       <body className="bg-brand-blue text-brand-white antialiased" suppressHydrationWarning>
         {children}
       </body>

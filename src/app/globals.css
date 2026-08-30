@@ -1,3 +1,6 @@
+@import url("https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css");
+@import url("https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css");
+@import url("https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css");
 @import "tailwindcss";
 
 @layer base {
@@ -14,7 +17,7 @@
   body {
     background-color: var(--brand-blue);
     color: var(--brand-white);
-    font-family: "Outfit", sans-serif;
+    font-family: var(--font-outfit), "Outfit", sans-serif;
     overflow-x: hidden;
   }
 
@@ -26,19 +29,19 @@
 
 /* Tipografías Utilitarias */
 .font-display {
-  font-family: "Bebas Neue", sans-serif;
+  font-family: var(--font-bebas), "Bebas Neue", sans-serif;
 }
 
 .font-subheading {
-  font-family: "Anton", sans-serif;
+  font-family: var(--font-anton), "Anton", sans-serif;
 }
 
 .font-sans {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-outfit), "Outfit", sans-serif;
 }
 
 .font-mono {
-  font-family: "Geist Mono", monospace;
+  font-family: var(--font-mono), "Geist Mono", monospace;
 }
 
 /* Sombras Glow */
@@ -58,3 +61,32 @@
   box-shadow: 0 0 25px rgba(225, 48, 108, 0.75);
 }
 
+/* Animaciones Reveal y Transiciones de docs/index.css */
+.reveal-on-scroll {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dropdown-panel {
+  transform-origin: top center;
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes logosScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-logos-scroll {
+  display: flex;
+  animation: logosScroll 25s linear infinite;
+}
+
+.animate-logos-scroll:hover {
+  animation-play-state: paused;
+}
