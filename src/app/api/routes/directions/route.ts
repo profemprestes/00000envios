@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
+// Caché en memoria para cálculos de ruta (TTL 30 minutos)
+const directionsCache = new Map<string, { data: unknown; expiresAt: number }>();
+const CACHE_TTL_MS = 30 * 60 * 1000;
+
 export async function GET(request: NextRequest) {
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
   if (!apiKey) {
@@ -18,6 +22,23 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  // Clave de caché normalizada (redondeando coordenadas a 4 decimales ~11 metros para maximizar hits)
+  const formatCoord = (coordStr: string) => {
+    const parts = coordStr.split(",");
+    if (parts.length === 2) {
+      const lat = parseFloat(parts[0]).toFixed(4);
+      const lng = parseFloat(parts[1]).toFixed(4);
+      return `${lat},${lng}`;
+    }
+    return coordStr;
+  };
+
+  const cacheKey = `${formatCoord(origin)}->${formatCoord(destination)}`;
+  const cached = directionsCache.get(cacheKey);
+  if (cached && cached.expiresAt > Date.now()) {
+    return NextResponse.json(cached.data);
+  }
+
   const url = new URL("https://maps.googleapis.com/maps/api/directions/json");
   url.searchParams.set("origin", origin);
   url.searchParams.set("destination", destination);
@@ -29,6 +50,17 @@ export async function GET(request: NextRequest) {
   try {
     const res = await fetch(url.toString());
     const data = await res.json();
+
+    if (data.status === "OK") {
+      if (directionsCache.size > 200) {
+        const now = Date.now();
+        for (const [k, v] of directionsCache.entries()) {
+          if (v.expiresAt <= now) directionsCache.delete(k);
+        }
+      }
+      directionsCache.set(cacheKey, { data, expiresAt: Date.now() + CACHE_TTL_MS });
+    }
+
     return NextResponse.json(data);
   } catch (error) {
     console.error("[/api/routes/directions]", error);
