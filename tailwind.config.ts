@@ -7,40 +7,7 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
-      colors: {
-        brand: {
-          blue: "#0950F6",
-          "blue-dark": "#06349e",
-          "blue-deep": "#052c87",
-          "blue-hover": "#0744d4",
-          yellow: "#FFF12E",
-          "yellow-hover": "#E8DC24",
-          white: "#FFFFFF",
-          canvas: "#F8FAFC",
-        },
-        social: {
-          facebook: "#1877F2",
-          instagram: "#E1306C",
-          whatsapp: "#25D366",
-        },
-      },
-      fontFamily: {
-        display: ['var(--font-bebas)', '"Bebas Neue"', "sans-serif"],
-        subheading: ['var(--font-anton)', '"Anton"', "sans-serif"],
-        sans: ['var(--font-outfit)', '"Outfit"', "sans-serif"],
-        mono: ['var(--font-mono)', '"Geist Mono"', "monospace"],
-      },
-      boxShadow: {
-        "glow-yellow": "0 0 35px rgba(255, 241, 46, 0.45)",
-        "glow-wa": "0 0 25px rgba(37, 211, 102, 0.75)",
-        "glow-fb": "0 0 25px rgba(24, 119, 242, 0.75)",
-        "glow-ig": "0 0 25px rgba(225, 48, 108, 0.75)",
-      },
-      borderRadius: {
-        "card-lg": "28px",
-      },
-    },
+    extend: {},
   },
   plugins: [],
 };
