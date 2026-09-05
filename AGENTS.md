@@ -37,3 +37,14 @@ Cada vez que se solicite crear una nueva página (por ejemplo en `src/app/**/pag
 - **Tipografías:** `font-display` (Bebas/Anton), `font-subheading` (Outfit Bold/Black), `font-sans` (Outfit), `font-mono`.
 - **Iconografía:** Phosphor Web CSS (`<i className="ph-bold ph-..." />`).
 - **Copy:** Voseo rioplatense (MDQ). Datos reales: WhatsApp `+54 223 660-2699`, base `Friuli 1972`.
+
+---
+
+## 🧩 Skills Portables (multi-IDE)
+
+Además de este `AGENTS.md`, el repo tiene [`agent-skills/`](agent-skills/): instrucciones de skill en markdown plano (rol + objetivo + procedimiento), sin sintaxis propietaria de Claude Code, pensadas para funcionar igual en opencode, Antigravity, Cursor, Windsurf, Copilot Chat o cualquier agente con acceso a archivos y shell. Si el pedido del usuario matchea el disparador de alguna, seguila en vez de improvisar el procedimiento desde cero.
+
+- [`agent-skills/extraccion-html-estatica.md`](agent-skills/extraccion-html-estatica.md) — Convertir una página (ej. `src/app/page.tsx`) y sus componentes en un único HTML autocontenido (ej. `docs/index.html`).
+- [`agent-skills/extraccion-prototipos.md`](agent-skills/extraccion-prototipos.md) — Convertir una página (ej. `src/app/contacto/page.tsx`) en un prototipo HTML autónomo en `docs/prototipos/` listo para servidor local.
+
+Ver [`agent-skills/README.md`](agent-skills/README.md) para la convención de formato y cómo la lee cada IDE en particular.

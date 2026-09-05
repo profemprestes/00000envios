@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Envíos DosRuedas · Mensajería y Logística Mar del Plata</title>
-  <meta name="description" content="Servicio líder de cadetería, e-commerce, logística express y última milla en Mar del Plata. Flota propia, entregas same-day y centro logístico en Friuli 1972.">
-  <meta name="keywords" content="envíos, mensajería, logística, mar del plata, delivery, e-commerce, mercado envíos flex, cadetería">
-  <meta name="author" content="Envíos DosRuedas">
+  <title>Envíos DosRuedas · Mensajería y Logística E-Commerce en Mar del Plata</title>
+  <meta name="description" content="Mensajería express y logística en moto para comercios y e-commerce en Mar del Plata. Envíos en el día, Mercado Libre Flex, tarifas transparentes y soporte directo por WhatsApp.">
+  <meta name="keywords" content="mensajeria mar del plata, cadeteria mdp, envios express mar del plata, envios flex mar del plata, moto delivery mdq, logistica e-commerce">
   <meta name="theme-color" content="#0950F6">
 
   <!-- Google Fonts: Anton, Bebas Neue, Outfit, Geist Mono -->
@@ -54,34 +53,21 @@
           keyframes: {
             'logos-scroll': {
               '0%': { transform: 'translateX(0)' },
-              '100%': { transform: 'translateX(-50%)' }
-            },
-            'float-slow': {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-5px)' }
-            },
-            'pulse-subtle': {
-              '0%, 100%': { opacity: '1', transform: 'scale(1)' },
-              '50%': { opacity: '0.9', transform: 'scale(1.02)' }
-            },
-            'border-pulse': {
-              '0%, 100%': { borderColor: 'rgba(255, 241, 46, 0.3)' },
-              '50%': { borderColor: 'rgba(255, 241, 46, 0.9)' }
+              '100%': { transform: 'translateX(-50%)' },
             }
           },
           animation: {
-            'logos-scroll': 'logos-scroll 30s linear infinite',
-            'float-slow': 'float-slow 4s ease-in-out infinite',
-            'pulse-subtle': 'pulse-subtle 3s ease-in-out infinite',
-            'border-pulse': 'border-pulse 2s ease-in-out infinite',
+            'logos-scroll': 'logos-scroll 25s linear infinite',
           }
         }
       }
     }
   </script>
 
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
   <style>
-    /* Custom utility rotations and scrollbar styles */
     .-rotate-1 { transform: rotate(-1deg); }
     .rotate-1 { transform: rotate(1deg); }
 
@@ -99,7 +85,6 @@
     ::-webkit-scrollbar-thumb:hover {
       background: #FFF12E;
     }
-
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -107,74 +92,19 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
-
-    .animate-logos-scroll:hover {
-      animation-play-state: paused;
-    }
-
-    .glassmorphism {
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      background: rgba(5, 44, 135, 0.50);
-      border: 1px solid rgba(255, 255, 255, 0.20);
-    }
-
-    /* Modal Animation Utilities */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @keyframes scaleUp {
-      from { opacity: 0; transform: scale(0.95) translateY(10px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
-    .animate-fade-in {
-      animation: fadeIn 0.2s ease-out forwards;
-    }
-    .animate-scale-up {
-      animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    /* Scroll Reveal (equivalente vanilla de src/components/ui/Reveal.tsx) */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-      transition-delay: var(--reveal-delay, 0ms);
-      will-change: opacity, transform;
-    }
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .reveal {
-        transition: none;
-        transform: none;
-        opacity: 1;
-      }
-    }
   </style>
 </head>
+<body class="bg-brand-blue text-brand-white font-sans selection:bg-brand-yellow selection:text-brand-blue overflow-x-hidden min-h-screen flex flex-col">
 
-<body class="bg-brand-blue text-brand-white antialiased selection:bg-brand-yellow selection:text-brand-blue-deep overflow-x-hidden min-h-screen flex flex-col w-full">
-
-  <!-- =========================================================================
-       1. HEADER GLOBAL
-       ========================================================================= -->
-  <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-brand-blue/95 backdrop-blur-md py-3.5 border-b border-brand-white/20 shadow-xl">
+  <!-- ==================== HEADER GLOBAL ==================== -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-brand-blue/95 backdrop-blur-md py-3.5 border-b border-brand-white/20 shadow-xl transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between gap-2 sm:gap-4">
 
         <!-- Logotipo Oficial -->
-        <a href="#hero-animado" class="flex items-center gap-2 sm:gap-3 group rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow min-w-0">
+        <a href="/prototipos/index.html" class="flex items-center gap-2 sm:gap-3 group rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow min-w-0">
           <div class="relative w-11 h-11 shrink-0 bg-brand-blue border border-brand-yellow rounded-xl p-1 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform shadow-glow-yellow">
-            <img
-              src="/logo.webp"
-              alt="Logo Envíos DosRuedas"
-              class="w-full h-full object-contain"
-              onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'font-display font-black text-2xl text-brand-yellow leading-none\'>2R</span>';"
-            />
+            <img src="./logo.webp" alt="Logo Envíos DosRuedas" class="w-full h-full object-contain" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'font-display font-black text-2xl text-brand-yellow leading-none\'>2R</span>';">
           </div>
           <span class="font-display text-lg sm:text-3xl tracking-tight leading-none uppercase flex flex-row items-center gap-1 sm:gap-1.5 min-w-0 truncate">
             <span class="text-brand-white">Envíos</span>
@@ -184,74 +114,56 @@
 
         <!-- Menú Desktop -->
         <nav class="hidden lg:flex items-center gap-1" aria-label="Navegación principal">
-          <a href="#hero-animado" class="px-3.5 py-2 text-base font-subheading tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 text-brand-yellow bg-brand-white/10 hover:bg-brand-white/20">
+          <a href="/prototipos/index.html" class="px-3.5 py-2 text-base font-subheading tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 text-brand-yellow bg-brand-white/10 hover:bg-brand-white/20">
             <i class="ph-fill ph-house text-brand-yellow text-lg"></i>
             Inicio
           </a>
 
           <!-- Dropdown Servicios -->
-          <div class="relative" id="dropdown-services-container">
-            <button
-              id="btn-dropdown-services"
-              type="button"
-              aria-haspopup="true"
-              aria-expanded="false"
-              class="px-3.5 py-2 text-base font-subheading tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 text-brand-white hover:text-brand-yellow hover:bg-brand-white/10"
-            >
+          <div class="relative dropdown-container" id="services-dropdown-container">
+            <button type="button" id="services-btn" aria-haspopup="true" aria-expanded="false" class="px-3.5 py-2 text-base font-subheading tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 text-brand-white hover:text-brand-yellow hover:bg-brand-white/10">
               <i class="ph-fill ph-motorcycle text-brand-yellow text-lg"></i>
               Servicios
-              <i id="arrow-services" class="ph ph-caret-down text-xs transition-transform duration-200"></i>
+              <i class="ph ph-caret-down dropdown-arrow text-xs transition-transform duration-200" id="services-caret"></i>
             </button>
 
-            <!-- Menú Flotante Servicios -->
-            <div
-              id="menu-services"
-              class="hidden absolute top-full left-0 mt-2 w-72 bg-brand-blue border border-brand-white/25 rounded-2xl shadow-2xl p-2 z-50 origin-top"
-            >
-              <a href="#servicios-overview" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+            <div id="services-menu" class="hidden absolute top-full left-0 mt-2 w-72 bg-brand-blue border border-brand-white/25 rounded-2xl shadow-2xl p-2 z-50 origin-top">
+              <a href="/prototipos/envios-express.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
                 <div class="p-2 rounded-lg bg-brand-yellow text-brand-blue">
                   <i class="ph-fill ph-lightning text-lg"></i>
                 </div>
                 <div>
-                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">
-                    Envíos Express
-                  </div>
+                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">Envíos Express</div>
                   <div class="font-sans text-xs text-brand-white/80">Entregas en 30-90 min</div>
                 </div>
               </a>
 
-              <a href="#servicios-overview" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+              <a href="/prototipos/envios-lowcost.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
                 <div class="p-2 rounded-lg bg-brand-white/20 text-brand-white">
                   <i class="ph-fill ph-tag text-lg"></i>
                 </div>
                 <div>
-                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">
-                    Envíos LowCost
-                  </div>
+                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">Envíos LowCost</div>
                   <div class="font-sans text-xs text-brand-white/80">Envíos en el día para PyMEs</div>
                 </div>
               </a>
 
-              <a href="#servicios-overview" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
-                <div class="p-2 rounded-lg bg-brand-yellow text-brand-blue">
+              <a href="/prototipos/enviosflex.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+                <div class="p-2 rounded-lg bg-brand-white/20 text-brand-white">
                   <i class="ph-fill ph-package text-lg"></i>
                 </div>
                 <div>
-                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">
-                    MercadoLibre Flex
-                  </div>
+                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">MercadoLibre Flex</div>
                   <div class="font-sans text-xs text-brand-white/80">Socio logístico oficial</div>
                 </div>
               </a>
 
-              <a href="#servicios-overview" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+              <a href="/prototipos/plan-emprendedores.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
                 <div class="p-2 rounded-lg bg-brand-white/20 text-brand-yellow">
                   <i class="ph-fill ph-warehouse text-lg"></i>
                 </div>
                 <div>
-                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">
-                    3PL & Depósito
-                  </div>
+                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">3PL & Depósito</div>
                   <div class="font-sans text-xs text-brand-white/80">Picking, packing y guarda</div>
                 </div>
               </a>
@@ -259,57 +171,41 @@
           </div>
 
           <!-- Dropdown Nosotros -->
-          <div class="relative" id="dropdown-about-container">
-            <button
-              id="btn-dropdown-about"
-              type="button"
-              aria-haspopup="true"
-              aria-expanded="false"
-              class="px-3.5 py-2 text-base font-subheading tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 text-brand-white hover:text-brand-yellow hover:bg-brand-white/10"
-            >
+          <div class="relative dropdown-container" id="about-dropdown-container">
+            <button type="button" id="about-btn" aria-haspopup="true" aria-expanded="false" class="px-3.5 py-2 text-base font-subheading tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 text-brand-white hover:text-brand-yellow hover:bg-brand-white/10">
               <i class="ph-fill ph-info text-brand-yellow text-lg"></i>
               Nosotros
-              <i id="arrow-about" class="ph ph-caret-down text-xs transition-transform duration-200"></i>
+              <i class="ph ph-caret-down dropdown-arrow text-xs transition-transform duration-200" id="about-caret"></i>
             </button>
 
-            <!-- Menú Flotante Nosotros -->
-            <div
-              id="menu-about"
-              class="hidden absolute top-full left-0 mt-2 w-64 bg-brand-blue border border-brand-white/25 rounded-2xl shadow-2xl p-2 z-50 origin-top"
-            >
-              <a href="#vision-mar-del-plata" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+            <div id="about-menu" class="hidden absolute top-full left-0 mt-2 w-64 bg-brand-blue border border-brand-white/25 rounded-2xl shadow-2xl p-2 z-50 origin-top">
+              <a href="/prototipos/sobre-nosotros.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
                 <i class="ph-fill ph-identification-badge text-xl text-brand-yellow"></i>
                 <div>
-                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">
-                    Sobre Nosotros
-                  </div>
+                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">Sobre Nosotros</div>
                   <div class="font-sans text-xs text-brand-white/80">Quiénes somos en MDQ</div>
                 </div>
               </a>
 
-              <a href="#servicios-overview" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+              <a href="/prototipos/preguntas-frecuentes.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
                 <i class="ph-fill ph-question text-xl text-brand-yellow"></i>
                 <div>
-                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">
-                    Preguntas Frecuentes
-                  </div>
+                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">Preguntas Frecuentes</div>
                   <div class="font-sans text-xs text-brand-white/80">Dudas comunes sobre el servicio</div>
                 </div>
               </a>
 
-              <a href="#carrusel-redes" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+              <a href="/prototipos/nuestras-redes.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
                 <i class="ph-fill ph-share-network text-xl text-brand-yellow"></i>
                 <div>
-                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">
-                    Nuestras Redes
-                  </div>
+                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">Nuestras Redes</div>
                   <div class="font-sans text-xs text-brand-white/80">Redes y reputación</div>
                 </div>
               </a>
             </div>
           </div>
 
-          <a href="#contacto" class="px-3.5 py-2 text-base font-subheading tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 text-brand-white hover:text-brand-yellow hover:bg-brand-white/10">
+          <a href="/prototipos/contacto.html" class="px-3.5 py-2 text-base font-subheading tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 text-brand-white hover:text-brand-yellow hover:bg-brand-white/10">
             <i class="ph-fill ph-envelope text-brand-yellow text-lg"></i>
             Contacto
           </a>
@@ -317,20 +213,12 @@
 
         <!-- CTA Directo Desktop -->
         <div class="hidden lg:flex items-center gap-4">
-          <a
-            href="tel:+542236602699"
-            class="flex items-center gap-2 text-brand-white hover:text-brand-yellow transition-colors font-mono text-xs font-semibold"
-          >
+          <a href="tel:+542236602699" class="flex items-center gap-2 text-brand-white hover:text-brand-yellow transition-colors font-mono text-xs font-semibold">
             <i class="ph-fill ph-phone text-brand-yellow text-base"></i>
             223 660-2699
           </a>
 
-          <a
-            href="https://wa.me/542236602699"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group inline-flex items-center gap-2.5 rounded-full font-subheading uppercase tracking-wider font-bold px-5 py-2.5 text-xs bg-brand-yellow text-brand-blue hover:bg-brand-yellow-hover hover:shadow-glow-yellow transition-all duration-300"
-          >
+          <a href="https://wa.me/542236602699" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-2.5 rounded-full font-subheading uppercase tracking-wider font-bold px-5 py-2.5 text-xs bg-brand-yellow text-brand-blue hover:bg-brand-yellow-hover hover:shadow-glow-yellow transition-all duration-300">
             <span>Cotizá tu envío</span>
             <span class="w-6 h-6 rounded-full flex items-center justify-center bg-brand-blue/15 text-brand-blue group-hover:bg-brand-blue group-hover:text-brand-yellow transition-all">
               <i class="ph ph-arrow-right text-xs"></i>
@@ -340,90 +228,59 @@
 
         <!-- Botones Mobile -->
         <div class="lg:hidden flex items-center gap-2">
-          <a
-            href="tel:+542236602699"
-            class="p-2 rounded-xl bg-brand-white/15 text-brand-yellow hover:bg-brand-white/25 active:scale-95 transition-all"
-            aria-label="Llamar por teléfono"
-          >
+          <a href="tel:+542236602699" class="p-2 rounded-xl bg-brand-white/15 text-brand-yellow hover:bg-brand-white/25 active:scale-95 transition-all" aria-label="Llamar por teléfono">
             <i class="ph-fill ph-phone text-xl"></i>
           </a>
 
-          <button
-            id="btn-mobile-menu"
-            type="button"
-            class="p-2 rounded-xl bg-brand-white/15 text-brand-white hover:text-brand-yellow active:scale-95 transition-all"
-            aria-label="Abrir menú"
-            aria-expanded="false"
-          >
-            <i id="icon-mobile-menu" class="ph ph-list text-2xl"></i>
+          <button type="button" id="mobile-menu-btn" class="p-2 rounded-xl bg-brand-white/15 text-brand-white hover:text-brand-yellow active:scale-95 transition-all" aria-label="Abrir menú" aria-expanded="false">
+            <i class="ph ph-list text-2xl" id="mobile-menu-icon"></i>
           </button>
         </div>
       </div>
 
       <!-- Menú Desplegable Mobile -->
-      <div id="mobile-menu" class="hidden lg:hidden overflow-hidden">
-        <div class="border-t border-brand-white/20 bg-brand-blue mt-3 pt-3 rounded-2xl px-3 space-y-2 shadow-2xl pb-2">
-          <a href="#hero-animado" class="mobile-nav-link flex items-center gap-3 py-2.5 px-3 rounded-xl font-subheading text-base uppercase text-brand-yellow bg-brand-white/15">
-            <i class="ph-fill ph-house text-lg"></i>
+      <div id="mobile-menu" class="hidden lg:hidden overflow-hidden transition-all duration-300">
+        <div class="border-t border-brand-white/20 bg-brand-blue mt-3 pt-3 rounded-2xl px-3 space-y-2 shadow-2xl pb-3">
+          <a href="/prototipos/index.html" class="flex items-center gap-3 py-2.5 px-3 rounded-xl font-subheading text-base uppercase text-brand-yellow bg-brand-white/15">
+            <i class="ph-fill ph-house text-lg text-brand-yellow"></i>
             Inicio
           </a>
 
           <div class="space-y-1 pl-2 border-l border-brand-white/20 my-1">
-            <p class="font-subheading text-xs uppercase text-brand-yellow px-2 pt-1 tracking-wider">
-              Servicios principales
-            </p>
-            <a href="#servicios-overview" class="mobile-nav-link flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+            <p class="font-subheading text-xs uppercase text-brand-yellow px-2 pt-1 tracking-wider">Servicios principales</p>
+            <a href="/prototipos/envios-express.html" class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
               <i class="ph-fill ph-lightning text-brand-yellow"></i> Envíos Express
             </a>
-            <a href="#servicios-overview" class="mobile-nav-link flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+            <a href="/prototipos/envios-lowcost.html" class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
               <i class="ph-fill ph-tag text-brand-yellow"></i> Envíos LowCost
             </a>
-            <a href="#servicios-overview" class="mobile-nav-link flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+            <a href="/prototipos/enviosflex.html" class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
               <i class="ph-fill ph-package text-brand-yellow"></i> Mercado Envíos Flex
             </a>
-            <a href="#servicios-overview" class="mobile-nav-link flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+            <a href="/prototipos/plan-emprendedores.html" class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
               <i class="ph-fill ph-warehouse text-brand-yellow"></i> Logística 3PL
             </a>
           </div>
 
-          <a href="#slider-industrias" class="mobile-nav-link flex items-center gap-3 py-2.5 px-3 rounded-xl font-subheading text-sm uppercase text-brand-white hover:bg-brand-white/15">
-            <i class="ph-fill ph-buildings text-brand-yellow text-lg"></i> Industrias
-          </a>
-
-          <a href="#emprendedores-mdq" class="mobile-nav-link flex items-center gap-3 py-2.5 px-3 rounded-xl font-subheading text-sm uppercase text-brand-white hover:bg-brand-white/15">
-            <i class="ph-fill ph-storefront text-brand-yellow text-lg"></i> PyMEs
-          </a>
-
-          <a href="#carrusel-redes" class="mobile-nav-link flex items-center gap-3 py-2.5 px-3 rounded-xl font-subheading text-sm uppercase text-brand-white hover:bg-brand-white/15">
-            <i class="ph-fill ph-users-three text-brand-yellow text-lg"></i> Comunidad Digital
-          </a>
-
           <div class="space-y-1 pl-2 border-l border-brand-white/20 my-1">
-            <p class="font-subheading text-xs uppercase text-brand-yellow px-2 pt-1 tracking-wider">
-              Nosotros
-            </p>
-            <a href="#vision-mar-del-plata" class="mobile-nav-link flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+            <p class="font-subheading text-xs uppercase text-brand-yellow px-2 pt-1 tracking-wider">Nosotros</p>
+            <a href="/prototipos/sobre-nosotros.html" class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
               <i class="ph-fill ph-identification-badge text-brand-yellow"></i> Sobre Nosotros
             </a>
-            <a href="#servicios-overview" class="mobile-nav-link flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+            <a href="/prototipos/preguntas-frecuentes.html" class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
               <i class="ph-fill ph-question text-brand-yellow"></i> Preguntas Frecuentes
             </a>
-            <a href="#carrusel-redes" class="mobile-nav-link flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+            <a href="/prototipos/nuestras-redes.html" class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
               <i class="ph-fill ph-share-network text-brand-yellow"></i> Nuestras Redes
             </a>
           </div>
 
-          <a href="#contacto" class="mobile-nav-link flex items-center gap-3 py-2.5 px-3 rounded-xl font-subheading text-sm uppercase text-brand-white hover:bg-brand-white/15">
+          <a href="/prototipos/contacto.html" class="flex items-center gap-3 py-2.5 px-3 rounded-xl font-subheading text-sm uppercase text-brand-white hover:bg-brand-white/15">
             <i class="ph-fill ph-envelope text-brand-yellow text-lg"></i> Contacto
           </a>
 
-          <div class="pt-2 pb-2">
-            <a
-              href="https://wa.me/542236602699"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-brand-yellow text-brand-blue font-subheading uppercase tracking-wider text-xs font-bold shadow-lg hover:bg-brand-yellow-hover transition-all"
-            >
+          <div class="pt-2">
+            <a href="https://wa.me/542236602699" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-brand-yellow text-brand-blue font-subheading uppercase tracking-wider text-xs font-bold shadow-lg hover:bg-brand-yellow-hover">
               <i class="ph-fill ph-whatsapp-logo text-xl"></i> Pedir envío por WhatsApp
             </a>
           </div>
@@ -432,10 +289,11 @@
     </div>
   </header>
 
-  <!-- =========================================================================
-       2. HERO SECTION
-       ========================================================================= -->
-  <section id="hero-animado" class="relative w-full overflow-hidden bg-brand-blue min-h-[90vh] flex items-center pt-28 pb-16">
+  <!-- ==================== HERO SECTION PRINCIPAL ==================== -->
+  <section id="hero-animado" class="relative w-full overflow-hidden bg-brand-blue min-h-[90vh] flex items-center pt-24 pb-16">
+    <!-- Canvas 3D de fondo -->
+    <canvas id="hero-particles-canvas" class="absolute inset-0 pointer-events-none z-0"></canvas>
+
     <!-- Marca de Agua de Fondo -->
     <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden z-0">
       <span class="font-display uppercase text-[14vw] leading-none text-brand-white/[0.05] tracking-tighter whitespace-nowrap">
@@ -444,14 +302,14 @@
     </div>
 
     <!-- Contenedor Principal del Hero -->
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 w-full">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 w-full">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         <!-- Narrativa & CTAs -->
         <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
 
           <!-- Badge Superior -->
-          <div class="reveal reveal-mount flex justify-center lg:justify-start">
+          <div class="flex justify-center lg:justify-start">
             <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-subheading font-bold uppercase tracking-widest bg-brand-yellow text-brand-blue shadow-glow-yellow border border-brand-yellow">
               <i class="ph-fill ph-sparkle text-sm"></i>
               Tu Solución Confiable en Mar del Plata
@@ -459,10 +317,10 @@
           </div>
 
           <!-- Título Principal -->
-          <div class="reveal reveal-mount" style="--reveal-delay:80ms">
+          <div>
             <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display uppercase tracking-tight leading-[0.98] flex flex-col items-center lg:items-start gap-1">
               <span class="text-brand-white">Mensajería y Logística</span>
-              <span class="relative inline-block bg-brand-blue px-3 py-1 my-1 -rotate-1 rounded-xl border border-brand-yellow/60 shadow-xl">
+              <span class="relative inline-block bg-brand-blue px-3 py-1 my-1 transform -rotate-1 rounded-xl border border-brand-yellow/60 shadow-xl">
                 <span class="relative z-10 bg-brand-yellow text-brand-blue px-3 py-0.5 inline-block font-display font-black rounded-lg">
                   E-Commerce
                 </span>
@@ -472,14 +330,12 @@
           </div>
 
           <!-- Descripción -->
-          <div class="reveal reveal-mount" style="--reveal-delay:160ms">
-            <p class="text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-sans leading-relaxed text-brand-white/95 font-light">
-              Somos tu partner estratégico en mensajería urbana, envíos en el día y delivery de última milla. Flota propia de motos, cero tercerización y respuesta inmediata.
-            </p>
-          </div>
+          <p class="text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-sans leading-relaxed text-brand-white/95 font-light">
+            Somos tu partner estratégico en mensajería urbana, envíos en el día y delivery de última milla. Flota propia de motos, cero tercerización y respuesta inmediata.
+          </p>
 
           <!-- Acciones -->
-          <div class="reveal reveal-mount flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-2" style="--reveal-delay:240ms">
+          <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-2">
             <a
               href="https://wa.me/542236602699"
               target="_blank"
@@ -493,7 +349,7 @@
             </a>
 
             <a
-              href="#contacto"
+              href="/prototipos/contacto.html"
               class="group inline-flex items-center justify-between gap-3 rounded-full font-subheading uppercase tracking-wider font-bold px-8 py-3.5 min-h-[52px] bg-brand-white/10 hover:bg-brand-white/20 text-brand-white border border-brand-white/30 hover:border-brand-white transition-all duration-300 w-full sm:w-auto text-base"
             >
               <span class="truncate">Contactar Base</span>
@@ -504,7 +360,7 @@
           </div>
 
           <!-- Métricas de Confianza -->
-          <div class="reveal reveal-mount pt-4 flex flex-wrap justify-center lg:justify-start gap-6 text-brand-white" style="--reveal-delay:320ms">
+          <div class="pt-4 flex flex-wrap justify-center lg:justify-start gap-6 text-brand-white">
             <div class="flex items-center gap-2 font-subheading text-xs uppercase tracking-wider">
               <div class="w-7 h-7 rounded-lg bg-brand-yellow/20 border border-brand-yellow/50 flex items-center justify-center text-brand-yellow">
                 <i class="ph-fill ph-package"></i>
@@ -530,7 +386,7 @@
         </div>
 
         <!-- Tarjeta Terminal Interactiva -->
-        <div class="reveal reveal-mount lg:col-span-5 relative flex justify-center items-center" style="--reveal-delay:200ms">
+        <div class="lg:col-span-5 relative flex justify-center items-center">
           <div class="relative w-full max-w-[440px] group transition-transform duration-500 hover:-translate-y-1">
             <div class="bg-brand-blue border border-brand-white/25 p-3 sm:p-4 rounded-3xl shadow-2xl">
               <div class="relative rounded-2xl overflow-hidden bg-brand-blue/80 border border-brand-white/20 p-5 sm:p-6 flex flex-col items-center">
@@ -551,18 +407,18 @@
                   </span>
                 </div>
 
-                <!-- Imagen / Mapa Logístico 3D -->
+                <!-- Imagen / Mapa Logístico con Fallback -->
                 <div class="relative w-full aspect-square max-w-[280px] sm:max-w-[320px] flex items-center justify-center my-2">
                   <img
-                    src="/recursos_envios/pin_mapa.png"
+                    src="./public/recursos_envios/pin_mapa.png"
                     alt="Envíos DosRuedas - Mapa Logístico"
                     class="object-contain w-full h-full transform transition-transform duration-500 group-hover:scale-105"
-                    onerror="this.src='https://www.enviosdosruedas.com/card_mapa.webp';"
+                    onerror="this.src='./public/cards/hero_express.webp';"
                   />
                 </div>
 
                 <!-- Mini Tarjetas de Características -->
-                <div class="w-full grid grid-cols-2 gap-2.5 mt-3">
+                <div class="w-full grid grid-cols-2 gap-2.5 mt-3 text-left">
                   <div class="bg-brand-white/10 border border-brand-white/20 p-2.5 rounded-xl flex items-center gap-2.5">
                     <div class="p-2 rounded-lg bg-brand-yellow text-brand-blue shrink-0">
                       <i class="ph-fill ph-lightning text-base"></i>
@@ -604,16 +460,13 @@
     <div class="absolute bottom-0 left-0 right-0 h-1.5 bg-brand-yellow"></div>
   </section>
 
-  <!-- =========================================================================
-       3. VISION SECTION
-       ========================================================================= -->
+  <!-- ==================== SECCIÓN 1: VISIÓN Y MÉTRICAS ==================== -->
   <section id="vision-mar-del-plata" class="py-20 sm:py-28 bg-brand-canvas text-brand-blue relative overflow-hidden w-full border-t border-brand-blue/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center text-left">
 
         <!-- Columna Izquierda: Visión y Pilares Operativos -->
-        <div class="reveal lg:col-span-6 space-y-8">
+        <div class="lg:col-span-6 space-y-8">
           <div>
             <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-subheading font-bold uppercase tracking-widest bg-brand-blue text-brand-yellow shadow-md border border-brand-blue">
               <i class="ph-fill ph-handshake text-sm text-brand-yellow"></i> PARTNER LOGÍSTICO ESPECIALIZADO
@@ -622,14 +475,14 @@
 
           <h2 class="text-4xl sm:text-5xl lg:text-6xl font-display uppercase tracking-tight leading-[0.95] flex flex-col items-start gap-1 text-brand-blue">
             <span>Conectamos Mar del Plata</span>
-            <span class="relative inline-block bg-brand-blue px-3 py-1 my-1 -rotate-1 rounded-xl border border-brand-yellow/60 shadow-xl">
+            <span class="relative inline-block bg-brand-blue px-3 py-1 my-1 transform -rotate-1 rounded-xl border border-brand-yellow/60 shadow-xl">
               <span class="relative z-10 bg-brand-yellow text-brand-blue px-3.5 py-0.5 inline-block font-display font-black rounded-lg">
                 DE PUNTA A PUNTA
               </span>
             </span>
           </h2>
 
-          <p class="text-brand-blue/85 text-base sm:text-lg leading-relaxed font-sans font-medium">
+          <p className="text-brand-blue/85 text-base sm:text-lg leading-relaxed font-sans font-medium">
             Nos especializamos en la distribución de última milla para e-commerce locales y comercios de la ciudad. Aseguramos que tus paquetes lleguen a tiempo con flota propia y tarifas 100% transparentes.
           </p>
 
@@ -670,7 +523,7 @@
         <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
 
           <!-- Bento Card Principal: +50k Envíos (Full Width) -->
-          <div class="reveal sm:col-span-2 p-8 rounded-[30px] bg-brand-blue text-brand-white border border-brand-white/20 shadow-2xl hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden group">
+          <div class="sm:col-span-2 p-8 rounded-[30px] bg-brand-blue text-brand-white border border-brand-white/20 shadow-2xl hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden group">
             <i class="ph-fill ph-motorcycle absolute -right-6 -bottom-6 text-[13rem] text-brand-white/[0.05] pointer-events-none group-hover:scale-105 transition-transform duration-500"></i>
             
             <div class="relative z-10 flex flex-col justify-between h-full space-y-6">
@@ -698,7 +551,7 @@
           </div>
 
           <!-- Bento Card 2: 0 Paquetes Extraviados -->
-          <div class="reveal p-6 rounded-[26px] bg-white border border-brand-blue/20 shadow-md hover:-translate-y-1 hover:border-brand-blue transition-transform duration-300 flex flex-col justify-between min-h-[190px]" style="--reveal-delay:80ms">
+          <div class="p-6 rounded-[26px] bg-white border border-brand-blue/20 shadow-md hover:-translate-y-1 hover:border-brand-blue transition-transform duration-300 flex flex-col justify-between min-h-[190px]">
             <div class="flex justify-between items-start">
               <div class="p-2.5 rounded-xl bg-brand-blue text-brand-yellow shadow-sm">
                 <i class="ph-fill ph-shield-check text-xl"></i>
@@ -719,7 +572,7 @@
           </div>
 
           <!-- Bento Card 3: +100 Comercios y Emprendedores -->
-          <div class="reveal p-6 rounded-[26px] bg-white border border-brand-blue/20 shadow-md hover:-translate-y-1 hover:border-brand-blue transition-transform duration-300 flex flex-col justify-between min-h-[190px]" style="--reveal-delay:160ms">
+          <div class="p-6 rounded-[26px] bg-white border border-brand-blue/20 shadow-md hover:-translate-y-1 hover:border-brand-blue transition-transform duration-300 flex flex-col justify-between min-h-[190px]">
             <div class="flex justify-between items-start">
               <div class="p-2.5 rounded-xl bg-brand-yellow text-brand-blue shadow-sm">
                 <i class="ph-fill ph-users-three text-xl"></i>
@@ -742,21 +595,15 @@
         </div>
 
       </div>
-
     </div>
   </section>
 
-  <!-- =========================================================================
-       4. SERVICES OVERVIEW
-       ========================================================================= -->
+  <!-- ==================== SECCIÓN 2: RESUMEN DE SERVICIOS ==================== -->
   <section id="servicios-overview" class="py-20 sm:py-28 bg-brand-blue relative overflow-hidden w-full border-t border-brand-white/15">
-    <!-- Resplandores ambientales -->
-    <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-yellow/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute bottom-0 right-10 w-[450px] h-[450px] bg-brand-white/5 rounded-full blur-3xl pointer-events-none"></div>
-
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
       <!-- Encabezado de Sección -->
-      <div class="reveal flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6 border-b border-brand-white/20 pb-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6 border-b border-brand-white/20 pb-8 text-left">
         <div class="space-y-3">
           <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-subheading font-bold uppercase tracking-widest bg-brand-yellow text-brand-blue shadow-glow-yellow border border-brand-yellow">
             <i class="ph-fill ph-lightning text-sm"></i> NUESTROS SERVICIOS CLAVE
@@ -769,10 +616,10 @@
       </div>
 
       <!-- Grid de 4 Tarjetas de Servicios -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full text-left">
 
         <!-- SERVICIO 1: EXPRESS -->
-        <article class="reveal group relative rounded-[28px] p-6 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60">
+        <article class="group relative rounded-[28px] p-6 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60">
           <i class="ph-fill ph-lightning absolute -right-6 -bottom-6 text-[13rem] text-brand-white/[0.04] pointer-events-none group-hover:scale-105 transition-transform duration-500"></i>
           
           <div class="relative z-10 space-y-4">
@@ -816,7 +663,7 @@
             <button
               type="button"
               onclick="openServiceModal('express')"
-              class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs px-5 py-3 rounded-full bg-brand-yellow text-brand-blue hover:bg-brand-yellow-hover hover:shadow-glow-yellow transition-all duration-300 group/btn"
+              class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs px-5 py-3 rounded-full bg-brand-yellow text-brand-blue hover:bg-brand-yellow-hover hover:shadow-glow-yellow transition-all duration-300 group/btn cursor-pointer"
             >
               <span>Ficha Técnica</span>
               <span class="w-6 h-6 rounded-full bg-brand-blue/15 flex items-center justify-center shrink-0 ml-1 group-hover/btn:translate-x-1 transition-transform">
@@ -827,7 +674,7 @@
         </article>
 
         <!-- SERVICIO 2: LOWCOST -->
-        <article class="reveal group relative rounded-[28px] p-6 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60" style="--reveal-delay:80ms">
+        <article class="group relative rounded-[28px] p-6 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60">
           <i class="ph-fill ph-tag absolute -right-6 -bottom-6 text-[13rem] text-brand-white/[0.04] pointer-events-none group-hover:scale-105 transition-transform duration-500"></i>
           
           <div class="relative z-10 space-y-4">
@@ -871,7 +718,7 @@
             <button
               type="button"
               onclick="openServiceModal('lowcost')"
-              class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs px-5 py-3 rounded-full bg-brand-white/15 text-brand-white hover:bg-brand-yellow hover:text-brand-blue border border-brand-white/20 transition-all duration-300 group/btn"
+              class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs px-5 py-3 rounded-full bg-brand-white/15 text-brand-white hover:bg-brand-yellow hover:text-brand-blue border border-brand-white/20 transition-all duration-300 group/btn cursor-pointer"
             >
               <span>Ficha Técnica</span>
               <span class="w-6 h-6 rounded-full bg-brand-white/20 group-hover/btn:bg-brand-blue/15 flex items-center justify-center shrink-0 ml-1 group-hover/btn:translate-x-1 transition-transform">
@@ -882,7 +729,7 @@
         </article>
 
         <!-- SERVICIO 3: FLEX -->
-        <article class="reveal group relative rounded-[28px] p-6 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60" style="--reveal-delay:160ms">
+        <article class="group relative rounded-[28px] p-6 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60">
           <i class="ph-fill ph-package absolute -right-6 -bottom-6 text-[13rem] text-brand-white/[0.04] pointer-events-none group-hover:scale-105 transition-transform duration-500"></i>
           
           <div class="relative z-10 space-y-4">
@@ -926,7 +773,7 @@
             <button
               type="button"
               onclick="openServiceModal('flex')"
-              class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs px-5 py-3 rounded-full bg-brand-yellow text-brand-blue hover:bg-brand-yellow-hover hover:shadow-glow-yellow transition-all duration-300 group/btn"
+              class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs px-5 py-3 rounded-full bg-brand-yellow text-brand-blue hover:bg-brand-yellow-hover hover:shadow-glow-yellow transition-all duration-300 group/btn cursor-pointer"
             >
               <span>Ficha Técnica</span>
               <span class="w-6 h-6 rounded-full bg-brand-blue/15 flex items-center justify-center shrink-0 ml-1 group-hover/btn:translate-x-1 transition-transform">
@@ -937,7 +784,7 @@
         </article>
 
         <!-- SERVICIO 4: 3PL -->
-        <article class="reveal group relative rounded-[28px] p-6 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60" style="--reveal-delay:240ms">
+        <article class="group relative rounded-[28px] p-6 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[460px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-yellow/60">
           <i class="ph-fill ph-warehouse absolute -right-6 -bottom-6 text-[13rem] text-brand-white/[0.04] pointer-events-none group-hover:scale-105 transition-transform duration-500"></i>
           
           <div class="relative z-10 space-y-4">
@@ -981,7 +828,7 @@
             <button
               type="button"
               onclick="openServiceModal('3pl')"
-              class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs px-5 py-3 rounded-full bg-brand-white/15 text-brand-white hover:bg-brand-yellow hover:text-brand-blue border border-brand-white/20 transition-all duration-300 group/btn"
+              class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs px-5 py-3 rounded-full bg-brand-white/15 text-brand-white hover:bg-brand-yellow hover:text-brand-blue border border-brand-white/20 transition-all duration-300 group/btn cursor-pointer"
             >
               <span>Ficha Técnica</span>
               <span class="w-6 h-6 rounded-full bg-brand-white/20 group-hover/btn:bg-brand-blue/15 flex items-center justify-center shrink-0 ml-1 group-hover/btn:translate-x-1 transition-transform">
@@ -996,13 +843,14 @@
 
     <!-- MODAL INTERACTIVO DE FICHA TÉCNICA -->
     <div
-      id="service-modal-overlay"
-      class="hidden fixed inset-0 z-50 bg-brand-blue-deep/90 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in"
+      id="service-modal"
+      class="hidden fixed inset-0 z-50 bg-brand-blue-deep/90 backdrop-blur-md flex items-center justify-center p-4"
       role="dialog"
       aria-modal="true"
+      onclick="closeServiceModal()"
     >
       <div
-        class="relative w-full max-w-2xl bg-brand-blue border border-brand-white/25 rounded-3xl shadow-2xl p-6 sm:p-8 text-brand-white space-y-6 animate-scale-up"
+        class="relative w-full max-w-2xl bg-brand-blue border border-brand-white/25 rounded-3xl shadow-2xl p-6 sm:p-8 text-brand-white space-y-6 text-left"
         onclick="event.stopPropagation()"
       >
         <!-- Botón Cerrar -->
@@ -1010,14 +858,14 @@
           type="button"
           onclick="closeServiceModal()"
           aria-label="Cerrar modal"
-          class="absolute top-4 right-4 p-2 rounded-full bg-brand-white/15 hover:bg-brand-yellow hover:text-brand-blue transition-colors"
+          class="absolute top-4 right-4 p-2 rounded-full bg-brand-white/15 hover:bg-brand-yellow hover:text-brand-blue transition-colors cursor-pointer"
         >
           <i class="ph-bold ph-x text-lg"></i>
         </button>
 
         <!-- Encabezado del Modal -->
-        <div class="flex items-center gap-4 text-left">
-          <div id="modal-icon-container" class="p-3.5 bg-brand-yellow text-brand-blue rounded-2xl shadow-md text-2xl">
+        <div class="flex items-center gap-4">
+          <div id="modal-icon-box" class="p-3.5 bg-brand-yellow text-brand-blue rounded-2xl shadow-md text-2xl">
             <i id="modal-icon" class="ph-fill ph-lightning"></i>
           </div>
           <div>
@@ -1025,13 +873,13 @@
               URGENTE · COBERTURA TOTAL MDQ
             </span>
             <h3 id="modal-title" class="font-display text-3xl sm:text-4xl uppercase tracking-tight text-brand-white">
-              ENVÍOS EXPRESS INMEDIATOS
+              ENVÍOS EXPRESS
             </h3>
           </div>
         </div>
 
         <!-- Resumen y Beneficios -->
-        <div class="p-5 bg-brand-white/10 rounded-2xl border border-brand-white/15 space-y-4 text-left">
+        <div class="p-5 bg-brand-white/10 rounded-2xl border border-brand-white/15 space-y-4">
           <p id="modal-summary" class="font-sans text-sm sm:text-base leading-relaxed text-brand-white/90 font-light">
             Servicio de mensajería urbana punto a punto en moto. Asignación inmediata de un repartidor exclusivo.
           </p>
@@ -1040,7 +888,6 @@
               Beneficios Operativos:
             </span>
             <ul id="modal-features" class="space-y-2 text-xs sm:text-sm text-brand-white/90">
-              <!-- Renderizado dinámico -->
             </ul>
           </div>
         </div>
@@ -1072,7 +919,7 @@
           <button
             type="button"
             onclick="closeServiceModal()"
-            class="text-xs text-brand-white/70 hover:text-brand-white underline uppercase font-bold tracking-wider"
+            class="text-xs text-brand-white/70 hover:text-brand-white underline uppercase font-bold tracking-wider cursor-pointer"
           >
             Volver
           </button>
@@ -1090,21 +937,19 @@
     </div>
   </section>
 
-  <!-- =========================================================================
-       5. SLIDER INDUSTRIAS
-       ========================================================================= -->
+  <!-- ==================== SECCIÓN 3: SLIDER DE INDUSTRIAS ==================== -->
   <section id="slider-industrias" class="py-20 sm:py-28 bg-brand-canvas text-brand-blue relative overflow-hidden w-full border-t border-brand-blue/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       
       <!-- Header & Controles del Slider -->
-      <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12 text-left">
         <div class="lg:col-span-8 space-y-4">
           <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-subheading font-bold uppercase tracking-widest bg-brand-blue text-brand-yellow shadow-md border border-brand-blue">
             <i class="ph-fill ph-sparkle text-sm text-brand-yellow"></i> LOGÍSTICA A MEDIDA DE TU RUBRO · MDQ 2026
           </div>
           <h2 class="text-4xl sm:text-5xl lg:text-6xl font-display uppercase tracking-tight leading-[0.95] flex flex-col items-start gap-1 text-brand-blue">
             <span>Soluciones Especiales</span>
-            <span class="relative inline-block bg-brand-blue px-3 py-1 my-1 -rotate-1 rounded-xl border border-brand-yellow/60 shadow-xl">
+            <span class="relative inline-block bg-brand-blue px-3 py-1 my-1 transform -rotate-1 rounded-xl border border-brand-yellow/60 shadow-xl">
               <span class="relative z-10 bg-brand-yellow text-brand-blue px-3.5 py-0.5 inline-block font-display font-black rounded-lg">
                 PARA CADA INDUSTRIA
               </span>
@@ -1118,21 +963,21 @@
         <!-- Controles de Navegación -->
         <div class="lg:col-span-4 flex items-center justify-start lg:justify-end gap-3">
           <div class="font-mono text-xs font-bold text-brand-blue bg-white px-3.5 py-2 rounded-full border border-brand-blue/30 shadow-sm mr-1">
-            <span id="industry-indicator-curr" class="text-brand-blue text-sm font-extrabold">1</span> / 6
+            <span id="industry-current-num" class="text-brand-blue text-sm font-extrabold">1</span> / 6
           </div>
           <button
-            id="btn-industry-prev"
             type="button"
+            onclick="prevIndustrySlide()"
             aria-label="Industria anterior"
-            class="h-11 w-11 rounded-xl border border-brand-blue/30 bg-white text-brand-blue hover:bg-brand-blue hover:text-brand-yellow flex items-center justify-center transition-all duration-200 active:scale-95 shadow-sm"
+            class="h-11 w-11 rounded-xl border border-brand-blue/30 bg-white text-brand-blue hover:bg-brand-blue hover:text-brand-yellow flex items-center justify-center transition-all duration-200 active:scale-95 shadow-sm cursor-pointer"
           >
             <i class="ph-bold ph-caret-left text-lg"></i>
           </button>
           <button
-            id="btn-industry-next"
             type="button"
+            onclick="nextIndustrySlide()"
             aria-label="Siguiente industria"
-            class="h-11 w-11 rounded-xl bg-brand-blue text-brand-yellow hover:bg-brand-blue-hover flex items-center justify-center transition-all duration-200 active:scale-95 shadow-md font-bold"
+            class="h-11 w-11 rounded-xl bg-brand-blue text-brand-yellow hover:bg-brand-blue-hover flex items-center justify-center transition-all duration-200 active:scale-95 shadow-md font-bold cursor-pointer"
           >
             <i class="ph-bold ph-caret-right text-lg"></i>
           </button>
@@ -1140,16 +985,15 @@
       </div>
 
       <!-- Pestañas Interactivas de Rubros -->
-      <div id="industry-tabs-container" class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar" role="tablist">
-        <!-- Renderizado dinámico de pestañas -->
+      <div id="industry-tabs" class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar" role="tablist">
       </div>
 
       <!-- Showcase Card Principal -->
       <div class="rounded-[32px] p-2 sm:p-3 bg-brand-blue border border-brand-white/20 shadow-2xl">
         <div class="p-6 sm:p-10 lg:p-12 rounded-[24px] bg-brand-blue-deep border border-brand-white/15 relative overflow-hidden text-brand-white">
-          <i id="industry-bg-watermark" class="ph-fill ph-shopping-bag absolute right-4 bottom-4 text-[18rem] text-brand-white/[0.04] pointer-events-none transition-all duration-500"></i>
+          <i id="industry-bg-icon" class="ph-fill ph-shopping-bag absolute right-4 bottom-4 text-[18rem] text-brand-white/[0.04] pointer-events-none transition-all duration-500"></i>
 
-          <div id="industry-showcase-content" class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10 transition-opacity duration-300">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
             <div class="lg:col-span-4 flex flex-col items-center justify-center text-center space-y-4">
               <div id="industry-icon-box" class="w-28 h-28 sm:w-36 sm:h-36 rounded-3xl bg-brand-yellow text-brand-blue flex items-center justify-center shadow-glow-yellow border-2 border-brand-yellow transition-transform duration-300 hover:scale-105">
                 <i id="industry-main-icon" class="ph-fill ph-shopping-bag text-5xl sm:text-6xl"></i>
@@ -1180,23 +1024,22 @@
               </p>
 
               <div id="industry-benefits" class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                <!-- Beneficios dinámicos -->
               </div>
 
               <div class="pt-3 flex flex-wrap items-center gap-4">
                 <a
-                  id="industry-cta"
+                  id="industry-cta-btn"
                   href="https://wa.me/542236602699"
                   target="_blank"
                   rel="noopener noreferrer"
                   class="inline-flex items-center gap-3 px-8 py-3.5 rounded-full font-subheading text-sm uppercase tracking-wider font-bold bg-brand-yellow text-brand-blue hover:bg-brand-yellow-hover hover:shadow-glow-yellow transition-all duration-300 group"
                 >
-                  <span>Consultar Plan E-Commerce</span>
+                  <span id="industry-cta-text">Consultar Plan E-Commerce</span>
                   <span class="w-6 h-6 rounded-full bg-brand-blue/15 flex items-center justify-center group-hover:translate-x-1 transition-transform">
                     <i class="ph-bold ph-arrow-right text-xs text-brand-blue"></i>
                   </span>
                 </a>
-                <a href="#contacto" class="font-subheading text-xs sm:text-sm uppercase tracking-wider font-bold text-brand-white/80 hover:text-brand-yellow underline-offset-4 hover:underline py-2 transition-colors inline-flex items-center gap-1.5">
+                <a href="/prototipos/contacto.html" class="font-subheading text-xs sm:text-sm uppercase tracking-wider font-bold text-brand-white/80 hover:text-brand-yellow underline-offset-4 hover:underline py-2 transition-colors inline-flex items-center gap-1.5">
                   Cuenta Corriente Comercial
                   <i class="ph ph-arrow-right text-xs"></i>
                 </a>
@@ -1210,24 +1053,18 @@
     </div>
   </section>
 
-  <!-- =========================================================================
-       6. EMPRENDEDORES & PYMES MDQ + MARQUEE DE MARCAS
-       ========================================================================= -->
+  <!-- ==================== SECCIÓN 4: EMPRENDEDORES & MARCAS ==================== -->
   <section id="emprendedores-mdq" class="py-20 sm:py-28 bg-brand-blue relative overflow-hidden w-full border-t border-brand-white/15">
-    <!-- Resplandores ambientales -->
-    <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-brand-yellow/10 rounded-full blur-[130px] pointer-events-none"></div>
-    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-brand-white/5 rounded-full blur-[130px] pointer-events-none"></div>
-
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       
-      <!-- Header de Sección Editorial -->
-      <div class="reveal max-w-4xl mb-16 space-y-4 text-left">
+      <!-- Header de Sección -->
+      <div class="max-w-4xl mb-16 space-y-4 text-left">
         <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-subheading font-bold uppercase tracking-widest bg-brand-yellow text-brand-blue shadow-glow-yellow border border-brand-yellow">
           <i class="ph-fill ph-storefront text-sm"></i> SOCIO ESTRATÉGICO LOCAL
         </span>
 
         <h2 class="text-4xl sm:text-5xl lg:text-7xl font-display uppercase tracking-tight leading-[0.9] text-brand-white">
-          POTENCIAMOS TU <span class="inline-block px-4 py-1 bg-brand-yellow text-brand-blue rounded-2xl mx-1 -rotate-1 font-display font-black shadow-glow-yellow">MARCA</span> EN MAR DEL PLATA
+          POTENCIAMOS TU <span class="inline-block px-4 py-1 bg-brand-yellow text-brand-blue rounded-2xl mx-1 transform -rotate-1 font-display font-black shadow-glow-yellow">MARCA</span> EN MAR DEL PLATA
         </h2>
 
         <p class="text-brand-white/90 font-sans text-base sm:text-lg leading-relaxed max-w-2xl font-light">
@@ -1238,10 +1075,10 @@
       </div>
 
       <!-- Asymmetric Bento Cards Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch text-left">
 
         <!-- Bento Card 1: Logística E-Commerce (7 cols) -->
-        <div class="reveal lg:col-span-7 rounded-[32px] p-2 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl hover:-translate-y-1 transition-transform duration-300 flex flex-col justify-between">
+        <div class="lg:col-span-7 rounded-[32px] p-2 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl hover:-translate-y-1 transition-transform duration-300 flex flex-col justify-between">
           <div class="p-6 sm:p-8 rounded-[24px] bg-brand-blue border border-brand-white/15 h-full flex flex-col justify-between space-y-6 relative overflow-hidden">
             <i class="ph-fill ph-shopping-bag absolute -right-6 -bottom-6 text-[14rem] text-brand-white/[0.03] pointer-events-none"></i>
             
@@ -1266,10 +1103,10 @@
                 </div>
                 <div class="hidden sm:flex shrink-0 w-24 h-24 items-center justify-center">
                   <img
-                    src="/recursos_envios/moto_envios_3d.png"
+                    src="./public/recursos_envios/moto_envios_3d.png"
                     alt="Moto Envíos 3D"
                     class="w-full h-full object-contain filter drop-shadow-xl transform hover:scale-110 transition-transform"
-                    onerror="this.style.display='none';"
+                    onerror="this.src='./public/cards/hero_express.webp';"
                   />
                 </div>
               </div>
@@ -1307,7 +1144,7 @@
         </div>
 
         <!-- Bento Card 2: Corporativo & Cuenta Corriente (5 cols) -->
-        <div class="reveal lg:col-span-5 rounded-[32px] p-2 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl hover:-translate-y-1 transition-transform duration-300 flex flex-col justify-between" style="--reveal-delay:100ms">
+        <div class="lg:col-span-5 rounded-[32px] p-2 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl hover:-translate-y-1 transition-transform duration-300 flex flex-col justify-between">
           <div class="p-6 sm:p-8 rounded-[24px] bg-brand-blue border border-brand-white/15 h-full flex flex-col justify-between space-y-6 relative overflow-hidden">
             <i class="ph-fill ph-buildings absolute -right-6 -bottom-6 text-[14rem] text-brand-white/[0.03] pointer-events-none"></i>
             
@@ -1344,7 +1181,7 @@
 
             <div class="pt-4 border-t border-brand-white/15 relative z-10 flex justify-end">
               <a
-                href="#contacto"
+                href="/prototipos/contacto.html#plan"
                 class="inline-flex items-center gap-2 rounded-full font-subheading uppercase tracking-wider font-bold px-6 py-3 text-xs bg-brand-white/15 text-brand-white hover:bg-brand-yellow hover:text-brand-blue border border-brand-white/20 transition-all group"
               >
                 <span>Abrir Cuenta Comercial</span>
@@ -1393,14 +1230,12 @@
     </div>
   </section>
 
-  <!-- =========================================================================
-       7. CARRUSEL REDES
-       ========================================================================= -->
+  <!-- ==================== CARRUSEL DE REDES SOCIALES ==================== -->
   <section id="carrusel-redes" class="py-20 sm:py-28 bg-brand-blue border-y border-brand-white/15 relative overflow-hidden w-full">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
       <!-- Header de Sección -->
-      <div class="reveal text-center max-w-3xl mx-auto mb-16 space-y-3.5">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3.5">
         <div>
           <span class="inline-block px-5 py-1.5 bg-brand-yellow text-brand-blue rounded-full text-xs font-bold tracking-widest font-subheading uppercase shadow-md">
             NUESTRA COMUNIDAD DIGITAL
@@ -1422,7 +1257,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full">
 
         <!-- CARD 1: FACEBOOK -->
-        <article class="reveal group relative rounded-3xl p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[420px] transition-all duration-300 hover:-translate-y-1">
+        <article class="group relative rounded-2xl p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[420px] transition-all duration-300 hover:-translate-y-1 text-left">
           <i class="ph-fill ph-facebook-logo absolute -right-6 -bottom-6 text-[14rem] text-brand-white/[0.04] pointer-events-none"></i>
 
           <div class="relative z-10 space-y-4">
@@ -1451,12 +1286,7 @@
           </div>
 
           <div class="relative z-10 pt-6">
-            <a
-              href="https://www.facebook.com/enviosdosruedas"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-300 bg-social-facebook hover:bg-[#166fe5] text-white shadow-glow-fb group/btn"
-            >
+            <a href="https://www.facebook.com/enviosdosruedas" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-300 bg-social-facebook hover:bg-[#166fe5] text-white shadow-glow-fb group/btn">
               <span>SEGUIR COMUNIDAD</span>
               <span class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center shrink-0 ml-2 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform">
                 <i class="ph-bold ph-arrow-up-right text-sm text-white"></i>
@@ -1466,7 +1296,7 @@
         </article>
 
         <!-- CARD 2: INSTAGRAM -->
-        <article class="reveal group relative rounded-3xl p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[420px] transition-all duration-300 hover:-translate-y-1" style="--reveal-delay:80ms">
+        <article class="group relative rounded-2xl p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[420px] transition-all duration-300 hover:-translate-y-1 text-left">
           <i class="ph-fill ph-instagram-logo absolute -right-6 -bottom-6 text-[14rem] text-brand-white/[0.04] pointer-events-none"></i>
 
           <div class="relative z-10 space-y-4">
@@ -1495,12 +1325,7 @@
           </div>
 
           <div class="relative z-10 pt-6">
-            <a
-              href="https://www.instagram.com/enviosdosruedas/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-300 bg-gradient-to-r from-[#9b2c8a] via-[#e11d48] to-[#f97316] hover:opacity-95 text-white shadow-glow-ig group/btn"
-            >
+            <a href="https://www.instagram.com/enviosdosruedas/" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-300 bg-gradient-to-r from-[#9b2c8a] via-[#e11d48] to-[#f97316] hover:opacity-95 text-white shadow-glow-ig group/btn">
               <span>VER CONTENIDO</span>
               <span class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center shrink-0 ml-2 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform">
                 <i class="ph-bold ph-arrow-up-right text-sm text-white"></i>
@@ -1510,7 +1335,7 @@
         </article>
 
         <!-- CARD 3: WHATSAPP -->
-        <article class="reveal group relative rounded-3xl p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[420px] transition-all duration-300 hover:-translate-y-1" style="--reveal-delay:160ms">
+        <article class="group relative rounded-2xl p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[420px] transition-all duration-300 hover:-translate-y-1 text-left">
           <i class="ph-fill ph-whatsapp-logo absolute -right-6 -bottom-6 text-[14rem] text-brand-white/[0.04] pointer-events-none"></i>
 
           <div class="relative z-10 space-y-4">
@@ -1539,12 +1364,7 @@
           </div>
 
           <div class="relative z-10 pt-6">
-            <a
-              href="https://wa.me/542236602699"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-300 bg-social-whatsapp hover:bg-[#20bd5a] text-brand-blue-deep shadow-glow-wa group/btn"
-            >
+            <a href="https://wa.me/542236602699" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-300 bg-social-whatsapp hover:bg-[#20bd5a] text-brand-blue-deep shadow-glow-wa group/btn font-bold">
               <span>INICIAR CHAT</span>
               <span class="w-7 h-7 rounded-full bg-brand-blue-deep/15 flex items-center justify-center shrink-0 ml-2 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform">
                 <i class="ph-bold ph-arrow-up-right text-sm text-brand-blue-deep"></i>
@@ -1557,27 +1377,18 @@
     </div>
   </section>
 
-  <!-- =========================================================================
-       8. FOOTER GLOBAL
-       ========================================================================= -->
+  <!-- ==================== FOOTER GLOBAL ==================== -->
   <footer id="contacto" class="bg-brand-blue text-brand-white border-t border-brand-white/20 relative overflow-hidden w-full">
     <div class="h-1.5 bg-brand-yellow w-full shadow-md"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10 relative z-10">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 items-start text-left">
 
-      <!-- Columnas Principales del Footer -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 items-start">
-
-        <!-- Identidad -->
+        <!-- Identidad (5 cols) -->
         <div class="lg:col-span-5 space-y-5">
-          <a class="flex items-center gap-3 group w-fit focus:outline-none" href="#hero-animado">
+          <a class="flex items-center gap-3 group w-fit focus:outline-none" href="/prototipos/index.html">
             <div class="relative w-11 h-11 bg-brand-blue border border-brand-yellow rounded-xl p-1 shrink-0 flex items-center justify-center overflow-hidden shadow-glow-yellow group-hover:scale-105 transition-transform">
-              <img
-                src="/logo.webp"
-                alt="Logo Envíos DosRuedas"
-                class="w-full h-full object-contain"
-                onerror="this.style.display='none';"
-              />
+              <img src="./logo.webp" alt="Logo Envíos DosRuedas" class="w-full h-full object-contain" onerror="this.style.display='none';">
             </div>
             <div class="flex flex-col leading-none">
               <span class="font-display text-2xl sm:text-3xl tracking-tight uppercase text-brand-white">
@@ -1598,34 +1409,13 @@
               Canales Oficiales
             </span>
             <div class="flex flex-wrap items-center gap-3">
-              <a
-                class="h-9 w-9 rounded-xl bg-brand-white/15 hover:bg-brand-yellow text-brand-white hover:text-brand-blue flex items-center justify-center transition-all border border-brand-white/20"
-                title="Instagram"
-                aria-label="Instagram Oficial"
-                href="https://www.instagram.com/enviosdosruedas/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a class="h-9 w-9 rounded-xl bg-brand-white/15 hover:bg-brand-yellow text-brand-white hover:text-brand-blue flex items-center justify-center transition-all border border-brand-white/20" title="Instagram" aria-label="Instagram Oficial" href="https://www.instagram.com/enviosdosruedas/" target="_blank" rel="noopener noreferrer">
                 <i class="ph-fill ph-instagram-logo text-lg"></i>
               </a>
-              <a
-                class="h-9 w-9 rounded-xl bg-brand-white/15 hover:bg-brand-yellow text-brand-white hover:text-brand-blue flex items-center justify-center transition-all border border-brand-white/20"
-                title="Facebook"
-                aria-label="Facebook Oficial"
-                href="https://www.facebook.com/enviosdosruedas"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a class="h-9 w-9 rounded-xl bg-brand-white/15 hover:bg-brand-yellow text-brand-white hover:text-brand-blue flex items-center justify-center transition-all border border-brand-white/20" title="Facebook" aria-label="Facebook Oficial" href="https://www.facebook.com/enviosdosruedas" target="_blank" rel="noopener noreferrer">
                 <i class="ph-fill ph-facebook-logo text-lg"></i>
               </a>
-              <a
-                class="h-9 w-9 rounded-xl bg-brand-yellow hover:bg-brand-yellow-hover text-brand-blue flex items-center justify-center transition-all"
-                title="WhatsApp Directo"
-                aria-label="WhatsApp Directo"
-                href="https://wa.me/542236602699"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a class="h-9 w-9 rounded-xl bg-brand-yellow hover:bg-brand-yellow-hover text-brand-blue flex items-center justify-center transition-all" title="WhatsApp Directo" aria-label="WhatsApp Directo" href="https://wa.me/542236602699" target="_blank" rel="noopener noreferrer">
                 <i class="ph-fill ph-whatsapp-logo text-lg"></i>
               </a>
               <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-brand-white/15 border border-brand-white/20 text-xs text-brand-white font-mono">
@@ -1636,17 +1426,14 @@
           </div>
         </div>
 
-        <!-- Servicios -->
+        <!-- Servicios (3 cols) -->
         <div class="lg:col-span-3 space-y-4">
           <h4 class="font-subheading text-lg tracking-wider text-brand-yellow uppercase border-b border-brand-white/20 pb-2 font-bold">
             Servicios y Soluciones
           </h4>
           <ul class="space-y-2.5 text-sm font-sans">
             <li>
-              <a
-                class="text-brand-white hover:text-brand-yellow flex items-center justify-between group transition-all duration-200"
-                href="#servicios-overview"
-              >
+              <a class="text-brand-white hover:text-brand-yellow flex items-center justify-between group transition-all duration-200" href="/prototipos/envios-express.html">
                 <div class="flex items-center gap-2">
                   <i class="ph-fill ph-lightning text-brand-yellow"></i>
                   <span>Envíos Express Inmediatos</span>
@@ -1655,10 +1442,7 @@
               </a>
             </li>
             <li>
-              <a
-                class="text-brand-white hover:text-brand-yellow flex items-center justify-between group transition-all duration-200"
-                href="#servicios-overview"
-              >
+              <a class="text-brand-white hover:text-brand-yellow flex items-center justify-between group transition-all duration-200" href="/prototipos/envios-lowcost.html">
                 <div class="flex items-center gap-2">
                   <i class="ph-fill ph-tag text-brand-yellow"></i>
                   <span>Envíos LowCost Diarios</span>
@@ -1667,10 +1451,7 @@
               </a>
             </li>
             <li>
-              <a
-                class="text-brand-white hover:text-brand-yellow flex items-center justify-between group transition-all duration-200"
-                href="#servicios-overview"
-              >
+              <a class="text-brand-white hover:text-brand-yellow flex items-center justify-between group transition-all duration-200" href="/prototipos/enviosflex.html">
                 <div class="flex items-center gap-2">
                   <i class="ph-fill ph-package text-brand-yellow"></i>
                   <span>Mercado Envíos Flex</span>
@@ -1679,10 +1460,7 @@
               </a>
             </li>
             <li>
-              <a
-                class="text-brand-white hover:text-brand-yellow flex items-center justify-between group transition-all duration-200"
-                href="#servicios-overview"
-              >
+              <a class="text-brand-white hover:text-brand-yellow flex items-center justify-between group transition-all duration-200" href="/prototipos/plan-emprendedores.html">
                 <div class="flex items-center gap-2">
                   <i class="ph-fill ph-warehouse text-brand-yellow"></i>
                   <span>E-Commerce & Logística 3PL</span>
@@ -1693,13 +1471,13 @@
           </ul>
         </div>
 
-        <!-- Base Operativa -->
+        <!-- Base Operativa (4 cols) -->
         <div class="lg:col-span-4 space-y-4">
           <h4 class="font-subheading text-lg tracking-wider text-brand-yellow uppercase border-b border-brand-white/20 pb-2 font-bold">
             Base Operativa y Logística
           </h4>
           <div class="space-y-3 text-xs text-brand-white font-sans">
-            <div class="flex gap-3 items-start bg-brand-white/10 p-3 rounded-xl border border-brand-white/15">
+            <div class="flex gap-3 items-start bg-brand-white/10 p-3.5 rounded-xl border border-brand-white/15">
               <div class="p-1.5 bg-brand-white/20 rounded-lg shrink-0 text-brand-yellow">
                 <i class="ph-fill ph-map-pin text-base"></i>
               </div>
@@ -1710,7 +1488,7 @@
               </div>
             </div>
 
-            <div class="flex gap-3 items-start bg-brand-white/10 p-3 rounded-xl border border-brand-white/15">
+            <div class="flex gap-3 items-start bg-brand-white/10 p-3.5 rounded-xl border border-brand-white/15">
               <div class="p-1.5 bg-brand-white/20 rounded-lg shrink-0 text-brand-yellow">
                 <i class="ph-fill ph-phone-call text-base"></i>
               </div>
@@ -1723,7 +1501,7 @@
               </div>
             </div>
 
-            <div class="flex gap-3 items-start bg-brand-white/10 p-3 rounded-xl border border-brand-white/15">
+            <div class="flex gap-3 items-start bg-brand-white/10 p-3.5 rounded-xl border border-brand-white/15">
               <div class="p-1.5 bg-brand-white/20 rounded-lg shrink-0 text-brand-yellow">
                 <i class="ph-fill ph-clock text-base"></i>
               </div>
@@ -1751,38 +1529,97 @@
 
       <!-- Copyright y Accesos Rápidos -->
       <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-brand-white/80 font-sans">
-        <p>© <span id="current-year">2026</span> Envíos DosRuedas. Todos los derechos reservados. Mar del Plata, Argentina.</p>
+        <p>© 2026 Envíos DosRuedas. Todos los derechos reservados. Mar del Plata, Argentina.</p>
         <div class="flex flex-wrap justify-center gap-6">
-          <a class="hover:text-brand-yellow transition-colors" href="#hero-animado">
-            Inicio
-          </a>
-          <a class="hover:text-brand-yellow transition-colors" href="#servicios-overview">
-            Servicios
-          </a>
-          <a class="hover:text-brand-yellow transition-colors" href="#slider-industrias">
-            Industrias
-          </a>
-          <button
-            type="button"
-            onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
-            class="text-brand-yellow font-subheading uppercase tracking-wider flex items-center gap-1 hover:underline ml-2"
-          >
+          <a class="hover:text-brand-yellow transition-colors" href="/prototipos/index.html">Inicio</a>
+          <a class="hover:text-brand-yellow transition-colors" href="/prototipos/sobre-nosotros.html">Nosotros</a>
+          <a class="hover:text-brand-yellow transition-colors" href="/prototipos/contacto.html">Contacto</a>
+          <button type="button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="text-brand-yellow font-subheading uppercase tracking-wider flex items-center gap-1 hover:underline ml-2">
             <span>Volver Arriba</span>
             <i class="ph-bold ph-arrow-up text-xs"></i>
           </button>
         </div>
       </div>
-
     </div>
   </footer>
 
-  <!-- =========================================================================
-       JAVASCRIPT INTERACTIVO VANILLA
-       ========================================================================= -->
+  <!-- ==================== LOGICA INTERACTIVA EN VANILLA JS ==================== -->
   <script>
-    // -------------------------------------------------------------
-    // 1. DATA DE SERVICIOS (MODAL FICHA TÉCNICA)
-    // -------------------------------------------------------------
+    // Header Dropdowns
+    const servicesBtn = document.getElementById('services-btn');
+    const servicesMenu = document.getElementById('services-menu');
+    const servicesCaret = document.getElementById('services-caret');
+
+    const aboutBtn = document.getElementById('about-btn');
+    const aboutMenu = document.getElementById('about-menu');
+    const aboutCaret = document.getElementById('about-caret');
+
+    if (servicesBtn && servicesMenu) {
+      servicesBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = !servicesMenu.classList.contains('hidden');
+        if (isOpen) {
+          servicesMenu.classList.add('hidden');
+          servicesCaret?.classList.remove('rotate-180');
+          servicesBtn.setAttribute('aria-expanded', 'false');
+        } else {
+          servicesMenu.classList.remove('hidden');
+          servicesCaret?.classList.add('rotate-180');
+          servicesBtn.setAttribute('aria-expanded', 'true');
+          aboutMenu?.classList.add('hidden');
+          aboutCaret?.classList.remove('rotate-180');
+        }
+      });
+    }
+
+    if (aboutBtn && aboutMenu) {
+      aboutBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = !aboutMenu.classList.contains('hidden');
+        if (isOpen) {
+          aboutMenu.classList.add('hidden');
+          aboutCaret?.classList.remove('rotate-180');
+          aboutBtn.setAttribute('aria-expanded', 'false');
+        } else {
+          aboutMenu.classList.remove('hidden');
+          aboutCaret?.classList.add('rotate-180');
+          aboutBtn.setAttribute('aria-expanded', 'true');
+          servicesMenu?.classList.add('hidden');
+          servicesCaret?.classList.remove('rotate-180');
+        }
+      });
+    }
+
+    document.addEventListener('click', () => {
+      servicesMenu?.classList.add('hidden');
+      servicesCaret?.classList.remove('rotate-180');
+      aboutMenu?.classList.add('hidden');
+      aboutCaret?.classList.remove('rotate-180');
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.contains('hidden');
+        if (isHidden) {
+          mobileMenu.classList.remove('hidden');
+          mobileMenuIcon.classList.remove('ph-list');
+          mobileMenuIcon.classList.add('ph-x');
+          mobileMenuBtn.setAttribute('aria-expanded', 'true');
+        } else {
+          mobileMenu.classList.add('hidden');
+          mobileMenuIcon.classList.remove('ph-x');
+          mobileMenuIcon.classList.add('ph-list');
+          mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    // Modal de Servicios Ficha Técnica
     const SERVICES_DATA = {
       express: {
         title: "Envíos Express Inmediatos",
@@ -1843,39 +1680,31 @@
     };
 
     function openServiceModal(key) {
-      const data = SERVICES_DATA[key];
-      if (!data) return;
+      const s = SERVICES_DATA[key];
+      if (!s) return;
 
-      document.getElementById('modal-icon').className = `ph-fill ${data.icon}`;
-      document.getElementById('modal-badge').innerText = data.badge;
-      document.getElementById('modal-title').innerText = data.title;
-      document.getElementById('modal-summary').innerText = data.summary;
-      document.getElementById('modal-time').innerText = data.time;
-      document.getElementById('modal-price').innerText = data.price;
-      document.getElementById('modal-weight').innerText = data.weight;
+      document.getElementById('modal-title').textContent = s.title;
+      document.getElementById('modal-badge').textContent = s.badge;
+      document.getElementById('modal-icon').className = `ph-fill ${s.icon}`;
+      document.getElementById('modal-summary').textContent = s.summary;
+      document.getElementById('modal-time').textContent = s.time;
+      document.getElementById('modal-price').textContent = s.price;
+      document.getElementById('modal-weight').textContent = s.weight;
 
       const featList = document.getElementById('modal-features');
-      featList.innerHTML = data.features.map(f => `
+      featList.innerHTML = s.features.map(f => `
         <li class="flex items-start gap-2">
           <i class="ph-fill ph-check-circle text-brand-yellow text-base shrink-0 mt-0.5"></i>
           <span>${f}</span>
         </li>
       `).join('');
 
-      document.getElementById('service-modal-overlay').classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
+      document.getElementById('service-modal').classList.remove('hidden');
     }
 
     function closeServiceModal() {
-      document.getElementById('service-modal-overlay').classList.add('hidden');
-      document.body.style.overflow = '';
+      document.getElementById('service-modal').classList.add('hidden');
     }
-
-    document.getElementById('service-modal-overlay').addEventListener('click', (e) => {
-      if (e.target === document.getElementById('service-modal-overlay')) {
-        closeServiceModal();
-      }
-    });
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
@@ -1883,9 +1712,7 @@
       }
     });
 
-    // -------------------------------------------------------------
-    // 2. DATA & CONTROL DE SLIDER INDUSTRIAS
-    // -------------------------------------------------------------
+    // Slider de Industrias
     const INDUSTRIES = [
       {
         title: "E-Commerce & Tiendas Online",
@@ -1952,7 +1779,9 @@
     let currentIndustryIdx = 0;
 
     function renderIndustryTabs() {
-      const container = document.getElementById('industry-tabs-container');
+      const container = document.getElementById('industry-tabs');
+      if (!container) return;
+
       container.innerHTML = INDUSTRIES.map((ind, idx) => {
         const isActive = idx === currentIndustryIdx;
         return `
@@ -1961,178 +1790,111 @@
             onclick="setIndustrySlide(${idx})"
             class="px-4 py-2.5 rounded-full font-subheading text-xs uppercase tracking-wider font-bold whitespace-nowrap transition-all flex items-center gap-2 border cursor-pointer ${
               isActive
-                ? 'bg-brand-blue text-brand-yellow border-brand-blue shadow-md scale-105'
-                : 'bg-white text-brand-blue border-brand-blue/25 hover:bg-brand-yellow/20 hover:border-brand-blue shadow-sm'
+                ? "bg-brand-blue text-brand-yellow border-brand-blue shadow-md scale-105"
+                : "bg-white text-brand-blue border-brand-blue/25 hover:bg-brand-yellow/20 hover:border-brand-blue shadow-sm"
             }"
           >
-            <i class="ph-fill ${ind.icon} text-base ${isActive ? 'text-brand-yellow' : 'text-brand-blue'}"></i>
-            <span>${ind.title.split(' ')[0]}</span>
+            <i class="ph-fill ${ind.icon} text-base ${isActive ? "text-brand-yellow" : "text-brand-blue"}"></i>
+            <span>${ind.title.split(" ")[0]}</span>
           </button>
         `;
       }).join('');
     }
 
+    function renderIndustryCard() {
+      const cur = INDUSTRIES[currentIndustryIdx];
+      if (!cur) return;
+
+      document.getElementById('industry-current-num').textContent = currentIndustryIdx + 1;
+      document.getElementById('industry-title').textContent = cur.title;
+      document.getElementById('industry-badge').textContent = cur.badge;
+      document.getElementById('industry-subtitle').textContent = cur.subtitle;
+      document.getElementById('industry-desc').textContent = cur.desc;
+      document.getElementById('industry-sla').textContent = cur.sla;
+      document.getElementById('industry-main-icon').className = `ph-fill ${cur.icon} text-5xl sm:text-6xl`;
+      document.getElementById('industry-bg-icon').className = `ph-fill ${cur.icon} absolute right-4 bottom-4 text-[18rem] text-brand-white/[0.04] pointer-events-none transition-all duration-500`;
+      document.getElementById('industry-cta-text').textContent = cur.cta;
+
+      const benefitsBox = document.getElementById('industry-benefits');
+      benefitsBox.innerHTML = cur.benefits.map(b => `
+        <div class="p-3 rounded-xl bg-brand-white/10 border border-brand-white/15 flex items-center gap-2 text-xs font-sans text-brand-white">
+          <i class="ph-fill ph-check-circle text-brand-yellow text-base shrink-0"></i>
+          <span>${b}</span>
+        </div>
+      `).join('');
+
+      renderIndustryTabs();
+    }
+
     function setIndustrySlide(idx) {
       currentIndustryIdx = idx;
-      const current = INDUSTRIES[idx];
-
-      const showcase = document.getElementById('industry-showcase-content');
-      showcase.style.opacity = '0';
-
-      setTimeout(() => {
-        document.getElementById('industry-indicator-curr').innerText = (idx + 1).toString();
-        document.getElementById('industry-bg-watermark').className = `ph-fill ${current.icon} absolute right-4 bottom-4 text-[18rem] text-brand-white/[0.04] pointer-events-none transition-all duration-500`;
-        document.getElementById('industry-main-icon').className = `ph-fill ${current.icon} text-5xl sm:text-6xl`;
-        document.getElementById('industry-sla').innerText = current.sla;
-        document.getElementById('industry-badge').innerText = current.badge;
-        document.getElementById('industry-subtitle').innerText = current.subtitle;
-        document.getElementById('industry-title').innerText = current.title;
-        document.getElementById('industry-desc').innerText = current.desc;
-
-        document.getElementById('industry-benefits').innerHTML = current.benefits.map(b => `
-          <div class="p-3 rounded-xl bg-brand-white/10 border border-brand-white/15 flex items-center gap-2 text-xs font-sans text-brand-white">
-            <i class="ph-fill ph-check-circle text-brand-yellow text-base shrink-0"></i>
-            <span>${b}</span>
-          </div>
-        `).join('');
-
-        const ctaBtn = document.getElementById('industry-cta');
-        ctaBtn.querySelector('span:first-child').innerText = current.cta;
-
-        renderIndustryTabs();
-        showcase.style.opacity = '1';
-      }, 150);
+      renderIndustryCard();
     }
 
-    document.getElementById('btn-industry-prev').addEventListener('click', () => {
-      const prev = (currentIndustryIdx - 1 + INDUSTRIES.length) % INDUSTRIES.length;
-      setIndustrySlide(prev);
-    });
+    function prevIndustrySlide() {
+      currentIndustryIdx = (currentIndustryIdx - 1 + INDUSTRIES.length) % INDUSTRIES.length;
+      renderIndustryCard();
+    }
 
-    document.getElementById('btn-industry-next').addEventListener('click', () => {
-      const next = (currentIndustryIdx + 1) % INDUSTRIES.length;
-      setIndustrySlide(next);
-    });
+    function nextIndustrySlide() {
+      currentIndustryIdx = (currentIndustryIdx + 1) % INDUSTRIES.length;
+      renderIndustryCard();
+    }
 
-    // Inicializar Tabs y Showcase de Industria
     renderIndustryTabs();
-    setIndustrySlide(0);
+    renderIndustryCard();
 
-    // -------------------------------------------------------------
-    // 3. HEADER DROPDOWNS & MOBILE MENU
-    // -------------------------------------------------------------
-    const btnServices = document.getElementById('btn-dropdown-services');
-    const menuServices = document.getElementById('menu-services');
-    const arrowServices = document.getElementById('arrow-services');
+    // Three.js Partículas de fondo
+    (function initHeroCanvas() {
+      const canvas = document.getElementById('hero-particles-canvas');
+      if (!canvas || typeof THREE === 'undefined') return;
 
-    const btnAbout = document.getElementById('btn-dropdown-about');
-    const menuAbout = document.getElementById('menu-about');
-    const arrowAbout = document.getElementById('arrow-about');
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(60, window.innerWidth / (window.innerHeight * 0.9), 0.1, 1000);
+      camera.position.z = 30;
 
-    const btnMobile = document.getElementById('btn-mobile-menu');
-    const menuMobile = document.getElementById('mobile-menu');
-    const iconMobile = document.getElementById('icon-mobile-menu');
+      const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+      renderer.setSize(canvas.parentElement.clientWidth, canvas.parentElement.clientHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    function closeAllDropdowns() {
-      menuServices.classList.add('hidden');
-      arrowServices.classList.remove('rotate-180');
-      btnServices.setAttribute('aria-expanded', 'false');
+      const particleCount = 130;
+      const geometry = new THREE.BufferGeometry();
+      const positions = new Float32Array(particleCount * 3);
 
-      menuAbout.classList.add('hidden');
-      arrowAbout.classList.remove('rotate-180');
-      btnAbout.setAttribute('aria-expanded', 'false');
-    }
-
-    btnServices.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isClosed = menuServices.classList.contains('hidden');
-      closeAllDropdowns();
-      if (isClosed) {
-        menuServices.classList.remove('hidden');
-        arrowServices.classList.add('rotate-180');
-        btnServices.setAttribute('aria-expanded', 'true');
-      }
-    });
-
-    btnAbout.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isClosed = menuAbout.classList.contains('hidden');
-      closeAllDropdowns();
-      if (isClosed) {
-        menuAbout.classList.remove('hidden');
-        arrowAbout.classList.add('rotate-180');
-        btnAbout.setAttribute('aria-expanded', 'true');
-      }
-    });
-
-    document.addEventListener('click', () => {
-      closeAllDropdowns();
-    });
-
-    btnMobile.addEventListener('click', () => {
-      const isClosed = menuMobile.classList.contains('hidden');
-      if (isClosed) {
-        menuMobile.classList.remove('hidden');
-        iconMobile.classList.remove('ph-list');
-        iconMobile.classList.add('ph-x');
-        btnMobile.setAttribute('aria-expanded', 'true');
-      } else {
-        menuMobile.classList.add('hidden');
-        iconMobile.classList.remove('ph-x');
-        iconMobile.classList.add('ph-list');
-        btnMobile.setAttribute('aria-expanded', 'false');
-      }
-    });
-
-    document.querySelectorAll('.mobile-nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        menuMobile.classList.add('hidden');
-        iconMobile.classList.remove('ph-x');
-        iconMobile.classList.add('ph-list');
-        btnMobile.setAttribute('aria-expanded', 'false');
-      });
-    });
-
-    // Auto año actual
-    document.getElementById('current-year').innerText = new Date().getFullYear();
-
-    // -------------------------------------------------------------
-    // 4. SCROLL REVEAL (IntersectionObserver) — replica el <Reveal>
-    //    de src/components/ui/Reveal.tsx (fade + translateY, spring,
-    //    once:true, amount:0.3). mode="mount" (Hero) anima al cargar;
-    //    el resto anima al entrar en viewport.
-    // -------------------------------------------------------------
-    (function initScrollReveal() {
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const mountEls = document.querySelectorAll('.reveal-mount');
-      const viewEls = document.querySelectorAll('.reveal:not(.reveal-mount)');
-
-      if (prefersReduced) {
-        mountEls.forEach((el) => el.classList.add('is-visible'));
-        viewEls.forEach((el) => el.classList.add('is-visible'));
-        return;
+      for (let i = 0; i < particleCount * 3; i += 3) {
+        positions[i] = (Math.random() - 0.5) * 55;
+        positions[i + 1] = (Math.random() - 0.5) * 35;
+        positions[i + 2] = (Math.random() - 0.5) * 25;
       }
 
-      requestAnimationFrame(() => {
-        mountEls.forEach((el) => el.classList.add('is-visible'));
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+      const material = new THREE.PointsMaterial({
+        color: 0xFFF12E,
+        size: 0.45,
+        transparent: true,
+        opacity: 0.5,
       });
 
-      if ('IntersectionObserver' in window && viewEls.length) {
-        const io = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                io.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.3 }
-        );
-        viewEls.forEach((el) => io.observe(el));
-      } else {
-        viewEls.forEach((el) => el.classList.add('is-visible'));
+      const particleSystem = new THREE.Points(geometry, material);
+      scene.add(particleSystem);
+
+      function animate() {
+        requestAnimationFrame(animate);
+        particleSystem.rotation.y += 0.0008;
+        particleSystem.rotation.x += 0.0004;
+        renderer.render(scene, camera);
       }
+      animate();
+
+      window.addEventListener('resize', () => {
+        if (!canvas.parentElement) return;
+        const width = canvas.parentElement.clientWidth;
+        const height = canvas.parentElement.clientHeight;
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+      });
     })();
   </script>
 </body>

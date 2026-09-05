@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre Nosotros · Envíos DosRuedas Mar del Plata</title>
+  <meta name="description" content="Conocé a Envíos DosRuedas: más de 7 años de trayectoria, flota propia, mensajería y logística de última milla en Mar del Plata.">
+  <meta name="keywords" content="sobre nosotros envios dosruedas, historia envios dosruedas, cadeteria mar del plata, equipo logistica mdp, friuli 1972">
+  <meta name="theme-color" content="#0950F6">
+
+  <!-- Google Fonts: Anton, Bebas Neue, Outfit, Geist Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Geist+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Phosphor Icons CDN (Regular, Bold, Fill) -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-blue': '#0950F6',
+            'brand-blue-deep': '#052C87',
+            'brand-navy': '#052C87',
+            'brand-yellow': '#FFF12E',
+            'brand-yellow-hover': '#FFF44A',
+            'brand-canvas': '#F8FAFC',
+            'brand-white': '#FFFFFF',
+            'social-facebook': '#1877F2',
+            'social-whatsapp': '#25D366',
+          },
+          fontFamily: {
+            sans: ['Outfit', 'system-ui', '-apple-system', 'sans-serif'],
+            display: ['Anton', 'sans-serif'],
+            subheading: ['"Bebas Neue"', 'sans-serif'],
+            mono: ['"Geist Mono"', 'monospace'],
+          },
+          boxShadow: {
+            'glow-yellow': '0 0 25px rgba(255, 241, 46, 0.40)',
+            'glow-yellow-lg': '0 0 50px rgba(255, 241, 46, 0.55)',
+            'glow-blue': '0 0 25px rgba(9, 80, 246, 0.30)',
+            'glow-fb': '0 0 25px rgba(24, 119, 242, 0.50)',
+            'glow-ig': '0 0 25px rgba(225, 48, 108, 0.50)',
+            'glow-wa': '0 0 25px rgba(37, 211, 102, 0.50)',
+            'antigravity-deep': '0 30px 60px -15px rgba(9, 80, 246, 0.35), 0 0 50px -10px rgba(255, 241, 46, 0.20)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <style>
+    .-rotate-1 { transform: rotate(-1deg); }
+    .rotate-1 { transform: rotate(1deg); }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #052C87;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #0950F6;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 241, 46, 0.4);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #FFF12E;
+    }
+  </style>
+</head>
+<body class="bg-brand-blue text-brand-white font-sans selection:bg-brand-yellow selection:text-brand-blue overflow-x-hidden min-h-screen flex flex-col">
+
+  <!-- ==================== HEADER GLOBAL ==================== -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-brand-blue/95 backdrop-blur-md py-3.5 border-b border-brand-white/20 shadow-xl transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between gap-2 sm:gap-4">
+
+        <!-- Logotipo Oficial -->
+        <a href="/prototipos/index.html" class="flex items-center gap-2 sm:gap-3 group rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow min-w-0">
+          <div class="relative w-11 h-11 shrink-0 bg-brand-blue border border-brand-yellow rounded-xl p-1 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform shadow-glow-yellow">
+            <img src="./logo.webp" alt="Logo Envíos DosRuedas" class="w-full h-full object-contain" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'font-display font-black text-2xl text-brand-yellow leading-none\'>2R</span>';">
+          </div>
+          <span class="font-display text-lg sm:text-3xl tracking-tight leading-none uppercase flex flex-row items-center gap-1 sm:gap-1.5 min-w-0 truncate">
+            <span class="text-brand-white">Envíos</span>
+            <span class="text-brand-yellow">DosRuedas</span>
+          </span>
+        </a>
+
+        <!-- Menú Desktop -->
+        <nav class="hidden lg:flex items-center gap-1" aria-label="Navegación principal">
+          <a href="/prototipos/index.html" class="px-3.5 py-2 text-base font-subheading tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 text-brand-white hover:text-brand-yellow hover:bg-brand-white/10">
+            <i class="ph-fill ph-house text-brand-yellow text-lg"></i>
+            Inicio
+          </a>
+
+          <!-- Dropdown Servicios -->
+          <div class="relative dropdown-container" id="services-dropdown-container">
+            <button type="button" id="services-btn" aria-haspopup="true" aria-expanded="false" class="px-3.5 py-2 text-base font-subheading tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 text-brand-white hover:text-brand-yellow hover:bg-brand-white/10">
+              <i class="ph-fill ph-motorcycle text-brand-yellow text-lg"></i>
+              Servicios
+              <i class="ph ph-caret-down dropdown-arrow text-xs transition-transform duration-200" id="services-caret"></i>
+            </button>
+
+            <div id="services-menu" class="hidden absolute top-full left-0 mt-2 w-72 bg-brand-blue border border-brand-white/25 rounded-2xl shadow-2xl p-2 z-50 origin-top">
+              <a href="/prototipos/envios-express.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+                <div class="p-2 rounded-lg bg-brand-yellow text-brand-blue">
+                  <i class="ph-fill ph-lightning text-lg"></i>
+                </div>
+                <div>
+                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">Envíos Express</div>
+                  <div class="font-sans text-xs text-brand-white/80">Entregas en 30-90 min</div>
+                </div>
+              </a>
+
+              <a href="/prototipos/envios-lowcost.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+                <div class="p-2 rounded-lg bg-brand-white/20 text-brand-white">
+                  <i class="ph-fill ph-tag text-lg"></i>
+                </div>
+                <div>
+                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">Envíos LowCost</div>
+                  <div class="font-sans text-xs text-brand-white/80">Envíos en el día para PyMEs</div>
+                </div>
+              </a>
+
+              <a href="/prototipos/enviosflex.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+                <div class="p-2 rounded-lg bg-brand-white/20 text-brand-white">
+                  <i class="ph-fill ph-package text-lg"></i>
+                </div>
+                <div>
+                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">MercadoLibre Flex</div>
+                  <div class="font-sans text-xs text-brand-white/80">Socio logístico oficial</div>
+                </div>
+              </a>
+
+              <a href="/prototipos/plan-emprendedores.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+                <div class="p-2 rounded-lg bg-brand-white/20 text-brand-yellow">
+                  <i class="ph-fill ph-warehouse text-lg"></i>
+                </div>
+                <div>
+                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">3PL & Depósito</div>
+                  <div class="font-sans text-xs text-brand-white/80">Picking, packing y guarda</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Dropdown Nosotros -->
+          <div class="relative dropdown-container" id="about-dropdown-container">
+            <button type="button" id="about-btn" aria-haspopup="true" aria-expanded="false" class="px-3.5 py-2 text-base font-subheading tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 text-brand-yellow bg-brand-white/10 hover:bg-brand-white/20">
+              <i class="ph-fill ph-info text-brand-yellow text-lg"></i>
+              Nosotros
+              <i class="ph ph-caret-down dropdown-arrow text-xs transition-transform duration-200" id="about-caret"></i>
+            </button>
+
+            <div id="about-menu" class="hidden absolute top-full left-0 mt-2 w-64 bg-brand-blue border border-brand-white/25 rounded-2xl shadow-2xl p-2 z-50 origin-top">
+              <a href="/prototipos/sobre-nosotros.html" class="flex items-center gap-3 p-2.5 rounded-xl bg-brand-white/15 transition-colors group">
+                <i class="ph-fill ph-identification-badge text-xl text-brand-yellow"></i>
+                <div>
+                  <div class="font-subheading uppercase text-brand-yellow text-sm">Sobre Nosotros</div>
+                  <div class="font-sans text-xs text-brand-white/80">Quiénes somos en MDQ</div>
+                </div>
+              </a>
+
+              <a href="/prototipos/preguntas-frecuentes.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+                <i class="ph-fill ph-question text-xl text-brand-yellow"></i>
+                <div>
+                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">Preguntas Frecuentes</div>
+                  <div class="font-sans text-xs text-brand-white/80">Dudas comunes sobre el servicio</div>
+                </div>
+              </a>
+
+              <a href="/prototipos/nuestras-redes.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+                <i class="ph-fill ph-share-network text-xl text-brand-yellow"></i>
+                <div>
+                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">Nuestras Redes</div>
+                  <div class="font-sans text-xs text-brand-white/80">Redes y reputación</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <a href="/prototipos/contacto.html" class="px-3.5 py-2 text-base font-subheading tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 text-brand-white hover:text-brand-yellow hover:bg-brand-white/10">
+            <i class="ph-fill ph-envelope text-brand-yellow text-lg"></i>
+            Contacto
+          </a>
+        </nav>
+
+        <!-- CTA Directo Desktop -->
+        <div class="hidden lg:flex items-center gap-4">
+          <a href="tel:+542236602699" class="flex items-center gap-2 text-brand-white hover:text-brand-yellow transition-colors font-mono text-xs font-semibold">
+            <i class="ph-fill ph-phone text-brand-yellow text-base"></i>
+            223 660-2699
+          </a>
+
+          <a href="https://wa.me/542236602699" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-2.5 rounded-full font-subheading uppercase tracking-wider font-bold px-5 py-2.5 text-xs bg-brand-yellow text-brand-blue hover:bg-brand-yellow-hover hover:shadow-glow-yellow transition-all duration-300">
+            <span>Cotizá tu envío</span>
+            <span class="w-6 h-6 rounded-full flex items-center justify-center bg-brand-blue/15 text-brand-blue group-hover:bg-brand-blue group-hover:text-brand-yellow transition-all">
+              <i class="ph ph-arrow-right text-xs"></i>
+            </span>
+          </a>
+        </div>
+
+        <!-- Botones Mobile -->
+        <div class="lg:hidden flex items-center gap-2">
+          <a href="tel:+542236602699" class="p-2 rounded-xl bg-brand-white/15 text-brand-yellow hover:bg-brand-white/25 active:scale-95 transition-all" aria-label="Llamar por teléfono">
+            <i class="ph-fill ph-phone text-xl"></i>
+          </a>
+
+          <button type="button" id="mobile-menu-btn" class="p-2 rounded-xl bg-brand-white/15 text-brand-white hover:text-brand-yellow active:scale-95 transition-all" aria-label="Abrir menú" aria-expanded="false">
+            <i class="ph ph-list text-2xl" id="mobile-menu-icon"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Menú Desplegable Mobile -->
+      <div id="mobile-menu" class="hidden lg:hidden overflow-hidden transition-all duration-300">
+        <div class="border-t border-brand-white/20 bg-brand-blue mt-3 pt-3 rounded-2xl px-3 space-y-2 shadow-2xl pb-3">
+          <a href="/prototipos/index.html" class="flex items-center gap-3 py-2.5 px-3 rounded-xl font-subheading text-base uppercase text-brand-white hover:bg-brand-white/15">
+            <i class="ph-fill ph-house text-lg text-brand-yellow"></i>
+            Inicio
+          </a>
+
+          <div class="space-y-1 pl-2 border-l border-brand-white/20 my-1">
+            <p class="font-subheading text-xs uppercase text-brand-yellow px-2 pt-1 tracking-wider">Servicios principales</p>
+            <a href="/prototipos/envios-express.html" class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+              <i class="ph-fill ph-lightning text-brand-yellow"></i> Envíos Express
+            </a>
+            <a href="/prototipos/envios-lowcost.html" class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+              <i class="ph-fill ph-tag text-brand-yellow"></i> Envíos LowCost
+            </a>
+            <a href="/prototipos/enviosflex.html" class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+              <i class="ph-fill ph-package text-brand-yellow"></i> Mercado Envíos Flex
+            </a>
+            <a href="/prototipos/plan-emprendedores.html" class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+              <i class="ph-fill ph-warehouse text-brand-yellow"></i> Logística 3PL
+            </a>
+          </div>
+
+          <div class="space-y-1 pl-2 border-l border-brand-white/20 my-1">
+            <p class="font-subheading text-xs uppercase text-brand-yellow px-2 pt-1 tracking-wider">Nosotros</p>
+            <a href="/prototipos/sobre-nosotros.html" class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-yellow bg-brand-white/15">
+              <i class="ph-fill ph-identification-badge text-brand-yellow"></i> Sobre Nosotros
+            </a>
+            <a href="/prototipos/preguntas-frecuentes.html" class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+              <i class="ph-fill ph-question text-brand-yellow"></i> Preguntas Frecuentes
+            </a>
+            <a href="/prototipos/nuestras-redes.html" class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+              <i class="ph-fill ph-share-network text-brand-yellow"></i> Nuestras Redes
+            </a>
+          </div>
+
+          <a href="/prototipos/contacto.html" class="flex items-center gap-3 py-2.5 px-3 rounded-xl font-subheading text-sm uppercase text-brand-white hover:bg-brand-white/15">
+            <i class="ph-fill ph-envelope text-brand-yellow text-lg"></i> Contacto
+          </a>
+
+          <div class="pt-2">
+            <a href="https://wa.me/542236602699" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-brand-yellow text-brand-blue font-subheading uppercase tracking-wider text-xs font-bold shadow-lg hover:bg-brand-yellow-hover">
+              <i class="ph-fill ph-whatsapp-logo text-xl"></i> Pedir envío por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO PRINCIPAL: SOBRE NOSOTROS ==================== -->
+  <section id="about-hero" class="relative min-h-[85vh] flex items-center justify-center pt-32 pb-20 overflow-hidden bg-brand-blue text-brand-white border-b border-brand-white/15">
+    <!-- Canvas 3D de fondo -->
+    <canvas id="hero-particles-canvas" class="absolute inset-0 pointer-events-none z-0"></canvas>
+
+    <!-- Marca de agua tipográfica de fondo -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden z-0">
+      <span class="font-display uppercase text-[16vw] leading-none text-brand-white/[0.03] tracking-tighter whitespace-nowrap">
+        SOBRE NOSOTROS MDQ
+      </span>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+        <!-- Columna Izquierda: Copy y Propuesta de Valor -->
+        <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+          <!-- Badge de Identidad -->
+          <div class="inline-flex justify-center lg:justify-start">
+            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-subheading font-bold uppercase tracking-widest bg-brand-yellow text-brand-blue shadow-glow-yellow border border-brand-yellow">
+              <i class="ph-fill ph-medal text-sm text-brand-blue"></i>
+              NUESTRA IDENTIDAD
+            </span>
+          </div>
+
+          <!-- Título Principal Display con Cápsula de Marca -->
+          <h1 class="text-5xl sm:text-6xl lg:text-7xl font-display uppercase tracking-tight leading-[0.98] text-brand-white flex flex-wrap items-center justify-center lg:justify-start gap-x-4 gap-y-2">
+            <span>LÍDERES EN</span>
+            <span class="relative inline-block w-16 h-10 sm:w-20 sm:h-12 rounded-full overflow-hidden border-2 border-brand-yellow align-middle shrink-0 shadow-md">
+              <img src="./public/cards/hero_express.webp" alt="Reparto Mar del Plata" class="w-full h-full object-cover">
+            </span>
+            <span class="text-brand-yellow">ÚLTIMA MILLA</span>
+          </h1>
+
+          <!-- Descripción -->
+          <p class="text-base sm:text-lg lg:text-xl font-sans text-brand-white/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light border-l-2 border-brand-yellow pl-4 text-left">
+            Nuestra historia comenzó con una simple meta: hacer los envíos locales más eficientes, rápidos y confiables en Mar del Plata.
+          </p>
+
+          <!-- Tarjeta de Misión destacada -->
+          <div class="rounded-2xl p-5 sm:p-6 bg-brand-blue-deep/90 border border-brand-white/20 shadow-xl max-w-xl mx-auto lg:mx-0 text-left space-y-3">
+            <div class="flex items-center gap-2">
+              <i class="ph-fill ph-sparkle text-brand-yellow text-lg"></i>
+              <h3 class="text-xs font-mono font-bold uppercase tracking-widest text-brand-yellow">
+                Nuestra Misión 2026
+              </h3>
+            </div>
+            <p class="text-xs sm:text-sm text-brand-white/85 leading-relaxed font-sans font-light">
+              Conectamos personas y negocios en Mar del Plata mediante un servicio motorizado rápido, seguro y 100% propio. Impulsamos tu crecimiento local reduciendo tus costos operativos.
+            </p>
+          </div>
+
+          <!-- CTA de contacto directo -->
+          <div class="pt-2 flex justify-center lg:justify-start">
+            <a
+              href="https://wa.me/542236602699"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-3 rounded-full font-subheading uppercase tracking-wider font-bold px-8 py-3.5 bg-brand-yellow text-brand-blue hover:bg-brand-yellow-hover hover:shadow-glow-yellow transition-all duration-300"
+            >
+              <span>Hablar por WhatsApp</span>
+              <i class="ph-bold ph-arrow-up-right text-base"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Tarjeta Reviews Google -->
+        <div class="lg:col-span-5 relative hidden lg:block h-[400px]">
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95%] z-20">
+            <div class="rounded-3xl p-6 sm:p-8 bg-brand-blue-deep/95 border border-brand-white/20 shadow-2xl space-y-6 text-brand-white relative overflow-hidden text-left">
+              <i class="ph-fill ph-shield-check absolute -right-6 -bottom-6 text-[12rem] text-brand-white/[0.03] pointer-events-none"></i>
+
+              <div class="flex items-center justify-between pt-1 relative z-10">
+                <div class="flex items-center gap-1 text-brand-yellow text-lg">
+                  <i class="ph-fill ph-star"></i>
+                  <i class="ph-fill ph-star"></i>
+                  <i class="ph-fill ph-star"></i>
+                  <i class="ph-fill ph-star"></i>
+                  <i class="ph-fill ph-star"></i>
+                </div>
+                <span class="text-xs font-mono font-bold bg-brand-yellow text-brand-blue px-3 py-1 rounded-full uppercase tracking-wider">
+                  5.0 / 5 GOOGLE
+                </span>
+              </div>
+
+              <div class="relative z-10">
+                <h4 class="text-3xl font-display uppercase tracking-tight text-brand-white leading-none">
+                  GOOGLE REVIEWS
+                </h4>
+                <p class="text-xs text-brand-yellow font-mono tracking-widest uppercase mt-1">
+                  CONFIANZA LOCAL COMPROBADA
+                </p>
+              </div>
+
+              <p class="text-sm text-brand-white/85 font-sans leading-relaxed font-light relative z-10">
+                Nuestros clientes avalan la excelencia operativa. Flota propia y coordinada con base operativa central en Mar del Plata (Friuli 1972).
+              </p>
+
+              <div class="pt-4 border-t border-brand-white/15 flex justify-between items-center text-xs relative z-10">
+                <span class="font-subheading text-brand-white font-bold flex items-center gap-1.5 text-sm tracking-wider uppercase">
+                  <i class="ph-bold ph-shield-check text-brand-yellow text-base"></i>
+                  FLOTA PROPIA
+                </span>
+                <span class="font-mono text-brand-yellow flex items-center gap-1 text-xs tracking-wider uppercase">
+                  <i class="ph-fill ph-map-pin text-brand-yellow"></i>
+                  MAR DEL PLATA
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SECCIÓN 1: MISIÓN, VISIÓN E INNOVACIÓN ==================== -->
+  <section id="about-mission-vision" class="py-20 sm:py-28 bg-brand-canvas relative overflow-hidden border-y border-brand-blue/15 text-brand-blue">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+      <!-- Encabezado de Sección -->
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div>
+          <span class="inline-block px-4 py-1.5 bg-brand-blue text-brand-yellow rounded-full text-xs font-bold tracking-widest font-subheading uppercase shadow-sm">
+            PROPÓSITO Y FUTURO
+          </span>
+        </div>
+
+        <h2 class="text-brand-blue text-4xl sm:text-5xl lg:text-6xl font-display uppercase tracking-tight leading-none">
+          MISIÓN, VISIÓN E <span class="text-brand-yellow bg-brand-blue px-3 py-0.5 rounded-lg inline-block">INNOVACIÓN</span>
+        </h2>
+
+        <p class="text-brand-blue/80 font-sans text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+          Hacia dónde vamos y cuáles son las convicciones profundas que guían cada entrega y ruteo diario en Mar del Plata.
+        </p>
+
+        <div class="h-1 w-20 bg-brand-blue mx-auto rounded-full mt-4"></div>
+      </div>
+
+      <!-- Grilla Bento Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 text-left">
+
+        <!-- Card 1: Nuestra Misión (8 cols) -->
+        <div class="lg:col-span-8 rounded-[28px] p-6 sm:p-8 bg-brand-white border border-brand-blue/20 shadow-lg hover:shadow-xl hover:border-brand-blue/40 transition-all flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-brand-blue/10 text-brand-blue flex items-center justify-center text-2xl">
+              <i class="ph-bold ph-target"></i>
+            </div>
+
+            <h3 class="text-2xl sm:text-3xl font-display uppercase tracking-tight text-brand-blue leading-tight">
+              NUESTRA MISIÓN
+            </h3>
+
+            <p class="text-sm sm:text-base text-brand-blue/85 font-sans leading-relaxed">
+              Simplificar la logística de última milla local en Mar del Plata, conectando comercios, emprendedores y usuarios con soluciones de entrega ultra rápidas, transparentes y seguras.
+            </p>
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-brand-blue/10 flex items-center gap-2 text-xs font-mono font-bold text-brand-blue">
+            <i class="ph-bold ph-seal-check text-brand-blue text-base"></i>
+            <span>SELLO DE CALIDAD DOSRUEDAS MDQ</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Nuestra Visión (4 cols) -->
+        <div class="lg:col-span-4 rounded-[28px] p-6 sm:p-8 bg-brand-white border border-brand-blue/20 shadow-lg hover:shadow-xl hover:border-brand-blue/40 transition-all flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-brand-blue/10 text-brand-blue flex items-center justify-center text-2xl">
+              <i class="ph-bold ph-eye"></i>
+            </div>
+
+            <h3 class="text-2xl sm:text-3xl font-display uppercase tracking-tight text-brand-blue leading-tight">
+              NUESTRA VISIÓN
+            </h3>
+
+            <p class="text-sm text-brand-blue/85 font-sans leading-relaxed">
+              Consolidar la red de última milla y mensajería más confiable y elegida de Mar del Plata, incorporando tecnología continua y flota propia.
+            </p>
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-brand-blue/10 flex items-center gap-2 text-xs font-mono font-bold text-brand-blue">
+            <i class="ph-bold ph-sparkle text-brand-blue text-base"></i>
+            <span>VISIÓN DE FUTURO 2026</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Innovación Constante (12 cols) -->
+        <div class="lg:col-span-12 rounded-[28px] p-6 sm:p-8 bg-brand-blue text-brand-white border border-brand-white/20 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="space-y-3 max-w-3xl">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-brand-yellow text-brand-blue flex items-center justify-center text-xl shrink-0">
+                <i class="ph-bold ph-rocket-launch"></i>
+              </div>
+              <h3 class="text-2xl sm:text-3xl font-display uppercase tracking-tight text-brand-white leading-none">
+                INNOVACIÓN CONSTANTE
+              </h3>
+            </div>
+            <p class="text-sm sm:text-base text-brand-white/90 font-sans leading-relaxed font-light">
+              Trabajamos constantemente en optimizaciones de ruteo y coordinación digital para brindar reportes transparentes y despachos inmediatos a cada cliente.
+            </p>
+          </div>
+
+          <div class="shrink-0">
+            <span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-yellow text-brand-blue font-subheading font-bold text-sm uppercase tracking-wider shadow-glow-yellow">
+              <span>TECNOLOGÍA PROPIA</span>
+              <i class="ph-bold ph-cpu text-base"></i>
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SECCIÓN 2: DIFERENCIAL COMPETITIVO ==================== -->
+  <section id="about-advantages" class="py-20 sm:py-28 bg-brand-blue text-brand-white relative overflow-hidden border-b border-brand-white/15">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+      <!-- Encabezado -->
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div>
+          <span class="inline-block px-4 py-1.5 bg-brand-yellow text-brand-blue rounded-full text-xs font-bold tracking-widest font-subheading uppercase shadow-md">
+            DIFERENCIAL COMPETITIVO
+          </span>
+        </div>
+
+        <h2 class="text-brand-white text-4xl sm:text-5xl lg:text-6xl font-display uppercase tracking-tight leading-none">
+          POR QUÉ <span class="text-brand-yellow">ELEGIRNOS</span>
+        </h2>
+
+        <p class="text-brand-white/85 font-sans text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-light">
+          En un mercado saturado de aplicaciones genéricas y envíos automatizados sin rostro, decidimos ir por el camino de la excelencia territorial y atención humana directa en Mar del Plata.
+        </p>
+
+        <div class="h-1 w-20 bg-brand-yellow mx-auto rounded-full mt-4"></div>
+      </div>
+
+      <!-- Grilla Bento Asimétrica -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 text-left">
+
+        <!-- Card 1: Soporte Humano Directo (7 cols) -->
+        <div class="lg:col-span-7 rounded-[28px] p-6 sm:p-8 bg-brand-blue-deep/90 border border-brand-white/20 shadow-xl flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-social-whatsapp text-brand-blue-deep flex items-center justify-center text-2xl shadow-glow-wa">
+              <i class="ph-fill ph-whatsapp-logo"></i>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-display uppercase tracking-tight text-brand-white leading-tight">
+              Soporte Humano Directo
+            </h3>
+            <p class="text-sm sm:text-base text-brand-white/85 font-sans leading-relaxed font-light">
+              Damos la cara frente a cualquier consulta. Contamos con atención personalizada e inmediata por WhatsApp para coordinar despachos, resolver dudas y dar seguimiento en tiempo real.
+            </p>
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-brand-white/10 flex items-center gap-2 text-xs font-mono font-bold text-social-whatsapp">
+            <i class="ph-fill ph-check-circle text-base"></i>
+            <span>CANAL DIRECTO WHATSAPP: +54 223 660-2699</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Flota Propia (5 cols) -->
+        <div class="lg:col-span-5 rounded-[28px] p-6 sm:p-8 bg-brand-blue-deep/90 border border-brand-white/20 shadow-xl flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-brand-yellow text-brand-blue flex items-center justify-center text-2xl shadow-glow-yellow">
+              <i class="ph-bold ph-moped"></i>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-display uppercase tracking-tight text-brand-white leading-tight">
+              Flota Propia Capacitada
+            </h3>
+            <p class="text-sm sm:text-base text-brand-white/85 font-sans leading-relaxed font-light">
+              Controlamos meticulosamente cada etapa de la entrega con repartidores propios, identificados y capacitados en el mapa de Mar del Plata.
+            </p>
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-brand-white/10 flex items-center gap-2 text-xs font-mono font-bold text-brand-yellow">
+            <i class="ph-bold ph-map-pin text-base"></i>
+            <span>COBERTURA TOTAL MAR DEL PLATA</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Entregas Confiables (12 cols) -->
+        <div class="lg:col-span-12 rounded-[28px] p-6 sm:p-8 bg-brand-blue-deep/90 border border-brand-white/20 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="space-y-3 max-w-3xl">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-brand-blue text-brand-yellow border border-brand-white/15 flex items-center justify-center text-xl shrink-0">
+                <i class="ph-bold ph-shield-check"></i>
+              </div>
+              <h3 class="text-2xl sm:text-3xl font-display uppercase tracking-tight text-brand-white leading-none">
+                Entregas Confiables en Tiempo y Forma
+              </h3>
+            </div>
+            <p class="text-sm sm:text-base text-brand-white/85 font-sans leading-relaxed font-light">
+              Tu negocio depende de la puntualidad y el buen trato del paquete. Nos aseguramos de realizar cada entrega en el horario pactado y con custodia responsable del producto.
+            </p>
+          </div>
+
+          <div class="shrink-0">
+            <span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-yellow text-brand-blue font-subheading font-bold text-sm uppercase tracking-wider shadow-glow-yellow">
+              <span>100% CONFIABLE</span>
+              <i class="ph-bold ph-check-fat text-base"></i>
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SECCIÓN 3: FILOSOFÍA Y VALORES ==================== -->
+  <section id="about-values" class="py-20 sm:py-28 bg-brand-canvas relative overflow-hidden border-y border-brand-blue/15 text-brand-blue">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+      <!-- Encabezado -->
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div>
+          <span class="inline-block px-4 py-1.5 bg-brand-blue text-brand-yellow rounded-full text-xs font-bold tracking-widest font-subheading uppercase shadow-sm">
+            FILOSOFÍA OPERATIVA
+          </span>
+        </div>
+
+        <h2 class="text-brand-blue text-4xl sm:text-5xl lg:text-6xl font-display uppercase tracking-tight leading-none">
+          NUESTROS <span class="text-brand-yellow bg-brand-blue px-3 py-0.5 rounded-lg inline-block">VALORES</span>
+        </h2>
+
+        <p class="text-brand-blue/80 font-sans text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+          Los pilares estratégicos e innegociables que sostienen nuestra operativa diaria y nos permiten ser tu partner de absoluta confianza.
+        </p>
+
+        <div class="h-1 w-20 bg-brand-blue mx-auto rounded-full mt-4"></div>
+      </div>
+
+      <!-- Grilla Asimétrica -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 text-left">
+
+        <!-- Valor Principal Destacado (8 cols) -->
+        <div class="lg:col-span-8 rounded-[28px] p-6 sm:p-10 bg-brand-white border border-brand-blue/20 shadow-lg hover:shadow-xl hover:border-brand-blue/40 transition-all flex flex-col justify-between">
+          <div class="space-y-6">
+            <div class="w-14 h-14 rounded-2xl bg-brand-blue/10 text-brand-blue flex items-center justify-center text-3xl">
+              <i class="ph-bold ph-shield-check"></i>
+            </div>
+
+            <div class="space-y-3">
+              <h3 class="text-3xl sm:text-4xl font-display uppercase tracking-tight text-brand-blue leading-tight">
+                Cuidado del Paquete
+              </h3>
+              <p class="text-base sm:text-lg text-brand-blue/85 font-sans leading-relaxed">
+                Manipulación profesional y segura para garantizar que cada bulto, sobre o caja llegue en impecables condiciones a las manos de tu cliente.
+              </p>
+            </div>
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-brand-blue/10 flex items-center gap-2 text-xs font-mono font-bold text-brand-blue">
+            <i class="ph-bold ph-check text-brand-blue text-base"></i>
+            <span>COMPROMISO DE CUSTODIA RESPONSABLE</span>
+          </div>
+        </div>
+
+        <!-- Columna con los otros 2 valores (4 cols) -->
+        <div class="lg:col-span-4 flex flex-col gap-6">
+          <div class="rounded-[28px] p-6 bg-brand-white border border-brand-blue/20 shadow-lg hover:shadow-xl hover:border-brand-blue/40 transition-all flex-1 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="w-10 h-10 rounded-xl bg-brand-blue/10 text-brand-blue flex items-center justify-center text-2xl">
+                <i class="ph-bold ph-handshake"></i>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-display uppercase tracking-tight text-brand-blue">
+                Transparencia Total
+              </h3>
+              <p class="text-sm text-brand-blue/85 font-sans leading-relaxed">
+                Comunicación clara, tarifas sin sorpresas y confirmación honesta en cada entrega.
+              </p>
+            </div>
+          </div>
+
+          <div class="rounded-[28px] p-6 bg-brand-white border border-brand-blue/20 shadow-lg hover:shadow-xl hover:border-brand-blue/40 transition-all flex-1 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="w-10 h-10 rounded-xl bg-brand-blue/10 text-brand-blue flex items-center justify-center text-2xl">
+                <i class="ph-bold ph-lightning"></i>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-display uppercase tracking-tight text-brand-blue">
+                Innovación y Ruteo
+              </h3>
+              <p class="text-sm text-brand-blue/85 font-sans leading-relaxed">
+                Optimización de recorridos urbanos y coordinación ágil adaptada al movimiento comercial de MDQ.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SECCIÓN 4: HISTORIA Y LÍNEA DE TIEMPO ==================== -->
+  <section id="about-timeline" class="py-20 sm:py-28 bg-brand-blue text-brand-white relative overflow-hidden border-b border-brand-white/15">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+      <!-- Encabezado -->
+      <div class="text-center max-w-3xl mx-auto mb-20 space-y-4">
+        <div>
+          <span class="inline-block px-4 py-1.5 bg-brand-yellow text-brand-blue rounded-full text-xs font-bold tracking-widest font-subheading uppercase shadow-md">
+            TRAYECTORIA Y EVOLUCIÓN
+          </span>
+        </div>
+
+        <h2 class="text-brand-white text-4xl sm:text-5xl lg:text-6xl font-display uppercase tracking-tight leading-none">
+          NUESTRA <span class="text-brand-yellow">HISTORIA</span>
+        </h2>
+
+        <p class="text-brand-white/85 font-sans text-sm sm:text-base max-w-lg mx-auto font-light leading-relaxed">
+          Más de 7 años revolucionando la mensajería y la logística de última milla en Mar del Plata.
+        </p>
+
+        <div class="h-1 w-20 bg-brand-yellow mx-auto rounded-full mt-4"></div>
+      </div>
+
+      <!-- Línea de Tiempo -->
+      <div class="relative max-w-4xl mx-auto">
+        <!-- Línea central vertical -->
+        <div class="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-4 bottom-4 w-0.5 bg-brand-white/20 hidden md:block"></div>
+
+        <div class="space-y-10 md:space-y-12">
+
+          <!-- Hito 1: 2019 -->
+          <div class="relative flex flex-col md:flex-row items-start md:items-center md:justify-between group/card text-left">
+            <div class="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-1.5 md:top-auto w-10 h-10 rounded-full bg-brand-yellow text-brand-blue shadow-glow-yellow border-2 border-brand-blue flex items-center justify-center z-10 text-lg transition-transform duration-300 group-hover/card:scale-110">
+              <i class="ph-bold ph-compass"></i>
+            </div>
+            <div class="w-full md:w-[45%] rounded-[24px] p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-xl pl-16 md:pl-7 hover:border-brand-yellow/50 transition-all">
+              <span class="inline-block text-3xl sm:text-4xl font-display text-brand-yellow mb-1 leading-none">2019</span>
+              <h3 class="text-xl sm:text-2xl font-display uppercase tracking-tight text-brand-white leading-tight mb-2">Lanzamiento Inicial</h3>
+              <p class="text-xs sm:text-sm text-brand-white/85 font-sans font-light leading-relaxed">Iniciamos operaciones en Mar del Plata con flota motorizada y foco en comercios de cercanía.</p>
+            </div>
+            <div class="w-full md:w-[45%] hidden md:block"></div>
+          </div>
+
+          <!-- Hito 2: 2021 -->
+          <div class="relative flex flex-col md:flex-row-reverse items-start md:items-center md:justify-between group/card text-left">
+            <div class="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-1.5 md:top-auto w-10 h-10 rounded-full bg-brand-yellow text-brand-blue shadow-glow-yellow border-2 border-brand-blue flex items-center justify-center z-10 text-lg transition-transform duration-300 group-hover/card:scale-110">
+              <i class="ph-bold ph-trend-up"></i>
+            </div>
+            <div class="w-full md:w-[45%] rounded-[24px] p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-xl pl-16 md:pl-7 hover:border-brand-yellow/50 transition-all">
+              <span class="inline-block text-3xl sm:text-4xl font-display text-brand-yellow mb-1 leading-none">2021</span>
+              <h3 class="text-xl sm:text-2xl font-display uppercase tracking-tight text-brand-white leading-tight mb-2">Nuevos Servicios</h3>
+              <p class="text-xs sm:text-sm text-brand-white/85 font-sans font-light leading-relaxed">Lanzamos soluciones segmentadas: LowCost, Plan Emprendedores y logística para E-Commerce.</p>
+            </div>
+            <div class="w-full md:w-[45%] hidden md:block"></div>
+          </div>
+
+          <!-- Hito 3: 2023 -->
+          <div class="relative flex flex-col md:flex-row items-start md:items-center md:justify-between group/card text-left">
+            <div class="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-1.5 md:top-auto w-10 h-10 rounded-full bg-brand-yellow text-brand-blue shadow-glow-yellow border-2 border-brand-blue flex items-center justify-center z-10 text-lg transition-transform duration-300 group-hover/card:scale-110">
+              <i class="ph-bold ph-trophy"></i>
+            </div>
+            <div class="w-full md:w-[45%] rounded-[24px] p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-xl pl-16 md:pl-7 hover:border-brand-yellow/50 transition-all">
+              <span class="inline-block text-3xl sm:text-4xl font-display text-brand-yellow mb-1 leading-none">2023</span>
+              <h3 class="text-xl sm:text-2xl font-display uppercase tracking-tight text-brand-white leading-tight mb-2">Consolidación Local</h3>
+              <p class="text-xs sm:text-sm text-brand-white/85 font-sans font-light leading-relaxed">Nos consolidamos como uno de los principales servicios de mensajería urbana y paquetería de MDQ.</p>
+            </div>
+            <div class="w-full md:w-[45%] hidden md:block"></div>
+          </div>
+
+          <!-- Hito 4: 2025 (Flex) -->
+          <div class="relative flex flex-col md:flex-row-reverse items-start md:items-center md:justify-between group/card text-left">
+            <div class="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-1.5 md:top-auto w-10 h-10 rounded-full bg-brand-yellow text-brand-blue shadow-glow-yellow border-2 border-brand-blue flex items-center justify-center z-10 text-lg transition-transform duration-300 group-hover/card:scale-110">
+              <i class="ph-bold ph-lightning"></i>
+            </div>
+            <div class="w-full md:w-[45%] rounded-[24px] p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-xl pl-16 md:pl-7 hover:border-brand-yellow/50 transition-all">
+              <span class="inline-block text-3xl sm:text-4xl font-display text-brand-yellow mb-1 leading-none">2025</span>
+              <h3 class="text-xl sm:text-2xl font-display uppercase tracking-tight text-brand-white leading-tight mb-2">Envíos Flex Pioneros</h3>
+              <p class="text-xs sm:text-sm text-brand-white/85 font-sans font-light leading-relaxed">Pioneros en integración de Envíos Flex en el día para Mercado Libre y tiendas online en la ciudad.</p>
+            </div>
+            <div class="w-full md:w-[45%] hidden md:block"></div>
+          </div>
+
+          <!-- Hito 5: 2025 (Depósito) -->
+          <div class="relative flex flex-col md:flex-row items-start md:items-center md:justify-between group/card text-left">
+            <div class="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-1.5 md:top-auto w-10 h-10 rounded-full bg-brand-yellow text-brand-blue shadow-glow-yellow border-2 border-brand-blue flex items-center justify-center z-10 text-lg transition-transform duration-300 group-hover/card:scale-110">
+              <i class="ph-bold ph-buildings"></i>
+            </div>
+            <div class="w-full md:w-[45%] rounded-[24px] p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-xl pl-16 md:pl-7 hover:border-brand-yellow/50 transition-all">
+              <span class="inline-block text-3xl sm:text-4xl font-display text-brand-yellow mb-1 leading-none">2025</span>
+              <h3 class="text-xl sm:text-2xl font-display uppercase tracking-tight text-brand-white leading-tight mb-2">Depósito Central</h3>
+              <p class="text-xs sm:text-sm text-brand-white/85 font-sans font-light leading-relaxed">Mudanza a nuestro centro operativo en Friuli 1972 e incorporación de paneles de seguimiento.</p>
+            </div>
+            <div class="w-full md:w-[45%] hidden md:block"></div>
+          </div>
+
+          <!-- Hito 6: 2026 -->
+          <div class="relative flex flex-col md:flex-row-reverse items-start md:items-center md:justify-between group/card text-left">
+            <div class="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-1.5 md:top-auto w-10 h-10 rounded-full bg-brand-yellow text-brand-blue shadow-glow-yellow border-2 border-brand-blue flex items-center justify-center z-10 text-lg transition-transform duration-300 group-hover/card:scale-110">
+              <i class="ph-bold ph-moped"></i>
+            </div>
+            <div class="w-full md:w-[45%] rounded-[24px] p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-xl pl-16 md:pl-7 hover:border-brand-yellow/50 transition-all">
+              <span class="inline-block text-3xl sm:text-4xl font-display text-brand-yellow mb-1 leading-none">2026</span>
+              <h3 class="text-xl sm:text-2xl font-display uppercase tracking-tight text-brand-white leading-tight mb-2">Cobertura Integral MDQ</h3>
+              <p class="text-xs sm:text-sm text-brand-white/85 font-sans font-light leading-relaxed">Cobertura completa de última milla, Flex y logística con flota propia y capacitada.</p>
+            </div>
+            <div class="w-full md:w-[45%] hidden md:block"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SECCIÓN 5: EQUIPO DE CALLE Y FUERZA HUMANA ==================== -->
+  <section id="about-team" class="py-20 sm:py-28 bg-brand-canvas relative overflow-hidden border-t border-brand-blue/15 text-brand-blue">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+      <!-- Encabezado -->
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div>
+          <span class="inline-block px-4 py-1.5 bg-brand-blue text-brand-yellow rounded-full text-xs font-bold tracking-widest font-subheading uppercase shadow-sm">
+            FUERZA HUMANA
+          </span>
+        </div>
+
+        <h2 class="text-brand-blue text-4xl sm:text-5xl lg:text-6xl font-display uppercase tracking-tight leading-none">
+          NUESTRO EQUIPO <span class="text-brand-yellow bg-brand-blue px-3 py-0.5 rounded-lg inline-block">DE CALLE</span>
+        </h2>
+
+        <p class="text-brand-blue/80 font-sans text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+          Contamos con más de 20 repartidores y un equipo operativo coordinado para cumplir con cada entrega en tiempo y forma.
+        </p>
+
+        <div class="h-1 w-20 bg-brand-blue mx-auto rounded-full mt-4"></div>
+      </div>
+
+      <!-- Grilla del Equipo (4 cols) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+
+        <!-- Miembro 1 -->
+        <div class="rounded-[28px] p-6 sm:p-7 bg-brand-white border border-brand-blue/20 shadow-lg hover:shadow-xl hover:border-brand-blue/40 transition-all flex flex-col justify-between">
+          <div>
+            <span class="block font-display text-5xl sm:text-6xl text-brand-blue leading-none mb-3">3</span>
+            <h3 class="text-xl font-display uppercase tracking-tight text-brand-blue leading-tight mb-2 min-h-[32px] flex items-center">
+              Equipo Directivo
+            </h3>
+            <p class="text-xs sm:text-sm text-brand-blue/85 font-sans leading-relaxed">
+              Liderazgo operativo comprometido con la excelencia logística y la atención cercana en Mar del Plata.
+            </p>
+          </div>
+          <div class="pt-6 mt-6 border-t border-brand-blue/10 flex items-center justify-between">
+            <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-brand-blue/70">DosRuedas Staff</span>
+            <div class="w-8 h-8 rounded-lg bg-brand-blue/10 text-brand-blue flex items-center justify-center text-lg">
+              <i class="ph-bold ph-shield-check"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Miembro 2 -->
+        <div class="rounded-[28px] p-6 sm:p-7 bg-brand-white border border-brand-blue/20 shadow-lg hover:shadow-xl hover:border-brand-blue/40 transition-all flex flex-col justify-between">
+          <div>
+            <span class="block font-display text-5xl sm:text-6xl text-brand-blue leading-none mb-3">+20</span>
+            <h3 class="text-xl font-display uppercase tracking-tight text-brand-blue leading-tight mb-2 min-h-[32px] flex items-center">
+              Repartidores en Calle
+            </h3>
+            <p class="text-xs sm:text-sm text-brand-blue/85 font-sans leading-relaxed">
+              Flota propia y capacitada que conoce cada barrio y rincón de la ciudad para entregas rápidas.
+            </p>
+          </div>
+          <div class="pt-6 mt-6 border-t border-brand-blue/10 flex items-center justify-between">
+            <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-brand-blue/70">DosRuedas Staff</span>
+            <div class="w-8 h-8 rounded-lg bg-brand-blue/10 text-brand-blue flex items-center justify-center text-lg">
+              <i class="ph-bold ph-moped"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Miembro 3 -->
+        <div class="rounded-[28px] p-6 sm:p-7 bg-brand-white border border-brand-blue/20 shadow-lg hover:shadow-xl hover:border-brand-blue/40 transition-all flex flex-col justify-between">
+          <div>
+            <span class="block font-display text-5xl sm:text-6xl text-brand-blue leading-none mb-3">5</span>
+            <h3 class="text-xl font-display uppercase tracking-tight text-brand-blue leading-tight mb-2 min-h-[32px] flex items-center">
+              Atención al Cliente
+            </h3>
+            <p class="text-xs sm:text-sm text-brand-blue/85 font-sans leading-relaxed">
+              Soporte personalizado vía WhatsApp para resolver consultas, cotizaciones y seguimiento.
+            </p>
+          </div>
+          <div class="pt-6 mt-6 border-t border-brand-blue/10 flex items-center justify-between">
+            <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-brand-blue/70">DosRuedas Staff</span>
+            <div class="w-8 h-8 rounded-lg bg-brand-blue/10 text-brand-blue flex items-center justify-center text-lg">
+              <i class="ph-bold ph-headset"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Miembro 4 -->
+        <div class="rounded-[28px] p-6 sm:p-7 bg-brand-white border border-brand-blue/20 shadow-lg hover:shadow-xl hover:border-brand-blue/40 transition-all flex flex-col justify-between">
+          <div>
+            <span class="block font-display text-5xl sm:text-6xl text-brand-blue leading-none mb-3">4</span>
+            <h3 class="text-xl font-display uppercase tracking-tight text-brand-blue leading-tight mb-2 min-h-[32px] flex items-center">
+              Coordinación y Logística
+            </h3>
+            <p class="text-xs sm:text-sm text-brand-blue/85 font-sans leading-relaxed">
+              Especialistas que organizan los ruteos y la salida ágil de paquetes desde la base Friuli 1972.
+            </p>
+          </div>
+          <div class="pt-6 mt-6 border-t border-brand-blue/10 flex items-center justify-between">
+            <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-brand-blue/70">DosRuedas Staff</span>
+            <div class="w-8 h-8 rounded-lg bg-brand-blue/10 text-brand-blue flex items-center justify-center text-lg">
+              <i class="ph-bold ph-path"></i>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CARRUSEL DE REDES SOCIALES ==================== -->
+  <section id="carrusel-redes" class="py-20 sm:py-28 bg-brand-blue border-y border-brand-white/15 relative overflow-hidden w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+      <!-- Header de Sección -->
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3.5">
+        <div>
+          <span class="inline-block px-5 py-1.5 bg-brand-yellow text-brand-blue rounded-full text-xs font-bold tracking-widest font-subheading uppercase shadow-md">
+            NUESTRA COMUNIDAD DIGITAL
+          </span>
+        </div>
+
+        <h2 class="text-brand-white text-4xl sm:text-5xl lg:text-6xl font-display uppercase tracking-tight leading-none">
+          SEGUÍ NUESTRO <span class="text-brand-yellow">MOVIMIENTO</span>
+        </h2>
+
+        <p class="text-brand-white text-sm sm:text-base leading-relaxed font-sans max-w-2xl mx-auto font-normal opacity-95">
+          Sumate a nuestros canales digitales y enterate al toque de todas las novedades operativas en Mar del Plata.
+        </p>
+
+        <div class="h-1 w-20 bg-brand-yellow mx-auto rounded-full mt-4"></div>
+      </div>
+
+      <!-- Grid de 3 Tarjetas de Redes Sociales -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full">
+
+        <!-- CARD 1: FACEBOOK -->
+        <article class="group relative rounded-2xl p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[420px] transition-all duration-300 hover:-translate-y-1 text-left">
+          <i class="ph-fill ph-facebook-logo absolute -right-6 -bottom-6 text-[14rem] text-brand-white/[0.04] pointer-events-none"></i>
+
+          <div class="relative z-10 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-bold tracking-widest px-3 py-1 rounded-full uppercase font-mono border border-blue-400/40 text-blue-300 bg-blue-500/10">
+                FACEBOOK OFICIAL
+              </span>
+
+              <div class="w-12 h-12 rounded-full flex items-center justify-center bg-social-facebook text-white shadow-glow-fb transition-transform duration-300 group-hover:scale-110">
+                <i class="ph-fill ph-facebook-logo text-2xl"></i>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <h3 class="font-display text-4xl sm:text-5xl uppercase tracking-tight leading-none text-brand-white">
+                FACEBOOK
+              </h3>
+              <p class="font-sans text-sm font-semibold mt-1 text-[#5ea4ff]">
+                Envíos DosRuedas
+              </p>
+            </div>
+
+            <p class="font-sans text-sm leading-relaxed text-brand-white/85 font-light pt-1">
+              Seguí nuestro día a día, novedades operativas y la comunidad comercial en Mar del Plata.
+            </p>
+          </div>
+
+          <div class="relative z-10 pt-6">
+            <a href="https://www.facebook.com/enviosdosruedas" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-300 bg-social-facebook hover:bg-[#166fe5] text-white shadow-glow-fb group/btn">
+              <span>SEGUIR COMUNIDAD</span>
+              <span class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center shrink-0 ml-2 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform">
+                <i class="ph-bold ph-arrow-up-right text-sm text-white"></i>
+              </span>
+            </a>
+          </div>
+        </article>
+
+        <!-- CARD 2: INSTAGRAM -->
+        <article class="group relative rounded-2xl p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[420px] transition-all duration-300 hover:-translate-y-1 text-left">
+          <i class="ph-fill ph-instagram-logo absolute -right-6 -bottom-6 text-[14rem] text-brand-white/[0.04] pointer-events-none"></i>
+
+          <div class="relative z-10 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-bold tracking-widest px-3 py-1 rounded-full uppercase font-mono border border-rose-400/40 text-rose-300 bg-rose-500/10">
+                INSTAGRAM MDQ
+              </span>
+
+              <div class="w-12 h-12 rounded-2xl flex items-center justify-center bg-gradient-to-tr from-[#f97316] via-[#e11d48] to-[#9333ea] text-white shadow-glow-ig transition-transform duration-300 group-hover:scale-110">
+                <i class="ph-fill ph-instagram-logo text-2xl"></i>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <h3 class="font-display text-4xl sm:text-5xl uppercase tracking-tight leading-none text-brand-white">
+                INSTAGRAM
+              </h3>
+              <p class="font-sans text-sm font-semibold mt-1 text-[#ff4d6d]">
+                @enviosdosruedas
+              </p>
+            </div>
+
+            <p class="font-sans text-sm leading-relaxed text-brand-white/85 font-light pt-1">
+              Mirá el detrás de escena de nuestros repartidores y la flota recorriendo las calles de MDQ.
+            </p>
+          </div>
+
+          <div class="relative z-10 pt-6">
+            <a href="https://www.instagram.com/enviosdosruedas/" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-300 bg-gradient-to-r from-[#9b2c8a] via-[#e11d48] to-[#f97316] hover:opacity-95 text-white shadow-glow-ig group/btn">
+              <span>VER CONTENIDO</span>
+              <span class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center shrink-0 ml-2 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform">
+                <i class="ph-bold ph-arrow-up-right text-sm text-white"></i>
+              </span>
+            </a>
+          </div>
+        </article>
+
+        <!-- CARD 3: WHATSAPP -->
+        <article class="group relative rounded-2xl p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[420px] transition-all duration-300 hover:-translate-y-1 text-left">
+          <i class="ph-fill ph-whatsapp-logo absolute -right-6 -bottom-6 text-[14rem] text-brand-white/[0.04] pointer-events-none"></i>
+
+          <div class="relative z-10 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-bold tracking-widest px-3 py-1 rounded-full uppercase font-mono border border-emerald-400/40 text-emerald-300 bg-emerald-500/10">
+                WHATSAPP DIRECTO
+              </span>
+
+              <div class="w-12 h-12 rounded-full flex items-center justify-center bg-social-whatsapp text-white shadow-glow-wa transition-transform duration-300 group-hover:scale-110">
+                <i class="ph-fill ph-whatsapp-logo text-2xl"></i>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <h3 class="font-display text-4xl sm:text-5xl uppercase tracking-tight leading-none text-brand-white">
+                WHATSAPP
+              </h3>
+              <p class="font-mono text-sm font-semibold mt-1 text-social-whatsapp">
+                +54 223 660-2699
+              </p>
+            </div>
+
+            <p class="font-sans text-sm leading-relaxed text-brand-white/85 font-light pt-1">
+              Escribinos directamente para consultas de precios, despachos o soporte logístico inmediato.
+            </p>
+          </div>
+
+          <div class="relative z-10 pt-6">
+            <a href="https://wa.me/542236602699" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-300 bg-social-whatsapp hover:bg-[#20bd5a] text-brand-blue-deep shadow-glow-wa group/btn font-bold">
+              <span>INICIAR CHAT</span>
+              <span class="w-7 h-7 rounded-full bg-brand-blue-deep/15 flex items-center justify-center shrink-0 ml-2 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform">
+                <i class="ph-bold ph-arrow-up-right text-sm text-brand-blue-deep"></i>
+              </span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER GLOBAL ==================== -->
+  <footer id="contacto" class="bg-brand-blue text-brand-white border-t border-brand-white/20 relative overflow-hidden w-full">
+    <div class="h-1.5 bg-brand-yellow w-full shadow-md"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10 relative z-10">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 items-start text-left">
+
+        <!-- Identidad (5 cols) -->
+        <div class="lg:col-span-5 space-y-5">
+          <a class="flex items-center gap-3 group w-fit focus:outline-none" href="/prototipos/index.html">
+            <div class="relative w-11 h-11 bg-brand-blue border border-brand-yellow rounded-xl p-1 shrink-0 flex items-center justify-center overflow-hidden shadow-glow-yellow group-hover:scale-105 transition-transform">
+              <img src="./logo.webp" alt="Logo Envíos DosRuedas" class="w-full h-full object-contain" onerror="this.style.display='none';">
+            </div>
+            <div class="flex flex-col leading-none">
+              <span class="font-display text-2xl sm:text-3xl tracking-tight uppercase text-brand-white">
+                Envíos <span class="text-brand-yellow">DosRuedas</span>
+              </span>
+              <span class="text-[10px] font-mono text-brand-white/80 tracking-widest uppercase mt-0.5">
+                Tu solución confiable · Mar del Plata
+              </span>
+            </div>
+          </a>
+
+          <p class="text-brand-white/90 text-sm leading-relaxed max-w-sm font-light">
+            Con más de 7 años de trayectoria en Mar del Plata, transformamos el despacho de tus productos en un motor de crecimiento para comercios con flota propia y compromiso humano.
+          </p>
+
+          <div class="space-y-2 pt-2">
+            <span class="block text-xs font-bold text-brand-yellow uppercase tracking-widest font-subheading">
+              Canales Oficiales
+            </span>
+            <div class="flex flex-wrap items-center gap-3">
+              <a class="h-9 w-9 rounded-xl bg-brand-white/15 hover:bg-brand-yellow text-brand-white hover:text-brand-blue flex items-center justify-center transition-all border border-brand-white/20" title="Instagram" aria-label="Instagram Oficial" href="https://www.instagram.com/enviosdosruedas/" target="_blank" rel="noopener noreferrer">
+                <i class="ph-fill ph-instagram-logo text-lg"></i>
+              </a>
+              <a class="h-9 w-9 rounded-xl bg-brand-white/15 hover:bg-brand-yellow text-brand-white hover:text-brand-blue flex items-center justify-center transition-all border border-brand-white/20" title="Facebook" aria-label="Facebook Oficial" href="https://www.facebook.com/enviosdosruedas" target="_blank" rel="noopener noreferrer">
+                <i class="ph-fill ph-facebook-logo text-lg"></i>
+              </a>
+              <a class="h-9 w-9 rounded-xl bg-brand-yellow hover:bg-brand-yellow-hover text-brand-blue flex items-center justify-center transition-all" title="WhatsApp Directo" aria-label="WhatsApp Directo" href="https://wa.me/542236602699" target="_blank" rel="noopener noreferrer">
+                <i class="ph-fill ph-whatsapp-logo text-lg"></i>
+              </a>
+              <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-brand-white/15 border border-brand-white/20 text-xs text-brand-white font-mono">
+                <i class="ph-fill ph-shield-check text-brand-yellow"></i>
+                <span>Partner 3PL Verificado</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Servicios (3 cols) -->
+        <div class="lg:col-span-3 space-y-4">
+          <h4 class="font-subheading text-lg tracking-wider text-brand-yellow uppercase border-b border-brand-white/20 pb-2 font-bold">
+            Servicios y Soluciones
+          </h4>
+          <ul class="space-y-2.5 text-sm font-sans">
+            <li>
+              <a class="text-brand-white hover:text-brand-yellow flex items-center justify-between group transition-all duration-200" href="/prototipos/envios-express.html">
+                <div class="flex items-center gap-2">
+                  <i class="ph-fill ph-lightning text-brand-yellow"></i>
+                  <span>Envíos Express Inmediatos</span>
+                </div>
+                <i class="ph ph-caret-right text-xs opacity-0 group-hover:opacity-100 transition-opacity text-brand-yellow"></i>
+              </a>
+            </li>
+            <li>
+              <a class="text-brand-white hover:text-brand-yellow flex items-center justify-between group transition-all duration-200" href="/prototipos/envios-lowcost.html">
+                <div class="flex items-center gap-2">
+                  <i class="ph-fill ph-tag text-brand-yellow"></i>
+                  <span>Envíos LowCost Diarios</span>
+                </div>
+                <i class="ph ph-caret-right text-xs opacity-0 group-hover:opacity-100 transition-opacity text-brand-yellow"></i>
+              </a>
+            </li>
+            <li>
+              <a class="text-brand-white hover:text-brand-yellow flex items-center justify-between group transition-all duration-200" href="/prototipos/enviosflex.html">
+                <div class="flex items-center gap-2">
+                  <i class="ph-fill ph-package text-brand-yellow"></i>
+                  <span>Mercado Envíos Flex</span>
+                </div>
+                <i class="ph ph-caret-right text-xs opacity-0 group-hover:opacity-100 transition-opacity text-brand-yellow"></i>
+              </a>
+            </li>
+            <li>
+              <a class="text-brand-white hover:text-brand-yellow flex items-center justify-between group transition-all duration-200" href="/prototipos/plan-emprendedores.html">
+                <div class="flex items-center gap-2">
+                  <i class="ph-fill ph-warehouse text-brand-yellow"></i>
+                  <span>E-Commerce & Logística 3PL</span>
+                </div>
+                <i class="ph ph-caret-right text-xs opacity-0 group-hover:opacity-100 transition-opacity text-brand-yellow"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Base Operativa (4 cols) -->
+        <div class="lg:col-span-4 space-y-4">
+          <h4 class="font-subheading text-lg tracking-wider text-brand-yellow uppercase border-b border-brand-white/20 pb-2 font-bold">
+            Base Operativa y Logística
+          </h4>
+          <div class="space-y-3 text-xs text-brand-white font-sans">
+            <div class="flex gap-3 items-start bg-brand-white/10 p-3 rounded-xl border border-brand-white/15">
+              <div class="p-1.5 bg-brand-white/20 rounded-lg shrink-0 text-brand-yellow">
+                <i class="ph-fill ph-map-pin text-base"></i>
+              </div>
+              <div>
+                <p class="font-subheading uppercase text-brand-yellow text-xs font-bold">Dirección Central:</p>
+                <p class="text-brand-white font-light text-[13px]">Friuli 1972 (Exclusivo para despachos y retiro)</p>
+                <p class="text-[11px] text-brand-white/70">B7600 Mar del Plata, Prov. de Buenos Aires</p>
+              </div>
+            </div>
+
+            <div class="flex gap-3 items-start bg-brand-white/10 p-3 rounded-xl border border-brand-white/15">
+              <div class="p-1.5 bg-brand-white/20 rounded-lg shrink-0 text-brand-yellow">
+                <i class="ph-fill ph-phone-call text-base"></i>
+              </div>
+              <div>
+                <p class="font-subheading uppercase text-brand-yellow text-xs font-bold">Central Telefónica:</p>
+                <a href="tel:+542236602699" class="text-brand-white hover:text-brand-yellow font-mono text-sm block font-bold transition-colors">
+                  +54 223 660-2699
+                </a>
+                <p class="text-[11px] text-brand-white/70">Línea directa base y logística</p>
+              </div>
+            </div>
+
+            <div class="flex gap-3 items-start bg-brand-white/10 p-3 rounded-xl border border-brand-white/15">
+              <div class="p-1.5 bg-brand-white/20 rounded-lg shrink-0 text-brand-yellow">
+                <i class="ph-fill ph-clock text-base"></i>
+              </div>
+              <div class="w-full space-y-1">
+                <p class="font-subheading uppercase text-brand-yellow text-xs font-bold">Horarios de Operación:</p>
+                <div class="text-[12px] space-y-0.5 text-brand-white/90">
+                  <div class="flex justify-between items-center">
+                    <span>Lunes a Viernes:</span>
+                    <span class="font-mono text-brand-yellow font-bold">08:00 - 20:00 hs</span>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span>Sábados (Guardia):</span>
+                    <span class="font-mono text-brand-yellow font-bold">09:00 - 15:00 hs</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Separador -->
+      <div class="border-t border-brand-white/20 my-8 relative"></div>
+
+      <!-- Copyright y Accesos Rápidos -->
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-brand-white/80 font-sans">
+        <p>© 2026 Envíos DosRuedas. Todos los derechos reservados. Mar del Plata, Argentina.</p>
+        <div class="flex flex-wrap justify-center gap-6">
+          <a class="hover:text-brand-yellow transition-colors" href="/prototipos/index.html">Inicio</a>
+          <a class="hover:text-brand-yellow transition-colors" href="/prototipos/sobre-nosotros.html">Nosotros</a>
+          <a class="hover:text-brand-yellow transition-colors" href="/prototipos/contacto.html">Contacto</a>
+          <button type="button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="text-brand-yellow font-subheading uppercase tracking-wider flex items-center gap-1 hover:underline ml-2">
+            <span>Volver Arriba</span>
+            <i class="ph-bold ph-arrow-up text-xs"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== LOGICA INTERACTIVA EN VANILLA JS ==================== -->
+  <script>
+    // Header Dropdowns
+    const servicesBtn = document.getElementById('services-btn');
+    const servicesMenu = document.getElementById('services-menu');
+    const servicesCaret = document.getElementById('services-caret');
+
+    const aboutBtn = document.getElementById('about-btn');
+    const aboutMenu = document.getElementById('about-menu');
+    const aboutCaret = document.getElementById('about-caret');
+
+    if (servicesBtn && servicesMenu) {
+      servicesBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = !servicesMenu.classList.contains('hidden');
+        if (isOpen) {
+          servicesMenu.classList.add('hidden');
+          servicesCaret?.classList.remove('rotate-180');
+          servicesBtn.setAttribute('aria-expanded', 'false');
+        } else {
+          servicesMenu.classList.remove('hidden');
+          servicesCaret?.classList.add('rotate-180');
+          servicesBtn.setAttribute('aria-expanded', 'true');
+          aboutMenu?.classList.add('hidden');
+          aboutCaret?.classList.remove('rotate-180');
+        }
+      });
+    }
+
+    if (aboutBtn && aboutMenu) {
+      aboutBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = !aboutMenu.classList.contains('hidden');
+        if (isOpen) {
+          aboutMenu.classList.add('hidden');
+          aboutCaret?.classList.remove('rotate-180');
+          aboutBtn.setAttribute('aria-expanded', 'false');
+        } else {
+          aboutMenu.classList.remove('hidden');
+          aboutCaret?.classList.add('rotate-180');
+          aboutBtn.setAttribute('aria-expanded', 'true');
+          servicesMenu?.classList.add('hidden');
+          servicesCaret?.classList.remove('rotate-180');
+        }
+      });
+    }
+
+    document.addEventListener('click', () => {
+      servicesMenu?.classList.add('hidden');
+      servicesCaret?.classList.remove('rotate-180');
+      aboutMenu?.classList.add('hidden');
+      aboutCaret?.classList.remove('rotate-180');
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.contains('hidden');
+        if (isHidden) {
+          mobileMenu.classList.remove('hidden');
+          mobileMenuIcon.classList.remove('ph-list');
+          mobileMenuIcon.classList.add('ph-x');
+          mobileMenuBtn.setAttribute('aria-expanded', 'true');
+        } else {
+          mobileMenu.classList.add('hidden');
+          mobileMenuIcon.classList.remove('ph-x');
+          mobileMenuIcon.classList.add('ph-list');
+          mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    // Three.js Partículas de fondo
+    (function initHeroCanvas() {
+      const canvas = document.getElementById('hero-particles-canvas');
+      if (!canvas || typeof THREE === 'undefined') return;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(60, window.innerWidth / (window.innerHeight * 0.85), 0.1, 1000);
+      camera.position.z = 30;
+
+      const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+      renderer.setSize(canvas.parentElement.clientWidth, canvas.parentElement.clientHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      const particleCount = 120;
+      const geometry = new THREE.BufferGeometry();
+      const positions = new Float32Array(particleCount * 3);
+
+      for (let i = 0; i < particleCount * 3; i += 3) {
+        positions[i] = (Math.random() - 0.5) * 50;
+        positions[i + 1] = (Math.random() - 0.5) * 30;
+        positions[i + 2] = (Math.random() - 0.5) * 20;
+      }
+
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+      const material = new THREE.PointsMaterial({
+        color: 0xFFF12E,
+        size: 0.4,
+        transparent: true,
+        opacity: 0.5,
+      });
+
+      const particleSystem = new THREE.Points(geometry, material);
+      scene.add(particleSystem);
+
+      function animate() {
+        requestAnimationFrame(animate);
+        particleSystem.rotation.y += 0.001;
+        particleSystem.rotation.x += 0.0005;
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      window.addEventListener('resize', () => {
+        if (!canvas.parentElement) return;
+        const width = canvas.parentElement.clientWidth;
+        const height = canvas.parentElement.clientHeight;
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+      });
+    })();
+  </script>
+</body>
+</html>

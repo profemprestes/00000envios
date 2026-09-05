@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cotizador de Envíos LowCost en Mar del Plata | Envíos DosRuedas</title>
+  <meta name="description" content="Calculá tu envío con entrega garantizada en el día si es solicitado antes de 13hs. Eficiencia y rentabilidad para comercios en Mar del Plata.">
+  <meta name="keywords" content="cotizador envios lowcost, calcular envio economico mar del plata, tarifa cadeteria batch mdp, envios dosruedas lowcost">
+  <meta name="theme-color" content="#0950F6">
+
+  <!-- Google Fonts: Anton, Bebas Neue, Outfit, Geist Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Geist+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Phosphor Icons CDN (Regular, Bold, Fill) -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+
+  <!-- Leaflet CSS & JS CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-blue': '#0950F6',
+            'brand-blue-deep': '#052C87',
+            'brand-navy': '#052C87',
+            'brand-yellow': '#FFF12E',
+            'brand-yellow-hover': '#FFF44A',
+            'brand-canvas': '#F8FAFC',
+            'brand-white': '#FFFFFF',
+            'brand-ink': '#0F172A',
+            'social-facebook': '#1877F2',
+            'social-whatsapp': '#25D366',
+          },
+          fontFamily: {
+            sans: ['Outfit', 'system-ui', '-apple-system', 'sans-serif'],
+            display: ['Anton', 'sans-serif'],
+            subheading: ['"Bebas Neue"', 'sans-serif'],
+            mono: ['"Geist Mono"', 'monospace'],
+          },
+          boxShadow: {
+            'glow-yellow': '0 0 25px rgba(255, 241, 46, 0.40)',
+            'glow-yellow-lg': '0 0 50px rgba(255, 241, 46, 0.55)',
+            'glow-blue': '0 0 25px rgba(9, 80, 246, 0.30)',
+            'glow-fb': '0 0 25px rgba(24, 119, 242, 0.50)',
+            'glow-ig': '0 0 25px rgba(225, 48, 108, 0.50)',
+            'glow-wa': '0 0 25px rgba(37, 211, 102, 0.50)',
+            'antigravity-deep': '0 30px 60px -15px rgba(9, 80, 246, 0.35), 0 0 50px -10px rgba(255, 241, 46, 0.20)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <style>
+    .-rotate-1 { transform: rotate(-1deg); }
+    .rotate-1 { transform: rotate(1deg); }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #052C87;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #0950F6;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 241, 46, 0.4);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #FFF12E;
+    }
+
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+    .preserve-3d {
+      transform-style: preserve-3d;
+    }
+
+    /* Custom Leaflet Dark Tiles styling */
+    .leaflet-container {
+      width: 100%;
+      height: 100%;
+      background: #052C87;
+      border-radius: 1rem;
+      font-family: 'Outfit', sans-serif;
+    }
+    .leaflet-tile {
+      filter: saturate(1.2) contrast(1.1);
+    }
+    .leaflet-control-zoom a {
+      background: #0950F6 !important;
+      color: #FFF12E !important;
+      border-color: rgba(255,255,255,0.2) !important;
+    }
+  </style>
+</head>
+<body class="bg-brand-blue text-brand-white font-sans selection:bg-brand-yellow selection:text-brand-blue overflow-x-hidden min-h-screen flex flex-col">
+
+  <!-- ==================== HEADER GLOBAL ==================== -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-brand-blue/95 backdrop-blur-md py-3.5 border-b border-brand-white/20 shadow-xl transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between gap-2 sm:gap-4">
+
+        <!-- Logotipo Oficial -->
+        <a href="/prototipos/index.html" class="flex items-center gap-2 sm:gap-3 group rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow min-w-0">
+          <div class="relative w-11 h-11 shrink-0 bg-brand-blue border border-brand-yellow rounded-xl p-1 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform shadow-glow-yellow">
+            <img src="./logo.webp" alt="Logo Envíos DosRuedas" class="w-full h-full object-contain" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'font-display font-black text-2xl text-brand-yellow leading-none\'>2R</span>';">
+          </div>
+          <span class="font-display text-lg sm:text-3xl tracking-tight leading-none uppercase flex flex-row items-center gap-1 sm:gap-1.5 min-w-0 truncate">
+            <span class="text-brand-white">Envíos</span>
+            <span class="text-brand-yellow">DosRuedas</span>
+          </span>
+        </a>
+
+        <!-- Menú Desktop -->
+        <nav class="hidden lg:flex items-center gap-1" aria-label="Navegación principal">
+          <a href="/prototipos/index.html" class="px-3.5 py-2 text-base font-subheading tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 text-brand-white hover:text-brand-yellow hover:bg-brand-white/10">
+            <i class="ph-fill ph-house text-brand-yellow text-lg"></i>
+            Inicio
+          </a>
+
+          <!-- Dropdown Servicios -->
+          <div class="relative dropdown-container" id="services-dropdown-container">
+            <button type="button" id="services-btn" aria-haspopup="true" aria-expanded="false" class="px-3.5 py-2 text-base font-subheading tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 text-brand-yellow bg-brand-white/10 hover:bg-brand-white/20">
+              <i class="ph-fill ph-motorcycle text-brand-yellow text-lg"></i>
+              Servicios
+              <i class="ph ph-caret-down dropdown-arrow text-xs transition-transform duration-200" id="services-caret"></i>
+            </button>
+
+            <div id="services-menu" class="hidden absolute top-full left-0 mt-2 w-72 bg-brand-blue border border-brand-white/25 rounded-2xl shadow-2xl p-2 z-50 origin-top">
+              <a href="/prototipos/envios-express.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+                <div class="p-2 rounded-lg bg-brand-white/20 text-brand-white">
+                  <i class="ph-fill ph-lightning text-lg"></i>
+                </div>
+                <div>
+                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">Envíos Express</div>
+                  <div class="font-sans text-xs text-brand-white/80">Entregas en 30-90 min</div>
+                </div>
+              </a>
+
+              <a href="/prototipos/envios-lowcost.html" class="flex items-center gap-3 p-2.5 rounded-xl bg-brand-white/15 transition-colors group">
+                <div class="p-2 rounded-lg bg-brand-yellow text-brand-blue">
+                  <i class="ph-fill ph-tag text-lg"></i>
+                </div>
+                <div>
+                  <div class="font-subheading uppercase text-brand-yellow text-sm">Envíos LowCost</div>
+                  <div class="font-sans text-xs text-brand-white/80">Envíos en el día para PyMEs</div>
+                </div>
+              </a>
+
+              <a href="/prototipos/enviosflex.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+                <div class="p-2 rounded-lg bg-brand-white/20 text-brand-white">
+                  <i class="ph-fill ph-package text-lg"></i>
+                </div>
+                <div>
+                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">MercadoLibre Flex</div>
+                  <div class="font-sans text-xs text-brand-white/80">Socio logístico oficial</div>
+                </div>
+              </a>
+
+              <a href="/prototipos/plan-emprendedores.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+                <div class="p-2 rounded-lg bg-brand-white/20 text-brand-yellow">
+                  <i class="ph-fill ph-warehouse text-lg"></i>
+                </div>
+                <div>
+                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">3PL & Depósito</div>
+                  <div class="font-sans text-xs text-brand-white/80">Picking, packing y guarda</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Dropdown Nosotros -->
+          <div class="relative dropdown-container" id="about-dropdown-container">
+            <button type="button" id="about-btn" aria-haspopup="true" aria-expanded="false" class="px-3.5 py-2 text-base font-subheading tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 text-brand-white hover:text-brand-yellow hover:bg-brand-white/10">
+              <i class="ph-fill ph-info text-brand-yellow text-lg"></i>
+              Nosotros
+              <i class="ph ph-caret-down dropdown-arrow text-xs transition-transform duration-200" id="about-caret"></i>
+            </button>
+
+            <div id="about-menu" class="hidden absolute top-full left-0 mt-2 w-64 bg-brand-blue border border-brand-white/25 rounded-2xl shadow-2xl p-2 z-50 origin-top">
+              <a href="/prototipos/sobre-nosotros.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+                <i class="ph-fill ph-identification-badge text-xl text-brand-yellow"></i>
+                <div>
+                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">Sobre Nosotros</div>
+                  <div class="font-sans text-xs text-brand-white/80">Quiénes somos en MDQ</div>
+                </div>
+              </a>
+
+              <a href="/prototipos/preguntas-frecuentes.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+                <i class="ph-fill ph-question text-xl text-brand-yellow"></i>
+                <div>
+                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">Preguntas Frecuentes</div>
+                  <div class="font-sans text-xs text-brand-white/80">Dudas comunes sobre el servicio</div>
+                </div>
+              </a>
+
+              <a href="/prototipos/nuestras-redes.html" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-brand-white/15 transition-colors group">
+                <i class="ph-fill ph-share-network text-xl text-brand-yellow"></i>
+                <div>
+                  <div class="font-subheading uppercase text-brand-white group-hover:text-brand-yellow text-sm">Nuestras Redes</div>
+                  <div class="font-sans text-xs text-brand-white/80">Redes y reputación</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <a href="/prototipos/contacto.html" class="px-3.5 py-2 text-base font-subheading tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 text-brand-white hover:text-brand-yellow hover:bg-brand-white/10">
+            <i class="ph-fill ph-envelope text-brand-yellow text-lg"></i>
+            Contacto
+          </a>
+        </nav>
+
+        <!-- CTA Directo Desktop -->
+        <div class="hidden lg:flex items-center gap-4">
+          <a href="tel:+542236602699" class="flex items-center gap-2 text-brand-white hover:text-brand-yellow transition-colors font-mono text-xs font-semibold">
+            <i class="ph-fill ph-phone text-brand-yellow text-base"></i>
+            223 660-2699
+          </a>
+
+          <a href="https://wa.me/542236602699" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-2.5 rounded-full font-subheading uppercase tracking-wider font-bold px-5 py-2.5 text-xs bg-brand-yellow text-brand-blue hover:bg-brand-yellow-hover hover:shadow-glow-yellow transition-all duration-300">
+            <span>Cotizá tu envío</span>
+            <span class="w-6 h-6 rounded-full flex items-center justify-center bg-brand-blue/15 text-brand-blue group-hover:bg-brand-blue group-hover:text-brand-yellow transition-all">
+              <i class="ph ph-arrow-right text-xs"></i>
+            </span>
+          </a>
+        </div>
+
+        <!-- Botones Mobile -->
+        <div class="lg:hidden flex items-center gap-2">
+          <a href="tel:+542236602699" class="p-2 rounded-xl bg-brand-white/15 text-brand-yellow hover:bg-brand-white/25 active:scale-95 transition-all" aria-label="Llamar por teléfono">
+            <i class="ph-fill ph-phone text-xl"></i>
+          </a>
+
+          <button type="button" id="mobile-menu-btn" class="p-2 rounded-xl bg-brand-white/15 text-brand-white hover:text-brand-yellow active:scale-95 transition-all" aria-label="Abrir menú" aria-expanded="false">
+            <i class="ph ph-list text-2xl" id="mobile-menu-icon"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Menú Desplegable Mobile -->
+      <div id="mobile-menu" class="hidden lg:hidden overflow-hidden transition-all duration-300">
+        <div class="border-t border-brand-white/20 bg-brand-blue mt-3 pt-3 rounded-2xl px-3 space-y-2 shadow-2xl pb-3">
+          <a href="/prototipos/index.html" class="flex items-center gap-3 py-2.5 px-3 rounded-xl font-subheading text-base uppercase text-brand-white hover:bg-brand-white/15">
+            <i class="ph-fill ph-house text-lg text-brand-yellow"></i>
+            Inicio
+          </a>
+
+          <div class="space-y-1 pl-2 border-l border-brand-white/20 my-1">
+            <p class="font-subheading text-xs uppercase text-brand-yellow px-2 pt-1 tracking-wider">Servicios principales</p>
+            <a href="/prototipos/envios-express.html" class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+              <i class="ph-fill ph-lightning text-brand-yellow"></i> Envíos Express
+            </a>
+            <a href="/prototipos/envios-lowcost.html" class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-yellow bg-brand-white/15">
+              <i class="ph-fill ph-tag text-brand-yellow"></i> Envíos LowCost
+            </a>
+            <a href="/prototipos/enviosflex.html" class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+              <i class="ph-fill ph-package text-brand-yellow"></i> Mercado Envíos Flex
+            </a>
+            <a href="/prototipos/plan-emprendedores.html" class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+              <i class="ph-fill ph-warehouse text-brand-yellow"></i> Logística 3PL
+            </a>
+          </div>
+
+          <div class="space-y-1 pl-2 border-l border-brand-white/20 my-1">
+            <p class="font-subheading text-xs uppercase text-brand-yellow px-2 pt-1 tracking-wider">Nosotros</p>
+            <a href="/prototipos/sobre-nosotros.html" class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+              <i class="ph-fill ph-identification-badge text-brand-yellow"></i> Sobre Nosotros
+            </a>
+            <a href="/prototipos/preguntas-frecuentes.html" class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+              <i class="ph-fill ph-question text-brand-yellow"></i> Preguntas Frecuentes
+            </a>
+            <a href="/prototipos/nuestras-redes.html" class="flex items-center gap-2 py-2 px-3 rounded-lg font-sans text-sm text-brand-white hover:bg-brand-white/15">
+              <i class="ph-fill ph-share-network text-brand-yellow"></i> Nuestras Redes
+            </a>
+          </div>
+
+          <a href="/prototipos/contacto.html" class="flex items-center gap-3 py-2.5 px-3 rounded-xl font-subheading text-sm uppercase text-brand-white hover:bg-brand-white/15">
+            <i class="ph-fill ph-envelope text-brand-yellow text-lg"></i> Contacto
+          </a>
+
+          <div class="pt-2">
+            <a href="https://wa.me/542236602699" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-brand-yellow text-brand-blue font-subheading uppercase tracking-wider text-xs font-bold shadow-lg hover:bg-brand-yellow-hover">
+              <i class="ph-fill ph-whatsapp-logo text-xl"></i> Pedir envío por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO COTIZADOR LOWCOST ==================== -->
+  <section id="cotizador-lowcost-hero" class="relative min-h-[70vh] flex items-center justify-center pt-32 pb-16 overflow-hidden bg-brand-blue text-brand-white border-b border-brand-white/15">
+    <!-- Canvas 3D de fondo -->
+    <canvas id="hero-particles-canvas" class="absolute inset-0 pointer-events-none z-0"></canvas>
+
+    <!-- Marca de agua tipográfica de fondo -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden z-0">
+      <span class="font-display uppercase text-[16vw] leading-none text-brand-white/[0.03] tracking-tighter whitespace-nowrap">
+        COTIZADOR LOWCOST MDQ
+      </span>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+        <!-- Columna Izquierda: Título y Descripción -->
+        <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+          <!-- Badge -->
+          <div class="inline-flex justify-center lg:justify-start">
+            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-subheading font-bold uppercase tracking-widest bg-brand-yellow text-brand-blue shadow-glow-yellow border border-brand-yellow">
+              <i class="ph-fill ph-shopping-bag-open text-sm text-brand-blue"></i>
+              Servicio Económico y Programado
+            </span>
+          </div>
+
+          <!-- Título -->
+          <h1 class="text-5xl sm:text-6xl lg:text-7xl font-display uppercase tracking-tight leading-[0.98] text-brand-white flex flex-wrap items-center justify-center lg:justify-start gap-x-4 gap-y-2">
+            <span>COTIZÁ TU</span>
+            <span class="text-brand-yellow">ENVÍO</span>
+            <span>LOWCOST</span>
+          </h1>
+
+          <!-- Descripción -->
+          <p class="text-base sm:text-lg lg:text-xl font-sans text-brand-white/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light border-l-2 border-brand-yellow pl-4 text-left">
+            Eficiencia y rentabilidad. Calculá tu envío con entrega garantizada en el día si es solicitado antes de 13hs.
+          </p>
+
+          <!-- Indicadores de Features -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 max-w-xl mx-auto lg:mx-0 text-left font-sans text-xs">
+            <div class="flex items-center gap-2 text-brand-white/85 bg-brand-white/10 border border-brand-white/20 rounded-2xl p-3 hover:border-brand-yellow/40 transition-colors">
+              <i class="ph-fill ph-percent text-brand-yellow text-base shrink-0"></i>
+              <span>Hasta 40% de Ahorro</span>
+            </div>
+            <div class="flex items-center gap-2 text-brand-white/85 bg-brand-white/10 border border-brand-white/20 rounded-2xl p-3 hover:border-brand-yellow/40 transition-colors">
+              <i class="ph-fill ph-motorcycle text-brand-yellow text-base shrink-0"></i>
+              <span>Entrega Same-Day</span>
+            </div>
+            <div class="flex items-center gap-2 text-brand-white/85 bg-brand-white/10 border border-brand-white/20 rounded-2xl p-3 hover:border-brand-yellow/40 transition-colors">
+              <i class="ph-fill ph-shield-check text-brand-yellow text-base shrink-0"></i>
+              <span>Tarifa Plana PyME</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Tarjeta 3D Flotante de Simulación -->
+        <div class="lg:col-span-5 relative hidden lg:block h-[380px] perspective-1000">
+          <div id="hero-interactive-card" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] z-20 preserve-3d cursor-pointer transition-transform duration-200">
+            <div class="rounded-[28px] p-2 bg-brand-white/10 border border-brand-white/20 shadow-2xl">
+              <div class="bg-brand-white rounded-[20px] p-7 text-brand-blue space-y-6 text-left">
+                <div class="flex items-center justify-between border-b border-brand-blue/15 pb-4">
+                  <div>
+                    <h4 class="text-xl font-subheading uppercase text-brand-blue tracking-wider font-bold">
+                      CÁLCULO AUTOMÁTICO
+                    </h4>
+                    <p class="text-[10px] text-brand-blue/70 font-subheading tracking-wider uppercase mt-0.5">SISTEMA LOWCOST BATCH</p>
+                  </div>
+                  <i class="ph-fill ph-calculator text-2xl text-brand-blue animate-pulse"></i>
+                </div>
+
+                <div class="space-y-3 text-xs">
+                  <div class="flex justify-between items-center py-1 border-b border-brand-blue/10">
+                    <span class="font-subheading font-bold uppercase tracking-wider text-[10px] text-brand-blue/60">ORIGEN</span>
+                    <span id="hero-demo-origen" class="text-brand-blue font-semibold font-sans truncate max-w-[170px]">Centro de Distribución</span>
+                  </div>
+                  <div class="flex justify-between items-center py-1 border-b border-brand-blue/10">
+                    <span class="font-subheading font-bold uppercase tracking-wider text-[10px] text-brand-blue/60">DESTINO</span>
+                    <span id="hero-demo-destino" class="text-brand-blue font-semibold font-sans truncate max-w-[170px]">Zona Güemes</span>
+                  </div>
+                  <div class="flex justify-between items-center py-1 border-b border-brand-blue/10">
+                    <span class="font-subheading font-bold uppercase tracking-wider text-[10px] text-brand-blue/60">DISTANCIA</span>
+                    <span id="hero-demo-distancia" class="text-brand-blue font-bold font-mono">4.2 km</span>
+                  </div>
+                  <div class="flex justify-between items-center py-1 text-sm pt-2 border-t border-brand-blue/15">
+                    <span class="font-subheading font-bold text-brand-blue tracking-wide">TARIFA FINAL</span>
+                    <span id="hero-demo-tarifa" class="text-brand-blue font-bold text-lg font-mono">$4.000 ARS</span>
+                  </div>
+                </div>
+
+                <div class="pt-2 flex justify-center">
+                  <span class="px-3 py-1 bg-brand-yellow/20 border border-brand-yellow text-brand-blue rounded-xl text-[10px] font-subheading tracking-wider uppercase font-bold">
+                    ENTREGA INCLUIDA EN EL DÍA
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTENEDOR PRINCIPAL ==================== -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 py-16 relative z-10 w-full">
+
+    <!-- 1. Formulario Principal de Cotización LowCost y Mapa Leaflet -->
+    <main class="w-full font-sans">
+      <div id="cotizador-lowcost-form" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+
+        <!-- Panel Formulario (7 cols) -->
+        <div class="lg:col-span-7 flex flex-col justify-between rounded-[28px] p-2 bg-brand-white/10 border border-brand-white/20 shadow-2xl">
+          <div class="p-6 sm:p-8 rounded-[20px] bg-brand-white flex flex-col justify-between h-full text-brand-blue text-left space-y-6">
+            <div>
+              <span class="px-3.5 py-1 bg-brand-yellow/20 text-brand-blue border border-brand-yellow/60 rounded-full text-xs font-subheading font-bold tracking-wider uppercase">
+                Programado y Económico · Mar del Plata
+              </span>
+              <h2 class="text-2xl sm:text-3xl font-display uppercase tracking-tight text-brand-blue mt-3">
+                Calculá tu Envío LowCost
+              </h2>
+              <p class="text-brand-blue/70 text-sm font-sans mt-1 leading-relaxed">
+                Ingresá las direcciones de origen y destino para calcular la tarifa económica agrupada con entrega garantizada en el día (solicitando antes de 13:00 hs).
+              </p>
+            </div>
+
+            <form id="lowcost-form" onsubmit="handleLowCostSubmit(event)" class="space-y-4">
+              <!-- Origen -->
+              <div class="space-y-1.5 relative">
+                <label for="origen-input" class="text-xs font-subheading uppercase tracking-wider font-bold text-brand-blue flex items-center gap-1.5">
+                  <i class="ph-fill ph-map-pin text-brand-blue text-sm"></i>
+                  Dirección de Origen (Retiro)
+                </label>
+                <input
+                  id="origen-input"
+                  type="text"
+                  placeholder="Ej: Av. Colón 1234, Mar del Plata"
+                  required
+                  autocomplete="off"
+                  class="w-full h-11 bg-white border-2 border-brand-blue/20 focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:border-brand-blue rounded-xl px-4 text-sm outline-none transition-all text-brand-blue placeholder:text-brand-blue/40 font-sans"
+                />
+                <!-- Sugerencias rápidas -->
+                <div id="origen-suggestions" class="hidden absolute top-full left-0 right-0 mt-1 bg-white border border-brand-blue/20 rounded-xl shadow-xl z-50 max-h-48 overflow-y-auto p-1"></div>
+              </div>
+
+              <!-- Destino -->
+              <div class="space-y-1.5 relative">
+                <label for="destino-input" class="text-xs font-subheading uppercase tracking-wider font-bold text-brand-blue flex items-center gap-1.5">
+                  <i class="ph-fill ph-flag-pennant text-brand-yellow text-sm"></i>
+                  Dirección de Destino (Entrega)
+                </label>
+                <input
+                  id="destino-input"
+                  type="text"
+                  placeholder="Ej: Juan B. Justo 5678, Mar del Plata"
+                  required
+                  autocomplete="off"
+                  class="w-full h-11 bg-white border-2 border-brand-blue/20 focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:border-brand-blue rounded-xl px-4 text-sm outline-none transition-all text-brand-blue placeholder:text-brand-blue/40 font-sans"
+                />
+                <!-- Sugerencias rápidas -->
+                <div id="destino-suggestions" class="hidden absolute top-full left-0 right-0 mt-1 bg-white border border-brand-blue/20 rounded-xl shadow-xl z-50 max-h-48 overflow-y-auto p-1"></div>
+              </div>
+
+              <!-- Nombre y Teléfono en Grid -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="space-y-1.5">
+                  <label for="nombre-input" class="text-xs font-subheading uppercase tracking-wider font-bold text-brand-blue flex items-center gap-1.5">
+                    <i class="ph-fill ph-user text-brand-blue text-sm"></i>
+                    Nombre
+                  </label>
+                  <input
+                    id="nombre-input"
+                    type="text"
+                    placeholder="Tu nombre completo"
+                    required
+                    class="w-full h-11 bg-white border-2 border-brand-blue/20 focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:border-brand-blue rounded-xl px-4 text-sm outline-none transition-all text-brand-blue placeholder:text-brand-blue/40 font-sans"
+                  />
+                </div>
+
+                <div class="space-y-1.5">
+                  <label for="telefono-input" class="text-xs font-subheading uppercase tracking-wider font-bold text-brand-blue flex items-center gap-1.5">
+                    <i class="ph-fill ph-phone text-brand-blue text-sm"></i>
+                    Teléfono
+                  </label>
+                  <input
+                    id="telefono-input"
+                    type="tel"
+                    placeholder="Tu teléfono de contacto"
+                    required
+                    class="w-full h-11 bg-white border-2 border-brand-blue/20 focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:border-brand-blue rounded-xl px-4 text-sm outline-none transition-all text-brand-blue placeholder:text-brand-blue/40 font-sans"
+                  />
+                </div>
+              </div>
+
+              <!-- Producto -->
+              <div class="space-y-1.5">
+                <label for="producto-input" class="text-xs font-subheading uppercase tracking-wider font-bold text-brand-blue flex items-center gap-1.5">
+                  <i class="ph-fill ph-package text-brand-blue text-sm"></i>
+                  Tipo de producto a trasladar
+                </label>
+                <input
+                  id="producto-input"
+                  type="text"
+                  placeholder="Ej: Documentos, Paquete pequeño, Ropa..."
+                  required
+                  class="w-full h-11 bg-white border-2 border-brand-blue/20 focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:border-brand-blue rounded-xl px-4 text-sm outline-none transition-all text-brand-blue placeholder:text-brand-blue/40 font-sans"
+                />
+              </div>
+
+              <!-- Mensaje de Error -->
+              <div id="lowcost-error" class="hidden bg-brand-blue/10 text-brand-blue text-xs px-4 py-3 rounded-xl items-center gap-2 font-sans font-medium border border-brand-blue/20">
+                <i class="ph-bold ph-warning text-base text-brand-blue"></i>
+                <span id="lowcost-error-text">Por favor completá todos los campos requeridos.</span>
+              </div>
+
+              <!-- Botón Submit -->
+              <button
+                id="lowcost-submit-btn"
+                type="submit"
+                class="w-full bg-brand-yellow hover:bg-brand-yellow-hover text-brand-blue font-subheading font-bold tracking-wider uppercase text-base py-3.5 px-6 rounded-full shadow-glow-yellow transition-all flex items-center justify-between cursor-pointer min-h-12 active:scale-98"
+              >
+                <span id="lowcost-btn-text">Calcular Ruta y Tarifa LowCost</span>
+                <span class="w-8 h-8 rounded-full bg-brand-blue/15 text-brand-blue flex items-center justify-center shrink-0">
+                  <i class="ph-bold ph-arrow-right text-base" id="lowcost-btn-icon"></i>
+                </span>
+              </button>
+            </form>
+
+            <!-- Resultados Dinámicos Calculados -->
+            <div id="lowcost-result-panel" class="hidden mt-6 rounded-2xl bg-brand-blue/5 border border-brand-blue/20 p-5 space-y-4">
+              <div class="grid grid-cols-2 gap-3 text-center">
+                <div class="bg-white p-3 rounded-xl border border-brand-blue/15">
+                  <span class="block text-[10px] font-subheading font-bold text-brand-blue/70 uppercase tracking-wider">
+                    DISTANCIA REAL
+                  </span>
+                  <span id="res-distancia" class="text-xl font-mono text-brand-blue font-bold tabular-nums">
+                    0.0 km
+                  </span>
+                </div>
+                <div class="bg-white p-3 rounded-xl border border-brand-blue/15">
+                  <span class="block text-[10px] font-subheading font-bold text-brand-blue/70 uppercase tracking-wider">
+                    FRANJA ESTIMADA
+                  </span>
+                  <span class="text-sm font-subheading font-bold text-brand-blue uppercase">
+                    Hoy (Mismo Día)
+                  </span>
+                </div>
+              </div>
+
+              <div class="border-t border-brand-blue/15 pt-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div>
+                  <span class="block text-[10px] font-subheading font-bold text-brand-blue/70 uppercase tracking-wider">
+                    TARIFA EXACTA LOWCOST 2026
+                  </span>
+                  <div class="flex items-baseline gap-1.5 mt-0.5">
+                    <span id="res-precio" class="font-mono font-bold tracking-tight text-4xl sm:text-5xl text-brand-blue tabular-nums">
+                      $0
+                    </span>
+                    <span class="text-xs text-brand-blue/70 font-mono font-bold">ARS</span>
+                  </div>
+                </div>
+
+                <a
+                  id="res-whatsapp-btn"
+                  href="https://wa.me/542236602699"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="w-full sm:w-auto inline-flex items-center justify-between gap-3 bg-brand-yellow hover:bg-brand-yellow-hover text-brand-blue font-subheading font-bold text-sm tracking-wider uppercase px-6 py-3.5 rounded-full shadow-glow-yellow transition-all min-h-11"
+                >
+                  <span>Pedir por WhatsApp</span>
+                  <span class="w-7 h-7 rounded-full bg-brand-blue/15 flex items-center justify-center shrink-0">
+                    <i class="ph-bold ph-check-circle text-base"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel Mapa Leaflet (5 cols) -->
+        <div class="lg:col-span-5 min-h-[420px] lg:min-h-full rounded-3xl p-2 bg-brand-white/10 border border-brand-white/20 shadow-2xl">
+          <div class="bg-brand-blue-deep p-5 rounded-[22px] flex flex-col justify-between h-full relative overflow-hidden text-brand-white">
+            <!-- Header Mapa -->
+            <div class="relative z-10 flex justify-between items-center border-b border-white/10 pb-3 mb-3">
+              <div class="flex items-center gap-2">
+                <div class="w-2.5 h-2.5 rounded-full bg-brand-yellow animate-ping"></div>
+                <span class="text-xs font-mono text-brand-yellow uppercase tracking-widest font-semibold">
+                  Ruteador Batch Activo
+                </span>
+              </div>
+              <span class="text-[10px] font-mono text-brand-white/70">
+                OpenStreetMap + OSRM
+              </span>
+            </div>
+
+            <!-- Contenedor Leaflet Map -->
+            <div id="lowcost-leaflet-map" class="relative grow min-h-[280px] rounded-2xl overflow-hidden border border-white/10 shadow-inner z-10"></div>
+
+            <!-- Footer Mapa -->
+            <div class="relative z-10 text-[11px] font-mono text-brand-white/80 space-y-1.5 border-t border-white/10 pt-3 mt-3 text-left">
+              <div class="flex justify-between">
+                <span>Servicio:</span>
+                <span class="text-brand-yellow font-bold uppercase">Envío LowCost Batch</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Modalidad:</span>
+                <span class="text-white">Ruteo Agrupado Diario MDQ</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- 2. Pautas y Beneficios del Envío LowCost -->
+    <section id="cotizador-lowcost-details" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- Columna 1: Beneficios (7 cols) -->
+      <div class="lg:col-span-7 rounded-[28px] p-2 bg-brand-white/10 border border-brand-white/20 shadow-2xl">
+        <div class="p-6 sm:p-8 rounded-[20px] bg-brand-white space-y-6 text-brand-blue text-left">
+          <h3 class="text-xl font-subheading uppercase tracking-wider text-brand-blue border-b border-brand-blue/15 pb-3 font-bold">
+            Beneficios del Cotizador
+          </h3>
+          <div class="space-y-5">
+            <div class="flex gap-4 items-start">
+              <div class="p-3 bg-brand-blue/10 text-brand-blue rounded-xl shrink-0">
+                <i class="ph-fill ph-map-trifold text-xl"></i>
+              </div>
+              <div>
+                <h4 class="font-subheading text-brand-blue text-base uppercase tracking-wide font-bold">
+                  Visualización en Mapa
+                </h4>
+                <p class="text-brand-blue/70 text-xs sm:text-sm font-sans mt-1 leading-relaxed">
+                  Observá la ruta exacta que tomará tu envío en un mapa interactivo diseñado a medida.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-4 items-start">
+              <div class="p-3 bg-brand-blue/10 text-brand-blue rounded-xl shrink-0">
+                <i class="ph-fill ph-lightning text-xl"></i>
+              </div>
+              <div>
+                <h4 class="font-subheading text-brand-blue text-base uppercase tracking-wide font-bold">
+                  Cálculo Preciso
+                </h4>
+                <p class="text-brand-blue/70 text-xs sm:text-sm font-sans mt-1 leading-relaxed">
+                  Obtené estimaciones de distancia y tiempo basadas en datos de tráfico y ruteo diario actualizados.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-4 items-start">
+              <div class="p-3 bg-brand-blue/10 text-brand-blue rounded-xl shrink-0">
+                <i class="ph-fill ph-check-circle text-xl"></i>
+              </div>
+              <div>
+                <h4 class="font-subheading text-brand-blue text-base uppercase tracking-wide font-bold">
+                  Confirmación Fácil
+                </h4>
+                <p class="text-brand-blue/70 text-xs sm:text-sm font-sans mt-1 leading-relaxed">
+                  Una vez cotizado, podés proceder a confirmar tu envío con pocos clics a través de WhatsApp.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna 2: Pautas y Garantía (5 cols) -->
+      <div class="lg:col-span-5 rounded-[28px] p-2 bg-brand-white/10 border border-brand-white/20 shadow-2xl">
+        <div class="p-6 sm:p-8 rounded-[20px] bg-brand-white space-y-6 text-brand-blue text-left">
+          <h3 class="text-xl font-subheading uppercase tracking-wider text-brand-blue border-b border-brand-blue/15 pb-3 font-bold">
+            Envíos LowCost
+          </h3>
+          <div class="space-y-4 text-xs sm:text-sm text-brand-blue/85 font-sans leading-relaxed">
+            <p>
+              Entregas en el día si es solicitado antes de <span class="font-mono text-brand-blue font-bold">13:00 hs</span>, o al día siguiente para los solicitados luego de <span class="font-mono text-brand-blue font-bold">13:00 hs</span>.
+            </p>
+
+            <div class="bg-brand-yellow/15 border border-brand-yellow/50 rounded-2xl p-4 mt-6">
+              <h4 class="font-subheading text-brand-blue text-sm tracking-wider uppercase font-bold flex items-center gap-1.5 mb-1.5">
+                <i class="ph-fill ph-shield-check text-brand-blue text-base shrink-0"></i>
+                Garantía de Entrega
+              </h4>
+              <p class="text-xs text-brand-blue/80">
+                Tus paquetes viajan seguros. Optimizamos y agrupamos los recorridos diarios para ofrecerte la tarifa más económica del mercado local.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Banner de Ayuda y Cuentas Corporativas -->
+    <section id="cotizador-lowcost-help" class="bg-brand-blue-deep text-brand-white rounded-3xl p-6 sm:p-10 relative overflow-hidden border border-brand-white/20 shadow-2xl">
+      <div class="relative z-10 flex flex-col md:flex-row justify-between items-center gap-8 text-left">
+        <div class="space-y-3 max-w-2xl text-center md:text-left">
+          <span class="px-3 py-1 bg-brand-white/10 text-brand-yellow rounded-full text-xs font-subheading font-bold tracking-wider uppercase inline-flex items-center gap-1.5">
+            <i class="ph-fill ph-question text-base shrink-0"></i>
+            ¿Dudas o Envíos Especiales?
+          </span>
+          <h3 class="text-2xl sm:text-3xl font-display uppercase tracking-tight text-brand-white">
+            ¿Tenés una cuenta corporativa?
+          </h3>
+          <p class="text-brand-white/85 text-sm sm:text-base leading-relaxed font-sans font-light">
+            Accedé a facturación semanal, quincenal o mensual. Factura tipo C disponible y resúmenes consolidados de envíos.
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto justify-center shrink-0">
+          <a
+            href="/prototipos/contacto.html"
+            class="inline-flex items-center justify-between gap-3 bg-brand-white hover:bg-brand-canvas text-brand-blue font-subheading tracking-wider text-sm uppercase px-6 py-3.5 rounded-full shadow-md transition-all font-bold"
+          >
+            <span>Formulario de Contacto</span>
+            <span class="w-7 h-7 rounded-full bg-brand-blue/10 text-brand-blue flex items-center justify-center shrink-0">
+              <i class="ph-fill ph-envelope-simple text-sm"></i>
+            </span>
+          </a>
+
+          <a
+            href="tel:+542236602699"
+            class="inline-flex items-center justify-between gap-3 bg-brand-yellow hover:bg-brand-yellow-hover text-brand-blue font-subheading tracking-wider text-sm uppercase px-6 py-3.5 rounded-full shadow-glow-yellow transition-all font-bold"
+          >
+            <span>Llamanos: <span class="font-mono">223-660-2699</span></span>
+            <span class="w-7 h-7 rounded-full bg-brand-blue/15 text-brand-blue flex items-center justify-center shrink-0">
+              <i class="ph-fill ph-phone-call text-sm"></i>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ==================== CARRUSEL DE REDES SOCIALES ==================== -->
+  <section id="carrusel-redes" class="py-20 sm:py-28 bg-brand-blue border-y border-brand-white/15 relative overflow-hidden w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+      <!-- Header de Sección -->
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3.5">
+        <div>
+          <span class="inline-block px-5 py-1.5 bg-brand-yellow text-brand-blue rounded-full text-xs font-bold tracking-widest font-subheading uppercase shadow-md">
+            NUESTRA COMUNIDAD DIGITAL
+          </span>
+        </div>
+
+        <h2 class="text-brand-white text-4xl sm:text-5xl lg:text-6xl font-display uppercase tracking-tight leading-none">
+          SEGUÍ NUESTRO <span class="text-brand-yellow">MOVIMIENTO</span>
+        </h2>
+
+        <p class="text-brand-white text-sm sm:text-base leading-relaxed font-sans max-w-2xl mx-auto font-normal opacity-95">
+          Sumate a nuestros canales digitales y enterate al toque de todas las novedades operativas en Mar del Plata.
+        </p>
+
+        <div class="h-1 w-20 bg-brand-yellow mx-auto rounded-full mt-4"></div>
+      </div>
+
+      <!-- Grid de 3 Tarjetas de Redes Sociales -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full">
+
+        <!-- CARD 1: FACEBOOK -->
+        <article class="group relative rounded-2xl p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[420px] transition-all duration-300 hover:-translate-y-1 text-left">
+          <i class="ph-fill ph-facebook-logo absolute -right-6 -bottom-6 text-[14rem] text-brand-white/[0.04] pointer-events-none"></i>
+
+          <div class="relative z-10 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-bold tracking-widest px-3 py-1 rounded-full uppercase font-mono border border-blue-400/40 text-blue-300 bg-blue-500/10">
+                FACEBOOK OFICIAL
+              </span>
+
+              <div class="w-12 h-12 rounded-full flex items-center justify-center bg-social-facebook text-white shadow-glow-fb transition-transform duration-300 group-hover:scale-110">
+                <i class="ph-fill ph-facebook-logo text-2xl"></i>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <h3 class="font-display text-4xl sm:text-5xl uppercase tracking-tight leading-none text-brand-white">
+                FACEBOOK
+              </h3>
+              <p class="font-sans text-sm font-semibold mt-1 text-[#5ea4ff]">
+                Envíos DosRuedas
+              </p>
+            </div>
+
+            <p class="font-sans text-sm leading-relaxed text-brand-white/85 font-light pt-1">
+              Seguí nuestro día a día, novedades operativas y la comunidad comercial en Mar del Plata.
+            </p>
+          </div>
+
+          <div class="relative z-10 pt-6">
+            <a href="https://www.facebook.com/enviosdosruedas" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-300 bg-social-facebook hover:bg-[#166fe5] text-white shadow-glow-fb group/btn">
+              <span>SEGUIR COMUNIDAD</span>
+              <span class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center shrink-0 ml-2 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform">
+                <i class="ph-bold ph-arrow-up-right text-sm text-white"></i>
+              </span>
+            </a>
+          </div>
+        </article>
+
+        <!-- CARD 2: INSTAGRAM -->
+        <article class="group relative rounded-2xl p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[420px] transition-all duration-300 hover:-translate-y-1 text-left">
+          <i class="ph-fill ph-instagram-logo absolute -right-6 -bottom-6 text-[14rem] text-brand-white/[0.04] pointer-events-none"></i>
+
+          <div class="relative z-10 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-bold tracking-widest px-3 py-1 rounded-full uppercase font-mono border border-rose-400/40 text-rose-300 bg-rose-500/10">
+                INSTAGRAM MDQ
+              </span>
+
+              <div class="w-12 h-12 rounded-2xl flex items-center justify-center bg-gradient-to-tr from-[#f97316] via-[#e11d48] to-[#9333ea] text-white shadow-glow-ig transition-transform duration-300 group-hover:scale-110">
+                <i class="ph-fill ph-instagram-logo text-2xl"></i>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <h3 class="font-display text-4xl sm:text-5xl uppercase tracking-tight leading-none text-brand-white">
+                INSTAGRAM
+              </h3>
+              <p class="font-sans text-sm font-semibold mt-1 text-[#ff4d6d]">
+                @enviosdosruedas
+              </p>
+            </div>
+
+            <p class="font-sans text-sm leading-relaxed text-brand-white/85 font-light pt-1">
+              Mirá el detrás de escena de nuestros repartidores y la flota recorriendo las calles de MDQ.
+            </p>
+          </div>
+
+          <div class="relative z-10 pt-6">
+            <a href="https://www.instagram.com/enviosdosruedas/" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-300 bg-gradient-to-r from-[#9b2c8a] via-[#e11d48] to-[#f97316] hover:opacity-95 text-white shadow-glow-ig group/btn">
+              <span>VER CONTENIDO</span>
+              <span class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center shrink-0 ml-2 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform">
+                <i class="ph-bold ph-arrow-up-right text-sm text-white"></i>
+              </span>
+            </a>
+          </div>
+        </article>
+
+        <!-- CARD 3: WHATSAPP -->
+        <article class="group relative rounded-2xl p-6 sm:p-7 bg-brand-blue-deep/90 border border-brand-white/20 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[420px] transition-all duration-300 hover:-translate-y-1 text-left">
+          <i class="ph-fill ph-whatsapp-logo absolute -right-6 -bottom-6 text-[14rem] text-brand-white/[0.04] pointer-events-none"></i>
+
+          <div class="relative z-10 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-bold tracking-widest px-3 py-1 rounded-full uppercase font-mono border border-emerald-400/40 text-emerald-300 bg-emerald-500/10">
+                WHATSAPP DIRECTO
+              </span>
+
+              <div class="w-12 h-12 rounded-full flex items-center justify-center bg-social-whatsapp text-white shadow-glow-wa transition-transform duration-300 group-hover:scale-110">
+                <i class="ph-fill ph-whatsapp-logo text-2xl"></i>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <h3 class="font-display text-4xl sm:text-5xl uppercase tracking-tight leading-none text-brand-white">
+                WHATSAPP
+              </h3>
+              <p class="font-mono text-sm font-semibold mt-1 text-social-whatsapp">
+                +54 223 660-2699
+              </p>
+            </div>
+
+            <p class="font-sans text-sm leading-relaxed text-brand-white/85 font-light pt-1">
+              Escribinos directamente para consultas de precios, despachos o soporte logístico inmediato.
+            </p>
+          </div>
+
+          <div class="relative z-10 pt-6">
+            <a href="https://wa.me/542236602699" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-between font-subheading font-bold uppercase tracking-wider text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all duration-300 bg-social-whatsapp hover:bg-[#20bd5a] text-brand-blue-deep shadow-glow-wa group/btn font-bold">
+              <span>INICIAR CHAT</span>
+              <span class="w-7 h-7 rounded-full bg-brand-blue-deep/15 flex items-center justify-center shrink-0 ml-2 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform">
+                <i class="ph-bold ph-arrow-up-right text-sm text-brand-blue-deep"></i>
+              </span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER GLOBAL ==================== -->
+  <footer id="contacto" class="bg-brand-blue text-brand-white border-t border-brand-white/20 relative overflow-hidden w-full">
+    <div class="h-1.5 bg-brand-yellow w-full shadow-md"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10 relative z-10">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 items-start text-left">
+
+        <!-- Identidad (5 cols) -->
+        <div class="lg:col-span-5 space-y-5">
+          <a class="flex items-center gap-3 group w-fit focus:outline-none" href="/prototipos/index.html">
+            <div class="relative w-11 h-11 bg-brand-blue border border-brand-yellow rounded-xl p-1 shrink-0 flex items-center justify-center overflow-hidden shadow-glow-yellow group-hover:scale-105 transition-transform">
+              <img src="./logo.webp" alt="Logo Envíos DosRuedas" class="w-full h-full object-contain" onerror="this.style.display='none';">
+            </div>
+            <div class="flex flex-col leading-none">
+              <span class="font-display text-2xl sm:text-3xl tracking-tight uppercase text-brand-white">
+                Envíos <span class="text-brand-yellow">DosRuedas</span>
+              </span>
+              <span class="text-[10px] font-mono text-brand-white/80 tracking-widest uppercase mt-0.5">
+                Tu solución confiable · Mar del Plata
+              </span>
+            </div>
+          </a>
+
+          <p class="text-brand-white/90 text-sm leading-relaxed max-w-sm font-light">
+            Con más de 7 años de trayectoria en Mar del Plata, transformamos el despacho de tus productos en un motor de crecimiento para comercios con flota propia y compromiso humano.
+          </p>
+
+          <div class="space-y-2 pt-2">
+            <span class="block text-xs font-bold text-brand-yellow uppercase tracking-widest font-subheading">
+              Canales Oficiales
+            </span>
+            <div class="flex flex-wrap items-center gap-3">
+              <a class="h-9 w-9 rounded-xl bg-brand-white/15 hover:bg-brand-yellow text-brand-white hover:text-brand-blue flex items-center justify-center transition-all border border-brand-white/20" title="Instagram" aria-label="Instagram Oficial" href="https://www.instagram.com/enviosdosruedas/" target="_blank" rel="noopener noreferrer">
+                <i class="ph-fill ph-instagram-logo text-lg"></i>
+              </a>
+              <a class="h-9 w-9 rounded-xl bg-brand-white/15 hover:bg-brand-yellow text-brand-white hover:text-brand-blue flex items-center justify-center transition-all border border-brand-white/20" title="Facebook" aria-label="Facebook Oficial" href="https://www.facebook.com/enviosdosruedas" target="_blank" rel="noopener noreferrer">
+                <i class="ph-fill ph-facebook-logo text-lg"></i>
+              </a>
+              <a class="h-9 w-9 rounded-xl bg-brand-yellow hover:bg-brand-yellow-hover text-brand-blue flex items-center justify-center transition-all" title="WhatsApp Directo" aria-label="WhatsApp Directo" href="https://wa.me/542236602699" target="_blank" rel="noopener noreferrer">
+                <i class="ph-fill ph-whatsapp-logo text-lg"></i>
+              </a>
+              <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-brand-white/15 border border-brand-white/20 text-xs text-brand-white font-mono">
+                <i class="ph-fill ph-shield-check text-brand-yellow"></i>
+                <span>Partner 3PL Verificado</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Servicios (3 cols) -->
+        <div class="lg:col-span-3 space-y-4">
+          <h4 class="font-subheading text-lg tracking-wider text-brand-yellow uppercase border-b border-brand-white/20 pb-2 font-bold">
+            Servicios y Soluciones
+          </h4>
+          <ul class="space-y-2.5 text-sm font-sans">
+            <li>
+              <a class="text-brand-white hover:text-brand-yellow flex items-center justify-between group transition-all duration-200" href="/prototipos/cotizar-express.html">
+                <div class="flex items-center gap-2">
+                  <i class="ph-fill ph-lightning text-brand-yellow"></i>
+                  <span>Cotizador Express</span>
+                </div>
+                <i class="ph ph-caret-right text-xs opacity-0 group-hover:opacity-100 transition-opacity text-brand-yellow"></i>
+              </a>
+            </li>
+            <li>
+              <a class="text-brand-yellow flex items-center justify-between group transition-all duration-200" href="/prototipos/cotizar-lowcost.html">
+                <div class="flex items-center gap-2">
+                  <i class="ph-fill ph-tag text-brand-yellow"></i>
+                  <span>Cotizador LowCost</span>
+                </div>
+                <i class="ph ph-caret-right text-xs opacity-100 text-brand-yellow"></i>
+              </a>
+            </li>
+            <li>
+              <a class="text-brand-white hover:text-brand-yellow flex items-center justify-between group transition-all duration-200" href="/prototipos/enviosflex.html">
+                <div class="flex items-center gap-2">
+                  <i class="ph-fill ph-package text-brand-yellow"></i>
+                  <span>Mercado Envíos Flex</span>
+                </div>
+                <i class="ph ph-caret-right text-xs opacity-0 group-hover:opacity-100 transition-opacity text-brand-yellow"></i>
+              </a>
+            </li>
+            <li>
+              <a class="text-brand-white hover:text-brand-yellow flex items-center justify-between group transition-all duration-200" href="/prototipos/plan-emprendedores.html">
+                <div class="flex items-center gap-2">
+                  <i class="ph-fill ph-warehouse text-brand-yellow"></i>
+                  <span>E-Commerce & Logística 3PL</span>
+                </div>
+                <i class="ph ph-caret-right text-xs opacity-0 group-hover:opacity-100 transition-opacity text-brand-yellow"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Base Operativa (4 cols) -->
+        <div class="lg:col-span-4 space-y-4">
+          <h4 class="font-subheading text-lg tracking-wider text-brand-yellow uppercase border-b border-brand-white/20 pb-2 font-bold">
+            Base Operativa y Logística
+          </h4>
+          <div class="space-y-3 text-xs text-brand-white font-sans">
+            <div class="flex gap-3 items-start bg-brand-white/10 p-3 rounded-xl border border-brand-white/15">
+              <div class="p-1.5 bg-brand-white/20 rounded-lg shrink-0 text-brand-yellow">
+                <i class="ph-fill ph-map-pin text-base"></i>
+              </div>
+              <div>
+                <p class="font-subheading uppercase text-brand-yellow text-xs font-bold">Dirección Central:</p>
+                <p class="text-brand-white font-light text-[13px]">Friuli 1972 (Exclusivo para despachos y retiro)</p>
+                <p class="text-[11px] text-brand-white/70">B7600 Mar del Plata, Prov. de Buenos Aires</p>
+              </div>
+            </div>
+
+            <div class="flex gap-3 items-start bg-brand-white/10 p-3 rounded-xl border border-brand-white/15">
+              <div class="p-1.5 bg-brand-white/20 rounded-lg shrink-0 text-brand-yellow">
+                <i class="ph-fill ph-phone-call text-base"></i>
+              </div>
+              <div>
+                <p class="font-subheading uppercase text-brand-yellow text-xs font-bold">Central Telefónica:</p>
+                <a href="tel:+542236602699" class="text-brand-white hover:text-brand-yellow font-mono text-sm block font-bold transition-colors">
+                  +54 223 660-2699
+                </a>
+                <p class="text-[11px] text-brand-white/70">Línea directa base y logística</p>
+              </div>
+            </div>
+
+            <div class="flex gap-3 items-start bg-brand-white/10 p-3 rounded-xl border border-brand-white/15">
+              <div class="p-1.5 bg-brand-white/20 rounded-lg shrink-0 text-brand-yellow">
+                <i class="ph-fill ph-clock text-base"></i>
+              </div>
+              <div class="w-full space-y-1">
+                <p class="font-subheading uppercase text-brand-yellow text-xs font-bold">Horarios de Operación:</p>
+                <div class="text-[12px] space-y-0.5 text-brand-white/90">
+                  <div class="flex justify-between items-center">
+                    <span>Lunes a Viernes:</span>
+                    <span class="font-mono text-brand-yellow font-bold">08:00 - 20:00 hs</span>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span>Sábados (Guardia):</span>
+                    <span class="font-mono text-brand-yellow font-bold">09:00 - 15:00 hs</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Separador -->
+      <div class="border-t border-brand-white/20 my-8 relative"></div>
+
+      <!-- Copyright y Accesos Rápidos -->
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-brand-white/80 font-sans">
+        <p>© 2026 Envíos DosRuedas. Todos los derechos reservados. Mar del Plata, Argentina.</p>
+        <div class="flex flex-wrap justify-center gap-6">
+          <a class="hover:text-brand-yellow transition-colors" href="/prototipos/index.html">Inicio</a>
+          <a class="hover:text-brand-yellow transition-colors" href="/prototipos/cotizar-lowcost.html">Servicios</a>
+          <a class="hover:text-brand-yellow transition-colors" href="/prototipos/contacto.html">Contacto</a>
+          <button type="button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="text-brand-yellow font-subheading uppercase tracking-wider flex items-center gap-1 hover:underline ml-2">
+            <span>Volver Arriba</span>
+            <i class="ph-bold ph-arrow-up text-xs"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== LOGICA INTERACTIVA EN VANILLA JS & LEAFLET ==================== -->
+  <script>
+    // Lugares frecuentes preconfigurados de Mar del Plata con coordenadas para simular ruteo
+    const MDQ_PLACES = [
+      { name: "Centro de Distribución (Friuli 1972)", lat: -38.0315, lng: -57.5684 },
+      { name: "Zona Güemes (Güemes y Rawson)", lat: -38.0125, lng: -57.5412 },
+      { name: "Plaza Mitre (Av. Colón y Mitre)", lat: -38.0018, lng: -57.5492 },
+      { name: "Av. Constitución 5500", lat: -37.9620, lng: -57.5580 },
+      { name: "Puerto Mar del Plata (Banquina)", lat: -38.0510, lng: -57.5380 },
+      { name: "Plaza Colón (Av. Colón y Arenales)", lat: -38.0062, lng: -57.5420 },
+      { name: "Terminal Ferroautomotora (San Juan 1400)", lat: -37.9920, lng: -57.5610 },
+      { name: "B° Stella Maris (Viamonte y Falucho)", lat: -38.0180, lng: -57.5320 },
+      { name: "La Perla (Av. Libertad y España)", lat: -37.9890, lng: -57.5480 },
+      { name: "Punta Mogotes (Balneario 12)", lat: -38.0820, lng: -57.5460 },
+      { name: "Paseo Aldrey (Sarmiento 2685)", lat: -38.0095, lng: -57.5445 },
+      { name: "Zona San Juan (San Juan y Luro)", lat: -37.9940, lng: -57.5570 },
+      { name: "Hospital Privado de Comunidad (Córdoba 4545)", lat: -38.0260, lng: -57.5550 }
+    ];
+
+    // Header Dropdowns
+    const servicesBtn = document.getElementById('services-btn');
+    const servicesMenu = document.getElementById('services-menu');
+    const servicesCaret = document.getElementById('services-caret');
+
+    const aboutBtn = document.getElementById('about-btn');
+    const aboutMenu = document.getElementById('about-menu');
+    const aboutCaret = document.getElementById('about-caret');
+
+    if (servicesBtn && servicesMenu) {
+      servicesBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = !servicesMenu.classList.contains('hidden');
+        if (isOpen) {
+          servicesMenu.classList.add('hidden');
+          servicesCaret?.classList.remove('rotate-180');
+          servicesBtn.setAttribute('aria-expanded', 'false');
+        } else {
+          servicesMenu.classList.remove('hidden');
+          servicesCaret?.classList.add('rotate-180');
+          servicesBtn.setAttribute('aria-expanded', 'true');
+          aboutMenu?.classList.add('hidden');
+          aboutCaret?.classList.remove('rotate-180');
+        }
+      });
+    }
+
+    if (aboutBtn && aboutMenu) {
+      aboutBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = !aboutMenu.classList.contains('hidden');
+        if (isOpen) {
+          aboutMenu.classList.add('hidden');
+          aboutCaret?.classList.remove('rotate-180');
+          aboutBtn.setAttribute('aria-expanded', 'false');
+        } else {
+          aboutMenu.classList.remove('hidden');
+          aboutCaret?.classList.add('rotate-180');
+          aboutBtn.setAttribute('aria-expanded', 'true');
+          servicesMenu?.classList.add('hidden');
+          servicesCaret?.classList.remove('rotate-180');
+        }
+      });
+    }
+
+    document.addEventListener('click', () => {
+      servicesMenu?.classList.add('hidden');
+      servicesCaret?.classList.remove('rotate-180');
+      aboutMenu?.classList.add('hidden');
+      aboutCaret?.classList.remove('rotate-180');
+      document.getElementById('origen-suggestions')?.classList.add('hidden');
+      document.getElementById('destino-suggestions')?.classList.add('hidden');
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.contains('hidden');
+        if (isHidden) {
+          mobileMenu.classList.remove('hidden');
+          mobileMenuIcon.classList.remove('ph-list');
+          mobileMenuIcon.classList.add('ph-x');
+          mobileMenuBtn.setAttribute('aria-expanded', 'true');
+        } else {
+          mobileMenu.classList.add('hidden');
+          mobileMenuIcon.classList.remove('ph-x');
+          mobileMenuIcon.classList.add('ph-list');
+          mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    // Inicializar Mapa Leaflet
+    let leafletMap = null;
+    let markersLayer = null;
+    let polylineLayer = null;
+
+    function initLeafletMap() {
+      const mapContainer = document.getElementById('lowcost-leaflet-map');
+      if (!mapContainer || typeof L === 'undefined') return;
+
+      leafletMap = L.map('lowcost-leaflet-map', {
+        zoomControl: true,
+        attributionControl: false
+      }).setView([-38.0055, -57.5426], 13);
+
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        maxZoom: 19
+      }).addTo(leafletMap);
+
+      markersLayer = L.layerGroup().addTo(leafletMap);
+
+      // Agregar pin base Friuli 1972
+      const baseIcon = L.divIcon({
+        className: 'custom-pin-base',
+        html: `<div style="background:#0950F6; color:#FFF12E; border:2px solid #FFF12E; font-size:10px; font-weight:bold; font-family:'Geist Mono',monospace; padding:3px 7px; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.3); white-space:nowrap;">BASE 2R (FRIULI 1972)</div>`,
+        iconSize: [120, 30],
+        iconAnchor: [60, 15]
+      });
+      L.marker([-38.0315, -57.5684], { icon: baseIcon }).addTo(markersLayer);
+    }
+
+    // Tarifa LowCost
+    function calcLowCostPrice(d) {
+      if (d <= 3) return 3000;
+      if (d <= 5) return 4000;
+      if (d <= 7) return 5300;
+      if (d <= 10) return 7000;
+      return 7000 + Math.ceil(d - 10) * 700;
+    }
+
+    // Distancia Haversine (km)
+    function calcDistance(lat1, lon1, lat2, lon2) {
+      const R = 6371; // Radio terrestre en km
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLon = (lon2 - lon1) * Math.PI / 180;
+      const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      return (R * c * 1.35).toFixed(1); // Factor 1.35 para curvas urbanas reales
+    }
+
+    let selectedOrigenCoords = null;
+    let selectedDestinoCoords = null;
+
+    // Configurar Autocomplete para inputs
+    function setupAutocomplete(inputId, listId, isOrigin) {
+      const input = document.getElementById(inputId);
+      const list = document.getElementById(listId);
+
+      input.addEventListener('focus', () => {
+        renderSuggestions('', list, input, isOrigin);
+      });
+
+      input.addEventListener('input', (e) => {
+        renderSuggestions(e.target.value, list, input, isOrigin);
+      });
+    }
+
+    function renderSuggestions(val, list, input, isOrigin) {
+      const q = val.toLowerCase();
+      const filtered = MDQ_PLACES.filter(p => p.name.toLowerCase().includes(q));
+
+      list.innerHTML = '';
+      if (filtered.length === 0) {
+        list.classList.add('hidden');
+        return;
+      }
+
+      filtered.forEach(p => {
+        const item = document.createElement('div');
+        item.className = 'p-2.5 hover:bg-brand-blue/10 rounded-lg text-xs cursor-pointer flex items-center gap-2 text-brand-blue font-sans font-medium';
+        item.innerHTML = `<i class="ph-fill ph-map-pin text-brand-blue"></i> <span>${p.name}</span>`;
+        item.addEventListener('click', (e) => {
+          e.stopPropagation();
+          input.value = p.name;
+          if (isOrigin) {
+            selectedOrigenCoords = { lat: p.lat, lng: p.lng };
+          } else {
+            selectedDestinoCoords = { lat: p.lat, lng: p.lng };
+          }
+          list.classList.add('hidden');
+        });
+        list.appendChild(item);
+      });
+
+      list.classList.remove('hidden');
+    }
+
+    setupAutocomplete('origen-input', 'origen-suggestions', true);
+    setupAutocomplete('destino-input', 'destino-suggestions', false);
+
+    // Envío del Formulario
+    function handleLowCostSubmit(e) {
+      e.preventDefault();
+
+      const origenVal = document.getElementById('origen-input').value;
+      const destinoVal = document.getElementById('destino-input').value;
+      const nombreVal = document.getElementById('nombre-input').value;
+      const telefonoVal = document.getElementById('telefono-input').value;
+      const productoVal = document.getElementById('producto-input').value;
+      const errorBox = document.getElementById('lowcost-error');
+      const submitBtn = document.getElementById('lowcost-submit-btn');
+
+      if (!origenVal || !destinoVal || !nombreVal || !telefonoVal || !productoVal) {
+        errorBox.classList.remove('hidden');
+        return;
+      }
+      errorBox.classList.add('hidden');
+
+      // Si no seleccionó de la lista, asignamos coordenadas aproximadas
+      if (!selectedOrigenCoords) {
+        selectedOrigenCoords = { lat: -38.0055 + (Math.random() - 0.5) * 0.04, lng: -57.5426 + (Math.random() - 0.5) * 0.04 };
+      }
+      if (!selectedDestinoCoords) {
+        selectedDestinoCoords = { lat: -38.0150 + (Math.random() - 0.5) * 0.06, lng: -57.5550 + (Math.random() - 0.5) * 0.06 };
+      }
+
+      // Animación de carga en botón
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `
+        <div class="flex items-center gap-2">
+          <svg class="animate-spin h-5 w-5 text-brand-blue" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          <span>Calculando Tarifa LowCost...</span>
+        </div>
+      `;
+
+      setTimeout(() => {
+        const distancia = parseFloat(calcDistance(selectedOrigenCoords.lat, selectedOrigenCoords.lng, selectedDestinoCoords.lat, selectedDestinoCoords.lng));
+        const precio = calcLowCostPrice(distancia);
+
+        // Renderizar valores
+        document.getElementById('res-distancia').innerText = `${distancia} km`;
+        document.getElementById('res-precio').innerText = `$${precio.toLocaleString('es-AR')}`;
+
+        // Link de WhatsApp
+        const waText = `¡Hola Envíos DosRuedas! Quiero coordinar un Envío LowCost cotizado en la web:
+👤 *Nombre:* ${nombreVal}
+📞 *Teléfono:* ${telefonoVal}
+📦 *Producto:* ${productoVal}
+📍 *Origen:* ${origenVal}
+🏁 *Destino:* ${destinoVal}
+📏 *Distancia:* ${distancia} km
+💵 *Tarifa LowCost 2026:* $${precio.toLocaleString('es-AR')} ARS`;
+
+        document.getElementById('res-whatsapp-btn').href = `https://wa.me/542236602699?text=${encodeURIComponent(waText)}`;
+
+        // Mostrar panel de resultados
+        document.getElementById('lowcost-result-panel').classList.remove('hidden');
+
+        // Actualizar mapa Leaflet
+        if (leafletMap && markersLayer) {
+          markersLayer.clearLayers();
+
+          const origIcon = L.divIcon({
+            className: 'pin-origen',
+            html: `<div style="background:#0950F6; color:#FFF12E; border:2px solid #FFF12E; font-size:10px; font-weight:bold; font-family:'Geist Mono',monospace; padding:3px 7px; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.3); white-space:nowrap;">📍 RETIRO</div>`,
+            iconSize: [80, 26],
+            iconAnchor: [40, 13]
+          });
+
+          const destIcon = L.divIcon({
+            className: 'pin-destino',
+            html: `<div style="background:#FFF12E; color:#0950F6; border:2px solid #0950F6; font-size:10px; font-weight:bold; font-family:'Geist Mono',monospace; padding:3px 7px; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.3); white-space:nowrap;">🏁 ENTREGA</div>`,
+            iconSize: [80, 26],
+            iconAnchor: [40, 13]
+          });
+
+          L.marker([selectedOrigenCoords.lat, selectedOrigenCoords.lng], { icon: origIcon }).addTo(markersLayer);
+          L.marker([selectedDestinoCoords.lat, selectedDestinoCoords.lng], { icon: destIcon }).addTo(markersLayer);
+
+          if (polylineLayer) leafletMap.removeLayer(polylineLayer);
+
+          // Trazar línea de ruta
+          polylineLayer = L.polyline([
+            [selectedOrigenCoords.lat, selectedOrigenCoords.lng],
+            [(selectedOrigenCoords.lat + selectedDestinoCoords.lat)/2 + 0.003, (selectedOrigenCoords.lng + selectedDestinoCoords.lng)/2 - 0.003],
+            [selectedDestinoCoords.lat, selectedDestinoCoords.lng]
+          ], {
+            color: '#FFF12E',
+            weight: 5,
+            opacity: 0.9,
+            dashArray: '8, 8'
+          }).addTo(leafletMap);
+
+          leafletMap.fitBounds([
+            [selectedOrigenCoords.lat, selectedOrigenCoords.lng],
+            [selectedDestinoCoords.lat, selectedDestinoCoords.lng]
+          ], { padding: [50, 50] });
+        }
+
+        // Restaurar botón
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `
+          <span>Calcular Ruta y Tarifa LowCost</span>
+          <span class="w-8 h-8 rounded-full bg-brand-blue/15 text-brand-blue flex items-center justify-center shrink-0">
+            <i class="ph-bold ph-arrow-right text-base"></i>
+          </span>
+        `;
+      }, 500);
+    }
+
+    // Inicializar mapa y tarjeta 3D hero
+    document.addEventListener('DOMContentLoaded', () => {
+      initLeafletMap();
+
+      // Animación mouse 3d en hero card
+      const heroCard = document.getElementById('hero-interactive-card');
+      if (heroCard) {
+        document.addEventListener('mousemove', (e) => {
+          const x = (e.clientX / window.innerWidth - 0.5) * 14;
+          const y = (e.clientY / window.innerHeight - 0.5) * -14;
+          heroCard.style.transform = `translate(-50%, -50%) rotateX(${y}deg) rotateY(${x}deg)`;
+        });
+      }
+    });
+
+    // Three.js Partículas de fondo
+    (function initHeroCanvas() {
+      const canvas = document.getElementById('hero-particles-canvas');
+      if (!canvas || typeof THREE === 'undefined') return;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(60, window.innerWidth / (window.innerHeight * 0.8), 0.1, 1000);
+      camera.position.z = 30;
+
+      const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+      renderer.setSize(canvas.parentElement.clientWidth, canvas.parentElement.clientHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      const particleCount = 120;
+      const geometry = new THREE.BufferGeometry();
+      const positions = new Float32Array(particleCount * 3);
+
+      for (let i = 0; i < particleCount * 3; i += 3) {
+        positions[i] = (Math.random() - 0.5) * 50;
+        positions[i + 1] = (Math.random() - 0.5) * 30;
+        positions[i + 2] = (Math.random() - 0.5) * 20;
+      }
+
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+      const material = new THREE.PointsMaterial({
+        color: 0xFFF12E,
+        size: 0.4,
+        transparent: true,
+        opacity: 0.5,
+      });
+
+      const particleSystem = new THREE.Points(geometry, material);
+      scene.add(particleSystem);
+
+      function animate() {
+        requestAnimationFrame(animate);
+        particleSystem.rotation.y += 0.001;
+        particleSystem.rotation.x += 0.0005;
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      window.addEventListener('resize', () => {
+        if (!canvas.parentElement) return;
+        const width = canvas.parentElement.clientWidth;
+        const height = canvas.parentElement.clientHeight;
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+      });
+    })();
+  </script>
+</body>
+</html>
