@@ -1,157 +1,128 @@
----
-name: "Envíos DosRuedas"
-description: "Sistema de diseño estricto y de alto impacto para logística urbana, e-commerce y mensajería en Mar del Plata. Basado en alternancia de contraste bimodal: Azul Eléctrico (#0950F6) y Blanco Canvas (#F8FAFC), con acento Amarillo Neón (#FFF12E) y Azul Marino (#052c87). Texto en negro estrictamente prohibido."
-colors:
-  primary: "#0950F6"
-  primary_dark: "#06349e"
-  primary_hover: "#0744d4"
-  surface_deep: "#052c87"
-  surface_light: "#F8FAFC"
-  surface_card_light: "#FFFFFF"
-  accent: "#FFF12E"
-  accent_hover: "#e8dc24"
-  text_primary: "#FFFFFF"
-  text_light_mode_primary: "#0950F6"
-  text_light_mode_secondary: "rgba(9, 80, 246, 0.85)"
-  border_subtle: "rgba(255, 255, 255, 0.20)"
-  border_light_subtle: "rgba(9, 80, 246, 0.20)"
-  social_facebook: "#1877F2"
-  social_instagram: "#E1306C"
-  social_whatsapp: "#25D366"
-typography:
-  display: '"Bebas Neue", sans-serif'
-  subheading: '"Anton", sans-serif'
-  sans: '"Outfit", sans-serif'
-  mono: '"Geist Mono", monospace'
----
-
-# Design System: Envíos DosRuedas
-
-## 1. Visual Theme & Atmosphere
-
-El sistema de diseño de **Envíos DosRuedas** proyecta una estética enérgica, confiable, técnica y de alto impacto inspirada en la velocidad de la distribución de última milla y la logística urbana en Mar del Plata. El sistema opera bajo una **arquitectura cromática bimodal alternada**: secciones en **Azul Eléctrico (`#0950F6`)** intercaladas con secciones en **Blanco Canvas Claro (`#F8FAFC`)**, creando un ritmo visual nítido y moderno.
-
-### Regla Fundamental de Contraste
-- **Prohibición Total del Negro (`#000000` / `text-slate-900`)**: Tanto en fondos azules como en fondos blancos, la tipografía y los elementos gráficos se construyen exclusivamente mediante la vibración de **Azul Eléctrico (`#0950F6`)**, **Azul Marino (`#052c87`)** y **Amarillo Neón (`#FFF12E`)**, logrando identidad de marca pura y diferenciación absoluta.
-- **Asimetría Tipográfica Activa**: Los encabezados display incorporan pastillas rotadas (`transform -rotate-1`) con fondo azul y cápsula interior amarilla con texto azul (`bg-brand-yellow text-brand-blue font-black`) para romper la rigidez de grilla y elevar la tasa de lectura.
+# Sistema de Diseño: Envíos DosRuedas
+**Enfoque de Color:** Modo Claro Exclusivo (Clean & Crisp Light UI)
+**Framework CSS:** Tailwind CSS v4 / Next.js
+**Tipografía:** Inter / Geist Sans (Interfaz) + JetBrains Mono (Tracking / Números de Guía)
 
 ---
 
-## 2. Color Palette & Roles
+## 1. Filosofía Visual y Principios
 
-El proyecto aplica una **paleta calibrada de 3 pilares de marca** adaptada a ambos tipos de superficie:
-
-### 1. Primary Foundations & Surfaces
-- **Electric Logistic Blue** (`#0950F6`): Fondo maestro de secciones impares (Hero, Servicios Overview, Emprendedores, Footer), botones secundarios en modo claro y bordes interactivos.
-- **Deep Slate / Marine Container** (`#052c87`): Superficie para tarjetas bento en fondo azul, modales técnicos y contenedores showcase.
-- **Canvas White / Light Surface** (`#F8FAFC`): Fondo maestro de secciones pares (Visión & Métricas, Slider de Industrias, Comunidad & Redes) para descanso visual y máxima legibilidad.
-- **Pure Surface Card** (`#FFFFFF`): Fondo de tarjetas en secciones claras con bordes calibrados `border-brand-blue/20` y sombras nítidas.
-
-### 2. High-Visibility Accent & Interaction
-- **High-Vis Neon Yellow** (`#FFF12E`): Acento primario para badges clave, botones CTA de conversión inmediata, iconos de estado y pastillas de énfasis tipográfico.
-- **Deepened Yellow Hover** (`#E8DC24`): Estado `:hover` táctil de botones amarillos.
-- **Pure White** (`#FFFFFF`): Textos en modo oscuro, iconos y líneas divisorias translúcidas.
-
-### 3. Dual-Surface Typography Rules
-
-| Tipo de Sección | Fondo | Título Principal | Texto de Cuerpo / Párrafo | Badge / Pill |
-| :--- | :--- | :--- | :--- | :--- |
-| **Sección Modo Azul** | `bg-[#0950F6]` | `text-brand-white` | `text-brand-white/85` | `bg-brand-yellow text-brand-blue` |
-| **Sección Modo Claro** | `bg-[#F8FAFC]` | `text-brand-blue` + cápsula rotada | `text-brand-blue/85` y `text-brand-blue/75` | `bg-brand-blue text-brand-yellow` |
-
-### 4. Functional States & Social Channels
-- **WhatsApp Emerald** (`#25D366`): CTA de contacto directo y canal de atención inmediata. Sombra glow: `0 0 25px rgba(37, 211, 102, 0.75)`.
-- **Facebook Royal Blue** (`#1877F2`): Tarjeta social de comunidad. Sombra glow: `0 0 25px rgba(24, 119, 242, 0.75)`.
-- **Instagram Gradient** (`from #f97316 via #e11d48 to #9333ea`): Tarjeta de contenido visual. Sombra glow: `0 0 25px rgba(225, 48, 108, 0.75)`.
+1. **Light-First & Always Light:** La interfaz está pensada exclusivamente para entornos diurnos y de alta visibilidad en calle y oficina. No existen clases `dark:` ni conmutadores de tema nocturno.
+2. **Claridad Operativa:** Fondos blancos y grises tenues con contraste óptimo (WCAG AA/AAA) para lectura rápida de tarifas, cotizaciones y estados de envíos.
+3. **Identidad Logística Ágil:** Combinación de tonos amarillos/ámbar energéticos (velocidad en dos ruedas), azul/verde esmeralda para confirmación de entrega y neutrales balanceados.
 
 ---
 
-## 3. Typography Architecture
+## 2. Paleta de Colores (Design Tokens)
 
-El sistema tipográfico combina 4 familias estrictas:
+### 2.1 Superficies y Fondos
+| Token | Clase Tailwind | Valor Hex | Uso Principal |
+| :--- | :--- | :--- | :--- |
+| **Canvas Base** | `bg-white` | `#FFFFFF` | Fondo principal de la aplicación y tarjetas |
+| **Canvas Sutil** | `bg-slate-50` | `#F8FAFC` | Fondo de página, secciones alternadas y sidebars |
+| **Superficie Neutra** | `bg-slate-100` | `#F1F5F9` | Inputs deshabilitados, badges neutros, chips |
+| **Borde Estándar** | `border-slate-200`| `#E2E8F0` | Divisores, bordes de tarjetas y tablas |
+| **Borde Activo** | `border-slate-300`| `#CBD5E1` | Focus states secundarios, hover en inputs |
 
-### 1. Display Headings (`Bebas Neue` / `sans-serif`)
-- **Uso**: Encabezados H1 y H2 de gran escala (`text-4xl` a `text-7xl`), nombres de tarjetas principales y marcas de agua.
-- **Estructura**: `uppercase`, `tracking-tight`, `leading-[0.95]`.
-- **Firma Visual**: Integración de cápsula asimétrica rotada para la palabra clave:
-  ```html
-  <span class="relative inline-block bg-brand-blue px-3 py-1 my-1 transform -rotate-1 rounded-xl border border-brand-yellow/60 shadow-xl">
-      <span class="relative z-10 bg-brand-yellow text-brand-blue px-3.5 py-0.5 inline-block font-display font-black rounded-lg">
-          [PALABRA CLAVE]
-      </span>
-  </span>
-  ```
+### 2.2 Textos y Jerarquía Tipográfica
+| Token | Clase Tailwind | Valor Hex | Uso Principal |
+| :--- | :--- | :--- | :--- |
+| **Texto Primario** | `text-slate-900` | `#0F172A` | Títulos principales, precios destacados y guías |
+| **Texto Secundario** | `text-slate-600` | `#475569` | Descripciones, subtítulos y labels |
+| **Texto Terciario** | `text-slate-400` | `#94A3B8` | Placeholders, textos auxiliares y timestamps |
 
-### 2. Subheadings & Action Labels (`Anton` / `sans-serif`)
-- **Uso**: Botones CTA, tabs de navegación, títulos de menú, encabezados H3/H4 (`text-sm` a `text-2xl`).
-- **Estilo**: `uppercase`, `tracking-wider` / `tracking-widest`, `font-bold`.
-
-### 3. Body & Editorial (`Outfit` / `sans-serif`)
-- **Uso**: Párrafos descriptivos, especificaciones técnicas de servicio y modales (`text-xs` a `text-lg`).
-- **Estilo**: `font-medium` o `font-light` con interlineado relajado (`leading-relaxed`).
-
-### 4. Technical & Metric (`Geist Mono` / `monospace`)
-- **Uso**: Direcciones operativas (`Friuli 1972`), números de teléfono, insignias SLA ("SLA: MÁXIMA VELOCIDAD"), contadores de slider (`1 / 6`).
-- **Estilo**: `tracking-widest`, `text-[10px]` a `text-xs`, alta precisión técnica.
-
----
-
-## 4. Component Stylings
-
-### 1. Buttons & Interactive Badges
-- **Primary CTA ("Cotizá tu envío / Cotizá Express")**:
-  - Forma: Píldora redondeada completa (`rounded-full`).
-  - Fondo: Amarillo Neón (`#FFF12E`) con texto en Azul Eléctrico (`#0950F6`).
-  - Resplandor: `shadow-glow-yellow` (`0 0 35px rgba(255, 241, 46, 0.45)`).
-- **Tab Pills (Slider por Industria)**:
-  - **Activo**: `bg-brand-blue text-brand-yellow border-brand-blue shadow-md scale-105`.
-  - **Inactivo (Fondo Claro)**: `bg-white text-brand-blue border-brand-blue/25 hover:bg-brand-yellow/20 hover:border-brand-blue`.
-  - **Inactivo (Fondo Azul)**: `bg-brand-white/10 text-brand-white border-brand-white/20 hover:bg-brand-white/20`.
-
-### 2. Cards & Containers
-- **Cards en Fondo Azul**:
-  - Superficie: `bg-[#052c87]/90` con borde translúcido `border-brand-white/20`.
-  - Marca de agua decorativa: Icono Phosphor masivo (`text-[13rem]` a `text-[18rem]`) con opacidad ultra sutil (`text-brand-white/[0.04]`).
-- **Cards en Fondo Claro**:
-  - Superficie: `bg-white` con borde azul tenue `border-brand-blue/20`, sombra `shadow-lg` y hover dinámico `hover:border-brand-blue hover:shadow-xl`.
+### 2.3 Colores de Marca y Acento
+| Propósito | Clase Tailwind | Valor Hex | Uso |
+| :--- | :--- | :--- | :--- |
+| **Primario (Brand)** | `bg-amber-500` / `text-amber-950` | `#F59E0B` | Botones de acción principal (CTA), cadete, envíos express |
+| **Primario Hover** | `bg-amber-600` | `#D97706` | Hover de botones primarios |
+| **Primario Suave** | `bg-amber-50` / `text-amber-800` | `#FFFBEB` | Alertas informativas de cadetería, badges activos |
+| **Éxito (Entregado)** | `bg-emerald-600` / `bg-emerald-50` | `#059669` | Estado "Entregado", pago confirmed |
+| **En Tránsito** | `bg-blue-600` / `bg-blue-50` | `#2563EB` | Envíos en camino, tracking en vivo |
+| **Alerta / Retraso** | `bg-rose-600` / `bg-rose-50` | `#E11D48` | Cancelaciones, dirección no encontrada |
 
 ---
 
-## 5. Layout Principles & Alternation Pattern
+## 3. Componentes Base en Modo Claro
 
-### Ritmo Secuencial de la Landing Page
-1. **Hero Principal (`#hero-animado`)**: Fondo Azul Eléctrico (`bg-brand-blue`)
-2. **Visión & Métricas Bento (`#vision-mar-del-plata`)**: Fondo Blanco Canvas (`bg-[#f8fafc]`)
-3. **Servicios Overview & Modales (`#servicios`)**: Fondo Azul Eléctrico (`bg-brand-blue`)
-4. **Slider de Soluciones por Industria (`#slider-industrias`)**: Fondo Blanco Canvas (`bg-[#f8fafc]`)
-5. **Emprendedores & Marcas Locales (`#emprendedores-mdq`)**: Fondo Azul Eléctrico (`bg-brand-blue`)
-6. **Comunidad Digital & Redes (`#carrusel-redes`)**: Fondo Blanco Canvas (`bg-[#f8fafc]`)
-7. **Footer Institucional (`#contacto`)**: Fondo Azul Eléctrico (`bg-brand-blue`)
+### 3.1 Botones (Buttons)
+
+```html
+<!-- Botón Primario (CTA de Cotización / Enviar) -->
+<button class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-medium text-slate-900 bg-amber-400 hover:bg-amber-500 active:bg-amber-600 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-white">
+  Cotizar Envío Inmediato
+</button>
+
+<!-- Botón Secundario / Outline -->
+<button class="inline-flex items-center justify-center px-4 py-2 rounded-xl font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:border-slate-300 shadow-sm transition-all">
+  Ver Historial de Envíos
+</button>
+```
+
+### 3.2 Tarjetas (Cards & Bento Grid)
+
+```html
+<!-- Card de Servicio / Tarifa -->
+<div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-slate-300 transition-all">
+  <div class="flex items-center justify-between mb-4">
+    <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200">
+      Reparto Express
+    </span>
+    <span class="text-2xl font-bold text-slate-900">$350</span>
+  </div>
+  <h3 class="text-base font-semibold text-slate-900 mb-1">Cadetería Local Inmediata</h3>
+  <p class="text-sm text-slate-600">Entregas punto a punto en menos de 45 minutos.</p>
+</div>
+```
+
+### 3.3 Formularios y Cotizador (Inputs & Selects)
+
+```html
+<div class="space-y-1.5">
+  <label class="block text-sm font-medium text-slate-700">Dirección de Retiro</label>
+  <div class="relative">
+    <input
+      type="text"
+      placeholder="Ej: Av. Colón 1234"
+      class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors shadow-sm"
+    />
+  </div>
+</div>
+```
+
+### 3.4 Badges de Estado Logístico
+
+```html
+<!-- En Preparación -->
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200">
+  En Preparación
+</span>
+
+<!-- En Tránsito -->
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-200">
+  <span class="w-1.5 h-1.5 mr-1.5 rounded-full bg-blue-500 animate-pulse"></span>
+  En Camino
+</span>
+
+<!-- Entregado -->
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+  Entregado
+</span>
+```
 
 ---
 
-## 6. Anti-Patterns (Banned Rules)
-- ❌ **NO usar texto en color negro (`#000000`, `text-black`, `text-slate-900`) en ninguna sección.**
-- ❌ **NO usar fuentes genéricas como Inter, Arial o Times New Roman.**
-- ❌ **NO usar emojis estándar; utilizar únicamente iconos vectoriales Phosphor.**
-- ❌ **NO centrar títulos principales en modo asimétrico salvo cuando se requiera intencionalmente en una sola fila (`flex-wrap justify-center`).**
-- ❌ **NO generar datos o métricas ficticias ajenas a la operación real de Mar del Plata.**
+## 4. Estructura de Sombras y Elevaciones (Light Elevations)
+
+* **Nivel 1 (Subtle / Cards):** `shadow-sm` (`0 1px 2px 0 rgb(0 0 0 / 0.05)`)
+* **Nivel 2 (Hover / Menús desplegables):** `shadow-md` (`0 4px 6px -1px rgb(0 0 0 / 0.08)`)
+* **Nivel 3 (Modales / Cotizador Flotante):** `shadow-xl shadow-slate-200/50 border border-slate-100`
 
 ---
 
-## 7. Catálogo de Prototipos Estáticos (`docs/`)
+## 5. Reglas de Implementación en Código
 
-Los componentes y vistas modulares de referencia se encuentran organizados y preservados en la carpeta [`docs/`](file:///C:/Users/prest/proyectos/00000envios/docs):
-
-- [`docs/index.html`](file:///C:/Users/prest/proyectos/00000envios/docs/index.html): Landing Page completa ensamblada con navegación fluida y modales interactivos.
-- [`docs/header.html`](file:///C:/Users/prest/proyectos/00000envios/docs/header.html): Barra de navegación con dropdowns y botones de acción rápida.
-- [`docs/hero-animado.html`](file:///C:/Users/prest/proyectos/00000envios/docs/hero-animado.html): Hero asimétrico con badge rotado y widget de ruteo activo.
-- [`docs/vision-section.html`](file:///C:/Users/prest/proyectos/00000envios/docs/vision-section.html): Visión operativa y métricas clave sobre fondo claro.
-- [`docs/services-overview.html`](file:///C:/Users/prest/proyectos/00000envios/docs/services-overview.html): Catálogo de las 4 soluciones principales con modales de fichas técnicas.
-- [`docs/slider-servicios.html`](file:///C:/Users/prest/proyectos/00000envios/docs/slider-servicios.html): Slider interactivo de soluciones por industria.
-- [`docs/emprendedores-home.html`](file:///C:/Users/prest/proyectos/00000envios/docs/emprendedores-home.html): Bento grid para PyMEs y carrusel de marcas locales.
-- [`docs/carrusel-redes.html`](file:///C:/Users/prest/proyectos/00000envios/docs/carrusel-redes.html): Tarjetas de comunidad social (Facebook, Instagram, WhatsApp) con pastilla horizontal.
-- [`docs/footer.html`](file:///C:/Users/prest/proyectos/00000envios/docs/footer.html): Pie de página institucional y canales de contacto directo.
-- [`docs/logistica-network-canvas.html`](file:///C:/Users/prest/proyectos/00000envios/docs/logistica-network-canvas.html): Canvas dinámico de red logística interactiva.
-- [`docs/index.css`](file:///C:/Users/prest/proyectos/00000envios/docs/index.css): Estilos globales complementarios, utilidades y animaciones.
-
+1. **Prohibido el prefijo `dark:`** en todos los componentes React / Next.js y plantillas HTML.
+2. Todo fondo neutro de contenedor debe resolver a `bg-white` o `bg-slate-50`.
+3. Todos los bordes deben mantener una opacidad clara de `border-slate-200` o `border-slate-100`.
+4. Los contrastes de tipografía deben conservar siempre el escalón `text-slate-900` para títulos y `text-slate-600` para cuerpos de texto.
